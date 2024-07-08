@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/pages/login.dart';
 
 import 'theme/theme.dart';
-import 'pages/feed.dart';
-import 'pages/login.dart';
 
 // Define colors to be used
 const Color veracodeBlack = Color.fromARGB(255, 36, 38, 38);

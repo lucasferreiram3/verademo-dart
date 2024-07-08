@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/internal_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'register.dart';
@@ -69,7 +70,8 @@ class LoginPage extends StatelessWidget {
           child: ElevatedButton(
             child: const Text('Login'),
             onPressed: () {
-              print('pressed login');
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
             },
           ),
         );
