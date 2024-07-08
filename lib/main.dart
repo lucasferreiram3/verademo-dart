@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'theme/theme.dart';
 import 'pages/feed.dart';
+import 'pages/login.dart';
 
 // Define colors to be used
-const Color veracodeBlack= Color.fromARGB(255, 36, 38, 38);
+const Color veracodeBlack = Color.fromARGB(255, 36, 38, 38);
 const Color veracodeBlue =  Color.fromARGB(255, 0, 179, 230);
 const Color veracodeWhite = Color.fromARGB(255,244, 244, 244);
 
@@ -20,14 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Blab-a-Gag',
       /*theme: ThemeData(
         appBarTheme: ,
         navigationBarTheme: ,
         colorScheme: ColorSche
       ),*/
-      home: FeedPage()
+      theme: VTheme.defaultTheme,
+      home: const LoginPage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
