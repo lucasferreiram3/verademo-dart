@@ -7,8 +7,11 @@ const Color veracodeBlue =  Color.fromARGB(255, 0, 179, 230);
 const Color veracodeWhite = Color.fromARGB(255,244, 244, 244);
 
 //Create themes
-AppBar header = AppBar(
-  title: Text("hello", style: GoogleFonts.lato(),)/*page name variable here*/,
+AppBar headerBar = AppBar(
+  leading: Image.asset('assets/VCicon.png'),
+  title: Text("test", style:  GoogleFonts.lato(
+    textStyle: const TextStyle(color: Colors.white))/*page name variable here*/,),
+  centerTitle: true,
   backgroundColor: veracodeBlack,
   actions: <Widget>[
     IconButton(
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       home: Scaffold(
-        appBar: header,
+        appBar: headerBar,
         /*AppBar(
           backgroundColor: veracodeBlack,
           title: Text('hello world',
