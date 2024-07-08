@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/main.dart';
+import 'package:verademo_dart/internal_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 
 class LoginPage extends StatelessWidget {
@@ -30,7 +30,8 @@ class LoginPage extends StatelessWidget {
               ),
               child: const Text('Login'),
               onPressed: () {
-                print('pressed login');
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
               },
             ),
           ),
