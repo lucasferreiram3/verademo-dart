@@ -3,7 +3,7 @@ import 'package:verademo_dart/elements.dart';
 //Colors
 
 AppBar headerBar = HeaderBar();
-NavigationBar navBar = BottomMenu();
+//NavigationBar navBar = BottomMenu();
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});
@@ -22,7 +22,7 @@ class FeedPage extends StatelessWidget {
     ],
     backgroundColor: veracodeBlack,
     ),
-        body: [const Text('Hello'), 
+        body: <Widget>[const Text('Hello'), 
           const Text('Test'),
           const Text('three')][currentPageIndex]
         /*const SizedBox(
