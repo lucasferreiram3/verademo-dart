@@ -13,15 +13,26 @@ class FeedPage extends StatelessWidget {
   {
     return Scaffold(
         appBar: headerBar,
-        //bottomNavigationBar: navBar,
-        body: const SizedBox(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text('Hello'),
-              ),
-          ),
-        )
-      ,);
+        bottomNavigationBar: NavigationBar(destinations: const [
+      NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
+      NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+      NavigationDestination(icon: Icon(Icons.people), label: 'Blabbers'),
+      NavigationDestination(icon: Icon(Icons.design_services), label: 'Tools'), /* there is a wrench one, don't know what its called though */
+      NavigationDestination(icon: Icon(Icons.logout), label: 'Logout')
+    ],
+    backgroundColor: veracodeBlack,
+    ),
+        body: [const Text('Hello'), 
+          const Text('Test'),
+          const Text('three')][currentPageIndex]
+        /*const SizedBox(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Text('Hello'),
+                ),
+            ),
+          ),*/
+      );
   }
 }

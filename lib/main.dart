@@ -20,14 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Blab-a-Gag',
+      theme: ThemeData(useMaterial3: true),
       /*theme: ThemeData(
         appBarTheme: ,
         navigationBarTheme: ,
         colorScheme: ColorSche
       ),*/
-      home: FeedPage()
+      home: const FeedPage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
