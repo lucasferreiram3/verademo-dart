@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'pages/login.dart';
+
 // Define colors to be used
 const Color veracodeBlack= Color.fromARGB(255, 36, 38, 38);
 const Color veracodeBlue =  Color.fromARGB(255, 0, 179, 230);
@@ -34,33 +36,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Blab-a-Gag',
       /*theme: ThemeData(
         appBarTheme: ,
         navigationBarTheme: ,
         colorScheme: ColorSche
       ),*/
-      home: Scaffold(
-        appBar: headerBar,
-        /*AppBar(
-          backgroundColor: veracodeBlack,
-          title: Text('hello world',
-            style: GoogleFonts.lato(
-              textStyle: const TextStyle(color: Colors.blue, fontSize: 30),
-            )),
-
-        ),
-        */
-        body: const SizedBox(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text('Hello'),
-              ),
-          ),
-        )
-      ,)
+      home: LoginPage()
+      // Scaffold(
+      //   appBar: AppBar(
+      //     backgroundColor: veracodeBlack,
+      //     title: const Text('hello world', 
+      //       style: TextStyle(
+      //         fontSize: 40,
+      //         fontFamily: 'Lato',
+      //         color:veracodeWhite),),
+      //   ),
+      //   body: const SizedBox(
+      //     child: Center(
+      //       child: Padding(
+      //         padding: EdgeInsets.all(10),
+      //         child: Text('Hello'),
+      //         ),
+      //     ),
+      //   )
+      // ,)
     );
   }
 }
