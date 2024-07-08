@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'login.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -15,39 +16,39 @@ class RegisterPage extends StatelessWidget {
         body: Column (
           children: [
             const SizedBox(height: 150),
-            loginTitle(context),
-            const SizedBox(height: 10),
-            Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
-            const SizedBox(height: 58),
+            Text("Choose Username", style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: VConstants.veracodeWhite)),
+            const SizedBox(height: 50),
             _credField('Username', context),
-            const SizedBox(height: 17),
-            _credField('Password', context),
             const SizedBox(height: 42),
             loginButton(context),
             const SizedBox(height: 85),
-            Text.rich(
-              TextSpan(children: [
-                const TextSpan(text: "Don't have an account? "),
-                TextSpan(
-                  text: "Sign Up",
-                  // style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
-                  style: const TextStyle(
-                    color: Colors.blue
-                  ),
-                  recognizer: TapGestureRecognizer()..onTap = () {
-                    print("Sign up");
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
-                  }
-                )
-              ])
-            )
+            signInText(context)
           ],
         )
       ),
     );
   }
 
-  Row loginTitle(BuildContext context) {
+  Text signInText(BuildContext context) {
+    return Text.rich(
+      TextSpan(children: [
+        const TextSpan(text: "Already have an account? "),
+        TextSpan(
+          text: "Sign In",
+          // style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
+          style: const TextStyle(
+            color: Colors.blue
+          ),
+          recognizer: TapGestureRecognizer()..onTap = () {
+            print("Sign in");
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
+          }
+        )
+      ])
+    );
+  }
+
+  Row signUpTitle(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
