@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'internal_controller.dart';
 import 'theme/theme.dart';
 import 'pages/feed.dart';
 import 'pages/login.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         navigationBarTheme: ,
         colorScheme: ColorSche
       ),*/
-      home: resetPopup()
+      theme: VTheme.defaultTheme,
+      home: const LoginPage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
