@@ -1,42 +1,78 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/main.dart';
+import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'register.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff242626),
-
-      body: Column (
-        children: [
-          const SizedBox(height: 235),
-          _credField('Username', context),
-          const SizedBox(height: 17),
-          _credField('Password', context),
-          const SizedBox(height: 42),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-            child: ElevatedButton(
-              // style: TextButton.styleFrom(
-              //   backgroundColor: const Color(0xff00B3E6)
-              // ),
-              
-              style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                backgroundColor: const WidgetStatePropertyAll(VConstants.veracodeBlue),
-                
-              ),
-              child: const Text('Login'),
-              onPressed: () {
-                print('pressed login');
-              },
-            ),
-          ),
-        ],
-      )
+    return Theme(
+      data: VTheme.loginTheme,
+      child: Scaffold(
+  
+        body: Column (
+          children: [
+            const SizedBox(height: 150),
+            loginTitle(context),
+            const SizedBox(height: 10),
+            Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
+            const SizedBox(height: 58),
+            _credField('Username', context),
+            const SizedBox(height: 17),
+            _credField('Password', context),
+            const SizedBox(height: 42),
+            loginButton(context),
+            const SizedBox(height: 85),
+            Text.rich(
+              TextSpan(children: [
+                const TextSpan(text: "Don't have an account? "),
+                TextSpan(
+                  text: "Sign Up",
+                  // style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
+                  style: const TextStyle(
+                    color: Colors.blue
+                  ),
+                  recognizer: TapGestureRecognizer()..onTap = () {
+                    print("Sign up");
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
+                  }
+                )
+              ])
+            )
+          ],
+        )
+      ),
     );
+  }
+
+  Row loginTitle(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Image(
+          height: 48,
+          image: AssetImage(VConstants.vcIcon)
+        ),
+        const SizedBox(width: 9.2),
+        Text("Blab-a-Gag", style: Theme.of(context).textTheme.titleMedium?.copyWith(color: VConstants.codeWhite)),
+        const SizedBox(width: 4),
+      ],
+    );
+  }
+
+  Container loginButton(BuildContext context) {
+    return Container(
+          margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
+          child: ElevatedButton(
+            child: const Text('Login'),
+            onPressed: () {
+              print('pressed login');
+            },
+          ),
+        );
   }
 
   Container _credField(String placeholder, BuildContext context) {
@@ -48,14 +84,11 @@ class LoginPage extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               hintText: placeholder,
-              // hintStyle: const TextStyle(
-              //   color: Color(0xffF4F4F4),
-              //   fontSize: 20,
-              // ),
               hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
               filled: true,
 
               fillColor: const Color(0xff454443),
+
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
               )

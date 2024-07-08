@@ -15,4 +15,7 @@ class VConstants {
   static const Color lightNeutral1 = Color(0xFFE8E8E8);
   static const Color veracodeWhite = Color(0xFFF4F4F4);
   static const Color codeWhite = Color(0xFFFFFFFF);
+
+  static const String vcIcon = "assets/VCicon.png";
+  static const String vcLogo = "assets/VClogo.png";
 }
