@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'theme/theme.dart';
 import 'pages/feed.dart';
 import 'pages/login.dart';
+import 'pages/reset.dart';
 
 // Define colors to be used
 const Color veracodeBlack = Color.fromARGB(255, 36, 38, 38);
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         navigationBarTheme: ,
         colorScheme: ColorSche
       ),*/
-      home: FeedPage()
+      home: resetPopup()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
