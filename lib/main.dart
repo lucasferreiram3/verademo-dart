@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/login.dart';
+import 'internal_controller.dart';
 import 'theme/theme.dart';
 
 // Define colors to be used
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      home: const LoginPage()
+      home: const HomePage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,

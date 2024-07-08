@@ -4,7 +4,6 @@ class VConstants {
   VConstants._();
 
   static const Color veracodeBlue = Color(0xFF00B3E6);
-
   static const Color codeBlack = Color(0xFF000000);
   static const Color veracodeBlack = Color(0xFF242626);
   static const Color darkNeutral1 = Color(0xFF454443);
