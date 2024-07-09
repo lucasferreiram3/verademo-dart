@@ -35,7 +35,7 @@ class RegisterFinishPage extends StatelessWidget {
 
   Text _registerTitle(BuildContext context) {
     return Text(
-      "Choose Username",
+      "Complete Register",
       style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: VConstants.veracodeWhite),
     );
   }
