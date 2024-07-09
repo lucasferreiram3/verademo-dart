@@ -44,7 +44,8 @@ class resetWidget extends StatelessWidget {
           children: [
             Stack(
                children: [
-                Positioned(
+                Container(),
+                Positioned( 
                   child : OutlinedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
