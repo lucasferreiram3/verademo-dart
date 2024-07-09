@@ -38,10 +38,10 @@ class resetWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 322,
+              height: 32,
               ),
               SizedBox(
-                width: 286,
+                width: 28,
               ),
               Text('Confirm Reset',
               textAlign: TextAlign.center,
@@ -56,18 +56,21 @@ class resetWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
               SizedBox(
                 height: 46 ,
                 ),
               SizedBox(
-                width: 256,
+                width: 25,
               ),
-              Row(children: [
-                
-              ],)
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {}, child: ),
+                ],
+              ),
               
           ],
         )
