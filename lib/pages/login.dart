@@ -13,28 +13,63 @@ class LoginPage extends StatelessWidget {
     return Theme(
       data: VTheme.loginTheme,
       child: Scaffold(
-  
-        body: Column (
-          children: [
-            const SizedBox(height: 150),
-            loginTitle(context),
-            const SizedBox(height: 10),
-            Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
-            const SizedBox(height: 58),
-            _credField('Username', context),
-            const SizedBox(height: 17),
-            _credField('Password', context),
-            const SizedBox(height: 42),
-            loginButton(context),
-            const SizedBox(height: 85),
-            signUpText(context),
-          ],
-        )
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: VConstants.loginSpacing,
+            child: Column (
+              children: [
+                const SizedBox(height: 150),
+                _loginTitle(context),
+                const SizedBox(height: 10),
+                _loginSubtitle(context),
+                const SizedBox(height: 58),
+                _loginForm(context),
+                const SizedBox(height: 85),
+                _signUpText(context),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 
-  Text signUpText(BuildContext context) {
+  Text _loginSubtitle(BuildContext context) {
+    return Text(
+      "The home of witty one-liners",
+      style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)
+    );
+  }
+
+  Form _loginForm(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          _credField('Username', context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Password', context),
+          _rememberMe(),
+          const SizedBox(height: 30),
+          _loginButton(context),
+        ],
+      ),
+    );
+  }
+
+  Padding _rememberMe() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Checkbox(value: false, onChanged: (value) {}),
+          const Text("Remember me")
+        ],
+      ),
+    );
+  }
+
+  Text _signUpText(BuildContext context) {
     return Text.rich(
       TextSpan(children: [
         const TextSpan(text: "Don't have an account? "),
@@ -48,12 +83,12 @@ class LoginPage extends StatelessWidget {
             print("Sign up");
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
           }
-        )
-      ])
+        ),
+      ]),
     );
   }
 
-  Row loginTitle(BuildContext context) {
+  Row _loginTitle(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -68,38 +103,22 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Container loginButton(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-      child: ElevatedButton(
-        child: const Text('Login'),
-        onPressed: () {
-          Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
-        },
-      ),
+  ElevatedButton _loginButton(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('Login'),
+      onPressed: () {
+        Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+      },
     );
   }
 
-  Container _credField(String placeholder, BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-      child: TextField (
-        textAlignVertical: TextAlignVertical.center,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          hintText: placeholder,
-          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
-          filled: true,
-
-          fillColor: const Color(0xff454443),
-
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          )
-    
-        )
-      )
+  TextFormField _credField(String placeholder, BuildContext context) {
+    return TextFormField (
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        hintText: placeholder,
+      ),
     );
   }
 }

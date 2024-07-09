@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/theme/text_field_theme.dart';
+import 'package:verademo_dart/theme/checkbox_theme.dart';
 import 'package:verademo_dart/theme/elevated_button_theme.dart';
 import 'package:verademo_dart/theme/text_theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
@@ -24,5 +26,7 @@ class VTheme {
     scaffoldBackgroundColor: VConstants.veracodeBlack,
     textTheme: VTextTheme.defaultTextTheme,
     elevatedButtonTheme: VElevatedButtonTheme.loginElevatedButtonTheme,
+    checkboxTheme: VCheckboxTheme.loginCheckboxTheme,
+    inputDecorationTheme: VTextFormFieldTheme.loginTextFormTheme,
   );
 }

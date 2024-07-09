@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'login.dart';
-import 'register-finish.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class RegisterFinishPage extends StatelessWidget {
+  const RegisterFinishPage({super.key, required this.username});
+
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class RegisterPage extends StatelessWidget {
 
   Text _registerTitle(BuildContext context) {
     return Text(
-      "Choose Username",
+      "Complete Register",
       style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: VConstants.veracodeWhite),
     );
   }
@@ -44,7 +45,15 @@ class RegisterPage extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          _credField('Username', context),
+          _credField('Username', false, context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Password', true, context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Confirm Password', true, context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Real Name', true, context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Blab Name', true, context),
           const SizedBox(height: 42),
           _registerButton(context),
         ],
@@ -88,16 +97,16 @@ class RegisterPage extends StatelessWidget {
 
   ElevatedButton _registerButton(BuildContext context) {
     return ElevatedButton(
-      child: const Text('Register'),
+      child: const Text('Login'),
       onPressed: () {
-        Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const RegisterFinishPage(username: 'test')),);
+        print('pressed login');
       },
     );
   }
 
-  TextFormField _credField(String placeholder, BuildContext context) {
+  TextFormField _credField(String placeholder, bool edit, BuildContext context) {
     return TextFormField (
+      enabled: edit,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hintText: placeholder,
