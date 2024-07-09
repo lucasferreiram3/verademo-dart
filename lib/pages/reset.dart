@@ -22,6 +22,7 @@ class resetPopup extends StatelessWidget {
   }
 }
 
+
 // ignore: camel_case_types
 class resetWidget extends StatelessWidget {
   const resetWidget({super.key});
@@ -41,6 +42,21 @@ class resetWidget extends StatelessWidget {
         child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Stack(
+               children: [
+                Positioned(
+                  child : OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Image.asset(
+                      'assets/X.png',
+                    ),
+                  ),
+                ), 
+              ],
+            ),
+                
               // ignore: prefer_const_constructors
               Text('Confirm Reset',
               //textAlign: TextAlign.start,
@@ -89,7 +105,7 @@ class resetWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ),        
           ],
         ),
       ),
