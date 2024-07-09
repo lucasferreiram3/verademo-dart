@@ -14,12 +14,13 @@ class RegisterFinishPage extends StatelessWidget {
     return Theme(
       data: VTheme.loginTheme,
       child: Scaffold(
+        appBar: AppBar(backgroundColor: VConstants.veracodeBlack,),
         body: SingleChildScrollView(
           child: Padding(
             padding: VConstants.loginSpacing,
             child: Column (
               children: [
-                const SizedBox(height: 150),
+                const SizedBox(height: 44),
                 _registerTitle(context),
                 const SizedBox(height: 50),
                 _registerForm(context),
