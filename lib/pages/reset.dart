@@ -41,15 +41,12 @@ class resetWidget extends StatelessWidget {
         child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // ignore: prefer_const_constructors
             SizedBox(
-              height: 28,
+              height: 32,
               ),
-              // ignore: prefer_const_constructors
               SizedBox(
-                width: 20,
+                width: 28,
               ),
-              // ignore: prefer_const_constructors
               Text('Confirm Reset',
               textAlign: TextAlign.center,
               // ignore: prefer_const_constructors
@@ -59,7 +56,6 @@ class resetWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold, 
               ),
               ),
-              // ignore: prefer_const_constructors
               Text(
                 'I realize that I will lose all data in my current VeraDemo instance, including users.',
                 textAlign: TextAlign.center,
@@ -69,32 +65,21 @@ class resetWidget extends StatelessWidget {
                   fontSize: 12,
                 ),
               ),
+              SizedBox(
+                height: 46 ,
+                ),
+              SizedBox(
+                width: 25,
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: const Color(0xffEC5B5B),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 0, 
-                        horizontal: 140,
-                      ),
-
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'Reset',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
+                  ElevatedButton(
+                    onPressed: () {}, child: ),
                 ],
               ),
+              
           ],
-                
-        ),
+        )
       ),
     );
   }

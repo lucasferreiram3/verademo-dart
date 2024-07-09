@@ -17,4 +17,17 @@ class VConstants {
 
   static const String vcIcon = "assets/VCicon.png";
   static const String vcLogo = "assets/VClogo.png";
+
+  static const double loginMargin = 33.0;
+  static const EdgeInsetsGeometry loginSpacing = EdgeInsets.only(
+    top: 0,
+    left: loginMargin,
+    bottom: 0,
+    right: loginMargin,
+  );
+
+  static const EdgeInsetsGeometry textFieldPadding = EdgeInsets.symmetric(
+    vertical: 12,
+    horizontal: 16,
+  );
 }

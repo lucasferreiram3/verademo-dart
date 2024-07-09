@@ -53,9 +53,8 @@ class _HomePageState extends State<HomePage> {
             currentPageIndex = index;
           });
         },
-
       ),
-      );
+    );
   }
 }
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
