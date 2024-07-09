@@ -17,6 +17,12 @@ class VTheme {
   );
 
   static ThemeData loginTheme = ThemeData (
-     
+    useMaterial3: true,
+    fontFamily: 'Lato',
+    brightness: Brightness.dark,
+    primaryColor: VConstants.veracodeBlue,
+    scaffoldBackgroundColor: VConstants.veracodeBlack,
+    textTheme: VTextTheme.defaultTextTheme,
+    elevatedButtonTheme: VElevatedButtonTheme.loginElevatedButtonTheme,
   );
 }

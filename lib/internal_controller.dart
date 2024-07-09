@@ -11,7 +11,9 @@ import 'utils/constants.dart';
 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.username});
+
+  final String username;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -32,12 +34,16 @@ class _HomePageState extends State<HomePage> {
       appBar: HeaderBar(),
       body: screens[currentPageIndex],
       bottomNavigationBar: NavigationBar(
-        destinations: const [
-        NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
-        NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-        NavigationDestination(icon: Icon(Icons.people), label: 'Blabbers'),
-        NavigationDestination(icon: Icon(Icons.design_services), label: 'Tools'), /* there is a wrench one, don't know what its called though */
-        NavigationDestination(icon: Icon(Icons.logout), label: 'Logout')
+        destinations: [
+        const NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
+        const NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+        const NavigationDestination(icon: Icon(Icons.people), label: 'Blabbers'),
+        const NavigationDestination(icon: Icon(Icons.design_services), label: 'Tools'), /* there is a wrench one, don't know what its called though */
+        ElevatedButton(
+          onPressed: (){
+            print('Navigator popping');
+            Navigator.pop(context);},
+          child: const NavigationDestination(icon: Icon(Icons.logout), label: 'Logout'))
         ],
         selectedIndex: currentPageIndex,
         indicatorColor: VConstants.veracodeBlue,

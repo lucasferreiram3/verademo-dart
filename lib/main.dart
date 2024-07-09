@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/pages/login.dart';
 
-import 'internal_controller.dart';
 import 'theme/theme.dart';
 import 'pages/feed.dart';
 import 'pages/login.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      home: const resetPopup()
+      home: const HomePage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
