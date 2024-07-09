@@ -65,12 +65,12 @@ class resetWidget extends StatelessWidget {
               SizedBox(
                 width: 25,
               ),
-              Row(
+              Row(/*
                 children: [
                   ElevatedButton(
                     onPressed: () {}, child: ),
                 ],
-              ),
+              */),
               
           ],
         )
