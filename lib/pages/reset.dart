@@ -30,6 +30,10 @@ class resetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 5,
+          vertical: 35,
+        ),
         decoration: const BoxDecoration(
           color : Color.fromARGB(255, 36, 38, 38),
           borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -37,43 +41,57 @@ class resetWidget extends StatelessWidget {
         child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              height: 32,
-              ),
-              const SizedBox(
-                width: 28,
-              ),
-              const Text('Confirm Reset',
-              textAlign: TextAlign.center,
+              // ignore: prefer_const_constructors
+              Text('Confirm Reset',
+              //textAlign: TextAlign.start,
+              // ignore: prefer_const_constructors
               style: TextStyle(
+                height: 3.5,
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 32,
                 fontWeight: FontWeight.bold, 
               ),
               ),
-              const Text(
+              // ignore: prefer_const_constructors
+              Text(
                 'I realize that I will lose all data in my current VeraDemo instance, including users.',
                 textAlign: TextAlign.center,
+                // ignore: prefer_const_constructors
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
                 ),
               ),
-              const SizedBox(
-                height: 46 ,
+              const Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 10,
                 ),
-              const SizedBox(
-                width: 25,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {}, child: const Text("TODO")),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: const Color(0xffEC5B5B),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 0, 
+                        horizontal: 140,
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Reset',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              
           ],
-        )
+        ),
       ),
     );
   }
