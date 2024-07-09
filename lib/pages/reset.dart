@@ -34,16 +34,16 @@ class resetWidget extends StatelessWidget {
           color : Color.fromARGB(255, 36, 38, 38),
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        child : const Column(
+        child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 32,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 28,
               ),
-              Text('Confirm Reset',
+              const Text('Confirm Reset',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
@@ -51,7 +51,7 @@ class resetWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold, 
               ),
               ),
-              Text(
+              const Text(
                 'I realize that I will lose all data in my current VeraDemo instance, including users.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -59,16 +59,16 @@ class resetWidget extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 46 ,
                 ),
-              SizedBox(
+              const SizedBox(
                 width: 25,
               ),
               Row(
                 children: [
                   ElevatedButton(
-                    onPressed: () {}, child: ),
+                    onPressed: () {}, child: const Text("TODO")),
                 ],
               ),
               
