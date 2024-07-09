@@ -12,19 +12,23 @@ class RegisterPage extends StatelessWidget {
     return Theme(
       data: VTheme.loginTheme,
       child: Scaffold(
-  
-        body: Column (
-          children: [
-            const SizedBox(height: 150),
-            Text("Choose Username", style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: VConstants.veracodeWhite)),
-            const SizedBox(height: 50),
-            _credField('Username', context),
-            const SizedBox(height: 42),
-            loginButton(context),
-            const SizedBox(height: 85),
-            signInText(context)
-          ],
-        )
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: VConstants.loginSpacing,
+            child: Column (
+              children: [
+                const SizedBox(height: 150),
+                Text("Choose Username", style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: VConstants.veracodeWhite)),
+                const SizedBox(height: 50),
+                Form(child: _credField('Username', context)),
+                const SizedBox(height: 42),
+                loginButton(context),
+                const SizedBox(height: 85),
+                signInText(context)
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -43,8 +47,8 @@ class RegisterPage extends StatelessWidget {
             print("Sign in");
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
           }
-        )
-      ])
+        ),
+      ]),
     );
   }
 
@@ -63,38 +67,28 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Container loginButton(BuildContext context) {
-    return Container(
-          margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-          child: ElevatedButton(
-            child: const Text('Login'),
-            onPressed: () {
-              print('pressed login');
-            },
-          ),
-        );
+  ElevatedButton loginButton(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('Login'),
+      onPressed: () {
+        print('pressed login');
+      },
+    );
   }
 
-  Container _credField(String placeholder, BuildContext context) {
-    return Container(
-          // height: 40,
-          margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-          child: TextField (
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              hintText: placeholder,
-              hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
-              filled: true,
-
-              fillColor: const Color(0xff454443),
-
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              )
-        
-            )
-          )
-        );
+  TextFormField _credField(String placeholder, BuildContext context) {
+    return TextFormField (
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        contentPadding: VConstants.textFieldPadding,
+        hintText: placeholder,
+        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
+        filled: true,
+        fillColor: const Color(0xff454443),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
   }
 }

@@ -13,23 +13,39 @@ class LoginPage extends StatelessWidget {
     return Theme(
       data: VTheme.loginTheme,
       child: Scaffold(
-  
-        body: Column (
-          children: [
-            const SizedBox(height: 150),
-            loginTitle(context),
-            const SizedBox(height: 10),
-            Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
-            const SizedBox(height: 58),
-            _credField('Username', context),
-            const SizedBox(height: 17),
-            _credField('Password', context),
-            const SizedBox(height: 42),
-            loginButton(context),
-            const SizedBox(height: 85),
-            signUpText(context),
-          ],
-        )
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: VConstants.loginSpacing,
+            child: Column (
+              children: [
+                const SizedBox(height: 150),
+                loginTitle(context),
+                const SizedBox(height: 10),
+                Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
+                const SizedBox(height: 58),
+                Form(
+                  child: Column(
+                    children: [
+                      _credField('Username', context),
+                      const SizedBox(height: 17),
+                      _credField('Password', context),
+                      Row(
+                        children: [
+                          Checkbox(value: true, onChanged: (value) {}),
+                          const Text("Remember me")
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      loginButton(context),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 85),
+                signUpText(context),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -48,8 +64,8 @@ class LoginPage extends StatelessWidget {
             print("Sign up");
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
           }
-        )
-      ])
+        ),
+      ]),
     );
   }
 
@@ -68,38 +84,31 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Container loginButton(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-      child: ElevatedButton(
-        child: const Text('Login'),
-        onPressed: () {
-          Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
-        },
-      ),
+  ElevatedButton loginButton(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('Login'),
+      onPressed: () {
+        Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+      },
     );
   }
 
-  Container _credField(String placeholder, BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-      child: TextField (
-        textAlignVertical: TextAlignVertical.center,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          hintText: placeholder,
-          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
-          filled: true,
+  TextFormField _credField(String placeholder, BuildContext context) {
+    return TextFormField (
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        contentPadding: VConstants.textFieldPadding,
+        hintText: placeholder,
+        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
+        filled: true,
 
-          fillColor: const Color(0xff454443),
+        fillColor: VConstants.darkNeutral1,
 
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          )
-    
-        )
-      )
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
     );
   }
 }
