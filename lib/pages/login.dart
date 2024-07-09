@@ -29,11 +29,15 @@ class LoginPage extends StatelessWidget {
                       _credField('Username', context),
                       const SizedBox(height: 17),
                       _credField('Password', context),
-                      Row(
-                        children: [
-                          Checkbox(value: true, onChanged: (value) {}),
-                          const Text("Remember me")
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Checkbox(value: false, onChanged: (value) {}),
+                            const Text("Remember me")
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 30),
                       loginButton(context),

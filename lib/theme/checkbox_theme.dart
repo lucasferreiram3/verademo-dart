@@ -9,7 +9,7 @@ class VCheckboxTheme {
       if (states.contains(WidgetState.selected)) {
         return VConstants.veracodeWhite;
       } else {
-        return Colors.blue;
+        return Colors.transparent;
       }
     }),
     fillColor: WidgetStateProperty.resolveWith((states) {
