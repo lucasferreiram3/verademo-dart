@@ -27,25 +27,29 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 42),
             loginButton(context),
             const SizedBox(height: 85),
-            Text.rich(
-              TextSpan(children: [
-                const TextSpan(text: "Don't have an account? "),
-                TextSpan(
-                  text: "Sign Up",
-                  // style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
-                  style: const TextStyle(
-                    color: Colors.blue
-                  ),
-                  recognizer: TapGestureRecognizer()..onTap = () {
-                    print("Sign up");
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
-                  }
-                )
-              ])
-            )
+            signUpText(context),
           ],
         )
       ),
+    );
+  }
+
+  Text signUpText(BuildContext context) {
+    return Text.rich(
+      TextSpan(children: [
+        const TextSpan(text: "Don't have an account? "),
+        TextSpan(
+          text: "Sign Up",
+          // style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
+          style: const TextStyle(
+            color: Colors.blue
+          ),
+          recognizer: TapGestureRecognizer()..onTap = () {
+            print("Sign up");
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
+          }
+        )
+      ])
     );
   }
 
@@ -66,37 +70,36 @@ class LoginPage extends StatelessWidget {
 
   Container loginButton(BuildContext context) {
     return Container(
-          margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-          child: ElevatedButton(
-            child: const Text('Login'),
-            onPressed: () {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
-            },
-          ),
-        );
+      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
+      child: ElevatedButton(
+        child: const Text('Login'),
+        onPressed: () {
+          Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+        },
+      ),
+    );
   }
 
   Container _credField(String placeholder, BuildContext context) {
     return Container(
-          // height: 40,
-          margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
-          child: TextField (
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              hintText: placeholder,
-              hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
-              filled: true,
+      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 33),
+      child: TextField (
+        textAlignVertical: TextAlignVertical.center,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          hintText: placeholder,
+          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
+          filled: true,
 
-              fillColor: const Color(0xff454443),
+          fillColor: const Color(0xff454443),
 
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              )
-        
-            )
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
           )
-        );
+    
+        )
+      )
+    );
   }
 }
