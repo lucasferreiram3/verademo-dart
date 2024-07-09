@@ -19,33 +19,13 @@ class LoginPage extends StatelessWidget {
             child: Column (
               children: [
                 const SizedBox(height: 150),
-                loginTitle(context),
+                _loginTitle(context),
                 const SizedBox(height: 10),
-                Text("The home of witty one-liners", style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)),
+                _loginSubtitle(context),
                 const SizedBox(height: 58),
-                Form(
-                  child: Column(
-                    children: [
-                      _credField('Username', context),
-                      const SizedBox(height: 17),
-                      _credField('Password', context),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Checkbox(value: false, onChanged: (value) {}),
-                            const Text("Remember me")
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      loginButton(context),
-                    ],
-                  ),
-                ),
+                _loginForm(context),
                 const SizedBox(height: 85),
-                signUpText(context),
+                _signUpText(context),
               ],
             ),
           ),
@@ -54,7 +34,42 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Text signUpText(BuildContext context) {
+  Text _loginSubtitle(BuildContext context) {
+    return Text(
+      "The home of witty one-liners",
+      style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: VConstants.lightNeutral2)
+    );
+  }
+
+  Form _loginForm(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          _credField('Username', context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Password', context),
+          _rememberMe(),
+          const SizedBox(height: 30),
+          _loginButton(context),
+        ],
+      ),
+    );
+  }
+
+  Padding _rememberMe() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Checkbox(value: false, onChanged: (value) {}),
+          const Text("Remember me")
+        ],
+      ),
+    );
+  }
+
+  Text _signUpText(BuildContext context) {
     return Text.rich(
       TextSpan(children: [
         const TextSpan(text: "Don't have an account? "),
@@ -73,7 +88,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Row loginTitle(BuildContext context) {
+  Row _loginTitle(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -88,7 +103,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton loginButton(BuildContext context) {
+  ElevatedButton _loginButton(BuildContext context) {
     return ElevatedButton(
       child: const Text('Login'),
       onPressed: () {
@@ -102,16 +117,7 @@ class LoginPage extends StatelessWidget {
     return TextFormField (
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
-        contentPadding: VConstants.textFieldPadding,
         hintText: placeholder,
-        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: VConstants.veracodeWhite),
-        filled: true,
-
-        fillColor: VConstants.darkNeutral1,
-
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
       ),
     );
   }
