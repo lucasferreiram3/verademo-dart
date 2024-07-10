@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class resetPopup extends StatelessWidget {
+
+// ignore: camel_case_types, for testing purposes, may be removed in future
+class resetPopup extends StatefulWidget {
   const resetPopup({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  State<resetPopup> createState() => resetWidget();
+  // Widget build(BuildContext context) {
+    /*return Scaffold(
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -19,13 +21,13 @@ class resetPopup extends StatelessWidget {
         ),
       ),
     );
-  }
+  }*/
 }
 
 
 // ignore: camel_case_types
-class resetWidget extends StatelessWidget {
-  const resetWidget({super.key});
+class resetWidget extends State<resetPopup> {
+  // const resetWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class resetWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 5,
-          vertical: 35,
+          vertical: 10,
         ),
         decoration: const BoxDecoration(
           color : Color.fromARGB(255, 36, 38, 38),
@@ -45,8 +47,11 @@ class resetWidget extends StatelessWidget {
             Stack(
                children: [
                 Container(),
-                Positioned( 
-                  child : OutlinedButton(
+                //Positioned(
+                  /*child :*/ ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 36, 38, 38),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -54,30 +59,39 @@ class resetWidget extends StatelessWidget {
                       'assets/X.png',
                     ),
                   ),
-                ), 
+                //), 
               ],
             ),
                 
               // ignore: prefer_const_constructors
-              Text('Confirm Reset',
+              Text('Confirm Reset\n',
               //textAlign: TextAlign.start,
               // ignore: prefer_const_constructors
               style: TextStyle(
-                height: 3.5,
                 color: Colors.white,
                 fontSize: 32,
                 fontWeight: FontWeight.bold, 
               ),
               ),
+              // spacing purposes
               // ignore: prefer_const_constructors
-              Text(
-                'I realize that I will lose all data in my current VeraDemo instance, including users.',
-                textAlign: TextAlign.center,
-                // ignore: prefer_const_constructors
-                style: TextStyle(
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: _CheckBoxState.isReset['Confirm'],
+                title : const Text(
+                  'I realize that I will lose all data in my current VeraDemo instance, including users.',
+                  textAlign: TextAlign.center,
+                  // ignore: prefer_const_constructors
+                  style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: 16,
+                  ),
                 ),
+                onChanged: (bool? value) {
+                  setState(() {
+                    _CheckBoxState.isReset['Confirm'] = value!;
+                  });
+                },
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(
@@ -88,15 +102,15 @@ class resetWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffEC5B5B),
                       padding: const EdgeInsets.symmetric(
                         vertical: 0, 
-                        horizontal: 140,
+                        horizontal: 130,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {}, // TODO: Implement resetController when pressed, API needs work first.
                     child: const Text(
                       'Reset',
                       style: TextStyle(
@@ -106,10 +120,40 @@ class resetWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),        
+              ), 
           ],
         ),
       ),
+    );
+  }
+}
+
+class CheckBox extends StatefulWidget {
+  const CheckBox({super.key});
+  @override
+  State<CheckBox> createState() => _CheckBoxState();
+}
+
+class _CheckBoxState extends State<CheckBox> {
+  bool _isChecked = false;
+
+  static Map<String,bool?> isReset = {
+    'Confirm' : false,
+  };
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Checkbox(
+          value: _isChecked,
+          onChanged: (value) {
+            setState(() {
+              _isChecked = value!;
+            });
+          },
+        ),
+      ],
     );
   }
 }
