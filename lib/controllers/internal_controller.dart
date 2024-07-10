@@ -22,16 +22,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
   final List<Widget> screens = [
-    const FeedPage(),
+    const FeedPage(username: 'stuart',),
     const ProfilePage(),
     const BlabbersPage(),
     const ToolsPage(),
     const LogoutPage(),
   ];
+
+  final List<String> headers = [
+    'Feed',
+    'Profile',
+    'Blabbers',
+    'Tools',
+    'Logout',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HeaderBar(),
+      appBar: HeaderBar(headers[currentPageIndex]),
       body: screens[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: const [
@@ -64,11 +72,11 @@ class _HomePageState extends State<HomePage> {
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
 
 class HeaderBar extends AppBar{
-  HeaderBar({super.key}):super(
+  HeaderBar(String pageName, {super.key}):super(
     toolbarHeight: 83,
     leadingWidth: 55,
     leading: veraIcon,
-    title: Text("test", style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
+    title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
     centerTitle: true,
     backgroundColor: VConstants.veracodeBlack,
     actions: <Widget>[
