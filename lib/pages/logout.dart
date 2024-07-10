@@ -17,11 +17,11 @@ class LogoutPage extends StatelessWidget {
           children: [
               // ignore: prefer_const_constructors
               Text('Would you like to logout?\n',
-              //textAlign: TextAlign.start,
+              textAlign: TextAlign.center,
               // ignore: prefer_const_constructors
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+                color: VConstants.veracodeWhite,
+                fontSize: 28,
                 fontWeight: FontWeight.bold, 
               ),
               ),
@@ -29,7 +29,7 @@ class LogoutPage extends StatelessWidget {
               // ignore: prefer_const_constructors
               
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -38,6 +38,19 @@ class LogoutPage extends StatelessWidget {
                     onPressed: () {}, // TODO: Implement LogoutController trigger event
                     child: const Text(
                       'Yes, Log me out!',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: VConstants.veracodeBlue,
+                    ),
+                    onPressed: () {}, // TODO: Implement LogoutController trigger event
+                    child: const Text(
+                      'No, More Blab!',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
