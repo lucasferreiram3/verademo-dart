@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'pages/blabbers.dart';
-import 'pages/feed.dart';
-import 'pages/logout.dart';
-import 'pages/profile.dart';
-import 'pages/tools.dart';
-import 'theme/text_theme.dart';
-import 'utils/constants.dart';
+import '../pages/blabbers.dart';
+import '../pages/feed.dart';
+import '../pages/logout.dart';
+import '../pages/profile.dart';
+import '../pages/tools.dart';
+import '../theme/text_theme.dart';
+import '../utils/constants.dart';
 
 
 
