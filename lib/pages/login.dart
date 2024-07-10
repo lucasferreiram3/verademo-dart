@@ -5,6 +5,7 @@ import 'package:verademo_dart/controllers/login_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/stateful_checkbox.dart';
+
 import 'register.dart';
 
 class LoginPage extends StatelessWidget {
@@ -110,7 +111,7 @@ class LoginPage extends StatelessWidget {
       child: const Text('Login'),
       onPressed: () {
         Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+        MaterialPageRoute(builder: (context) => const HomePage(username: 'Hello, World')),);
       },
     );
   }
@@ -196,7 +197,7 @@ class _LoginForm extends StatelessWidget {
             child: const Text('Login'),
             onPressed: () {
               Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+              MaterialPageRoute(builder: (context) => const HomePage(username: 'Hello, World')),);
             },
           ),
         ],

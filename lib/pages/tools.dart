@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ToolsPage extends StatelessWidget {
-  const ToolsPage({super.key});
-  
+class ToolsPage extends StatefulWidget {
+  final String username;
+
+  const ToolsPage({super.key, required this.username});
+
+  @override
+  State<ToolsPage> createState() => _ToolsPageState();
+}
+
+class _ToolsPageState extends State<ToolsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Tools Screen'),
+    return Center(
+      child: Text(widget.username),
     );
   }
 }
