@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/pages/reset.dart';
 
 import '../pages/blabbers.dart';
 import '../pages/feed.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HeaderBar(headers[currentPageIndex]),
+      appBar: HeaderBar(headers[currentPageIndex], context),
       body: screens[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: const [
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
 
 class HeaderBar extends AppBar{
-  HeaderBar(String pageName, {super.key}):super(
+  HeaderBar(String pageName, BuildContext context, {super.key}):super(
     toolbarHeight: 83,
     leadingWidth: 55,
     leading: veraIcon,
@@ -80,18 +81,23 @@ class HeaderBar extends AppBar{
     centerTitle: true,
     backgroundColor: VConstants.veracodeBlack,
     actions: <Widget>[
-      resetButton()
+      resetButton(context)
       ],
     );
 
-  static IconButton resetButton() {
+  static IconButton resetButton(BuildContext context) {
     return IconButton(
       icon: const Icon(
         Icons.repeat,
         color: VConstants.veracodeWhite,
       ),
       iconSize: 48,
-      onPressed: (){print('pressed reset icon');} /*run reset controller,*/
+      onPressed: () {
+        showDialog(
+          context: context, 
+          builder: (BuildContext context) {
+            return const resetPopup();
+          });} /*run reset controller,*/
       );
   }
 }

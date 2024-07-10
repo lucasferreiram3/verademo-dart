@@ -17,5 +17,5 @@ class User
     required this.createdDate,
     required this.blabName,
     required this.realName,
-  })
+  });
 }
