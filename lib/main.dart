@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/pages/login.dart';
+import 'package:verademo_dart/pages/feed2.dart';
 
 import 'theme/theme.dart';
 
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      home: const LoginPage()
+      home: const BlabPage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
