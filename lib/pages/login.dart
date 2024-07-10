@@ -4,6 +4,7 @@ import 'package:verademo_dart/controllers/internal_controller.dart';
 import 'package:verademo_dart/controllers/login_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/validation.dart';
 import 'package:verademo_dart/widgets/stateful_checkbox.dart';
 import 'register.dart';
 
@@ -25,6 +26,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 _loginSubtitle(context),
                 const SizedBox(height: 58),
+                // const _LoginForm(),
                 _loginForm(context),
                 const SizedBox(height: 85),
                 _signUpText(context),
@@ -44,13 +46,16 @@ class LoginPage extends StatelessWidget {
   }
 
   Form _loginForm(BuildContext context) {
+    final controller = LoginController();
+
     return Form(
+      key: controller.loginFormKey,
       child: Column(
         children: [
-          _credField('Username', context),
+          _credField("Username", controller.username),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField('Password', context),
-          _rememberMe(),
+          _credField("Password", controller.password),
+          _rememberMe(controller),
           const SizedBox(height: 30),
           _loginButton(context),
         ],
@@ -58,13 +63,33 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Padding _rememberMe() {
+  TextFormField _credField(String fieldName, TextEditingController? controller) {
+    return TextFormField (
+          controller: controller,
+          validator: (value) => VValidator.validateTextField(fieldName, value),
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+            hintText: fieldName,
+          ),
+        );
+  }
+
+  Padding _rememberMe(LoginController controller) {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Checkbox(value: false, onChanged: (value) {}),
+          VCheckbox(value: controller.rememberMe, onChanged: ((bool? newValue) {
+            print("Controller remember me was ${controller.rememberMe}");
+            controller.rememberMe = newValue ?? true;
+            print("Controller remember me set to ${controller.rememberMe}");
+            if (controller.rememberMe) {
+
+            } else {
+
+            }
+          })),
           const Text("Remember me")
         ],
       ),
@@ -114,16 +139,6 @@ class LoginPage extends StatelessWidget {
       },
     );
   }
-
-  TextFormField _credField(String placeholder, BuildContext context) {
-    return TextFormField (
-      
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        hintText: placeholder,
-      ),
-    );
-  }
 }
 
 // class _CheckBoxState extends State<Checkbox> {
@@ -147,60 +162,60 @@ class LoginPage extends StatelessWidget {
 //   }
 // }
 
-class _LoginForm extends StatelessWidget {
-  const _LoginForm({
-    super.key,
-  });
+// class _LoginForm extends StatelessWidget {
+//   const _LoginForm({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    final controller = LoginController();
+//   @override
+//   Widget build(BuildContext context) {
+//     final controller = LoginController();
 
-    return Form(
-      child: Column(
-        children: [
-          TextFormField (
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: "Username",
-            ),
-          ),
-          const SizedBox(height: VConstants.textFieldSpacing),
-          TextFormField (
-            textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
-              hintText: "Password",
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                VCheckbox(value: controller.rememberMe, onChanged: ((bool? newValue) {
-                  print("Controller remember me was ${controller.rememberMe}");
-                  controller.rememberMe = newValue ?? true;
-                  print("Controller remember me set to ${controller.rememberMe}");
-                  if (controller.rememberMe) {
+//     return Form(
+//       child: Column(
+//         children: [
+//           TextFormField (
+//             textAlignVertical: TextAlignVertical.center,
+//             decoration: const InputDecoration(
+//               hintText: "Username",
+//             ),
+//           ),
+//           const SizedBox(height: VConstants.textFieldSpacing),
+//           TextFormField (
+//             textAlignVertical: TextAlignVertical.center,
+//             decoration: const InputDecoration(
+//               hintText: "Password",
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.only(top: 5),
+//             child: Row(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: [
+//                 VCheckbox(value: controller.rememberMe, onChanged: ((bool? newValue) {
+//                   print("Controller remember me was ${controller.rememberMe}");
+//                   controller.rememberMe = newValue ?? true;
+//                   print("Controller remember me set to ${controller.rememberMe}");
+//                   if (controller.rememberMe) {
 
-                  } else {
+//                   } else {
 
-                  }
-                })),
-                const Text("Remember me")
-              ],
-            ),
-          ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            child: const Text('Login'),
-            onPressed: () {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
+//                   }
+//                 })),
+//                 const Text("Remember me")
+//               ],
+//             ),
+//           ),
+//           const SizedBox(height: 30),
+//           ElevatedButton(
+//             child: const Text('Login'),
+//             onPressed: () {
+//               Navigator.push(context,
+//               MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
+//             },
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
