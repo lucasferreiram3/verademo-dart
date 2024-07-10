@@ -72,14 +72,18 @@ class HeaderBar extends AppBar{
     centerTitle: true,
     backgroundColor: VConstants.veracodeBlack,
     actions: <Widget>[
-      IconButton(
-        icon: const Icon(
-          Icons.repeat,
-          color: VConstants.veracodeWhite,
-        ),
-        iconSize: 48,
-        onPressed: (){print('pressed reset icon');} /*run reset controller,*/
-        )
+      resetButton()
       ],
     );
+
+  static IconButton resetButton() {
+    return IconButton(
+      icon: const Icon(
+        Icons.repeat,
+        color: VConstants.veracodeWhite,
+      ),
+      iconSize: 48,
+      onPressed: (){print('pressed reset icon');} /*run reset controller,*/
+      );
+  }
 }

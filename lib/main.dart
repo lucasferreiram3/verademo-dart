@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      home: const resetPopup()
+      home: const LoginPage()
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
