@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 _loginSubtitle(context),
                 const SizedBox(height: 58),
-                const _LoginForm(),
+                _loginForm(context),
                 const SizedBox(height: 85),
                 _signUpText(context),
               ],
@@ -43,20 +43,20 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  // Form _loginForm(BuildContext context) {
-  //   return Form(
-  //     child: Column(
-  //       children: [
-  //         _credField('Username', context),
-  //         const SizedBox(height: VConstants.textFieldSpacing),
-  //         _credField('Password', context),
-  //         _rememberMe(),
-  //         const SizedBox(height: 30),
-  //         _loginButton(context),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Form _loginForm(BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          _credField('Username', context),
+          const SizedBox(height: VConstants.textFieldSpacing),
+          _credField('Password', context),
+          _rememberMe(),
+          const SizedBox(height: 30),
+          _loginButton(context),
+        ],
+      ),
+    );
+  }
 
   Padding _rememberMe() {
     return Padding(

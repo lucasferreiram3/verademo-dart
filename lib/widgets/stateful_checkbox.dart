@@ -22,14 +22,9 @@ class _VCheckboxState extends State<VCheckbox> {
         setState(() {
           print("Previous Value: $checked");
           print("New value: $newValue");
-          widget.onChanged(newValue);
           checked = newValue ?? true;
           print("Value changed to: $checked");
-          if (checked) {
-
-          } else {
-
-          }
+          widget.onChanged(newValue);
         });
       })
     );
