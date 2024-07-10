@@ -7,21 +7,7 @@ class resetPopup extends StatefulWidget {
 
   @override
   State<resetPopup> createState() => resetWidget();
-  // Widget build(BuildContext context) {
-    /*return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => const resetWidget(),
-            );
-            // For testing pop-up functionality, will change to the top right corner. 
-          }, child: const Text('Test Button'),
-        ),
-      ),
-    );
-  }*/
+
 }
 
 

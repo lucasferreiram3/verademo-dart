@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/pages/login.dart';
-import 'package:verademo_dart/pages/reset.dart';
 
 import 'theme/theme.dart';
 

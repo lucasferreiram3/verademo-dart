@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/pages/reset.dart';
 
 import '../pages/blabbers.dart';
 import '../pages/feed.dart';
@@ -22,16 +23,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
   final List<Widget> screens = [
-    const FeedPage(),
+    const FeedPage(username: 'stuart',),
     const ProfilePage(),
     const BlabbersPage(),
     const ToolsPage(),
     const LogoutPage(),
   ];
+
+  final List<String> headers = [
+    'Feed',
+    'Profile',
+    'Blabbers',
+    'Tools',
+    'Logout',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HeaderBar(),
+      appBar: HeaderBar(headers[currentPageIndex], context),
       body: screens[currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: const [
@@ -64,26 +73,31 @@ class _HomePageState extends State<HomePage> {
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
 
 class HeaderBar extends AppBar{
-  HeaderBar({super.key}):super(
+  HeaderBar(String pageName, BuildContext context, {super.key}):super(
     toolbarHeight: 83,
     leadingWidth: 55,
     leading: veraIcon,
-    title: Text("test", style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
+    title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
     centerTitle: true,
     backgroundColor: VConstants.veracodeBlack,
     actions: <Widget>[
-      resetButton()
+      resetButton(context)
       ],
     );
 
-  static IconButton resetButton() {
+  static IconButton resetButton(BuildContext context) {
     return IconButton(
       icon: const Icon(
         Icons.repeat,
         color: VConstants.veracodeWhite,
       ),
       iconSize: 48,
-      onPressed: (){print('pressed reset icon');} /*run reset controller,*/
+      onPressed: () {
+        showDialog(
+          context: context, 
+          builder: (BuildContext context) {
+            return const resetPopup();
+          });} /*run reset controller,*/
       );
   }
 }
