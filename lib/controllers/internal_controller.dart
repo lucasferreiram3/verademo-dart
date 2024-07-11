@@ -22,12 +22,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
-  final List<Widget> screens = [
-    const FeedPage(username: 'stuart',),
-    const ProfilePage(),
-    const BlabbersPage(),
-    const ToolsPage(),
-    const LogoutPage(),
+
+  late final List<Widget> screens = [
+    FeedPage(username: widget.username,),
+    ProfilePage(username: widget.username),
+    BlabbersPage(username: widget.username),
+    ToolsPage(username: widget.username),
+    LogoutPage(username: widget.username),
   ];
 
   final List<String> headers = [
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         ],
         selectedIndex: currentPageIndex,
         indicatorColor: VConstants.veracodeBlue,
-        backgroundColor: VConstants.veracodeBlack,
+        backgroundColor: VConstants.codeBlack,
         
         onDestinationSelected: (int index) {
           setState(() {
@@ -79,7 +80,7 @@ class HeaderBar extends AppBar{
     leading: veraIcon,
     title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
     centerTitle: true,
-    backgroundColor: VConstants.veracodeBlack,
+    backgroundColor: VConstants.codeBlack,
     actions: <Widget>[
       resetButton(context)
       ],

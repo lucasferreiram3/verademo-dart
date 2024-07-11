@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 
-class LogoutPage extends StatelessWidget {
-  const LogoutPage({super.key});
-  
+class LogoutPage extends StatefulWidget {
+  final String username;
+
+  const LogoutPage({super.key, required this.username});
+
+  @override
+  State<LogoutPage> createState() => _LogoutPageState();
+}
+
+class _LogoutPageState extends State<LogoutPage> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
