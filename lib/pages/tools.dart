@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 
 class ToolsPage extends StatefulWidget {
-  const ToolsPage({super.key});
+  const ToolsPage({super.key, required String username});
 
   @override
   ToolsPageState createState() => ToolsPageState();
@@ -14,7 +14,7 @@ class ToolsPageState extends State<ToolsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
         //crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -23,47 +23,78 @@ class ToolsPageState extends State<ToolsPage> {
             alignment: Alignment.centerLeft,
             child: Text('Ping:\n',
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: VConstants.codeWhite
             ),
           ),
         ),
-          TextField(
-            decoration: InputDecoration(
-              filled: true,
-              //border: const OutlineInputBorder(),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+              decoration: InputDecoration(
+              hintStyle: Theme.of(context).textTheme.bodyMedium,
               hintText: 'Enter Hostname/IP',
-              hintStyle: const TextStyle(
-               fontSize: 14,
-               //fontWeight: FontWeight.bold,
-               color: VConstants.lightNeutral2
+              filled: true,
+              fillColor: VConstants.darkNeutral2,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none,
               ),
-              
-              suffixIcon: IconButton(
-                onPressed: () {}, // TODO: Implement ClearText from InputDecoration
-
-              icon: const Icon(Icons.clear),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
               ),
-               
             ),
-            
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {}, // TODO : Implement Ping Function to be called (AKA Shell Command under the hood)
-                style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+             const SizedBox(width: 18,),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Ping'),
                 ),
-              ),
-              child: const Text('Ping'),
-            ),
+                
             ],
-          ),
-        ],
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: 40,
+              width: 240,
+              child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Fortune'),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: const Text('Riddles'),
+                            
+                          ),
+                        ),
+                        
+                      ],
+                    ),
+            ), 
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Expanded( // TODO: Implement Populating of fortune/riddles within this container
+          child: Container( 
+            color : VConstants.darkNeutral2,
+        ),
+
+        ),
+      ],
       ),
       ),
     );
