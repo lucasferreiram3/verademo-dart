@@ -14,7 +14,7 @@ class VTheme {
     brightness: Brightness.dark,
     primaryColor: VConstants.veracodeBlue,
     scaffoldBackgroundColor: VConstants.darkNeutral1,
-    
+    checkboxTheme: VCheckboxTheme.loginCheckboxTheme,
     textTheme: VTextTheme.defaultTextTheme,
     elevatedButtonTheme: VElevatedButtonTheme.defaultElevatedButtonTheme,
   );
