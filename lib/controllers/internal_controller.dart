@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         ],
         selectedIndex: currentPageIndex,
         indicatorColor: VConstants.veracodeBlue,
-        backgroundColor: VConstants.veracodeBlack,
+        backgroundColor: VConstants.codeBlack,
         
         onDestinationSelected: (int index) {
           setState(() {
@@ -80,7 +80,7 @@ class HeaderBar extends AppBar{
     leading: veraIcon,
     title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
     centerTitle: true,
-    backgroundColor: VConstants.veracodeBlack,
+    backgroundColor: VConstants.codeBlack,
     actions: <Widget>[
       resetButton(context)
       ],
