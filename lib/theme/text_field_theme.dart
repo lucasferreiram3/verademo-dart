@@ -16,7 +16,7 @@ class VTextFormFieldTheme {
         return VTextTheme.defaultTextTheme.bodyMedium!.copyWith(color: VConstants.veracodeWhite);
       }
     }),
-    
+    errorStyle: VTextTheme.defaultTextTheme.labelSmall!.copyWith(color: Colors.red),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
       borderSide: const BorderSide(width: 1, color: VConstants.darkNeutral2),

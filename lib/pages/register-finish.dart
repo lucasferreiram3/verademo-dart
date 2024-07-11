@@ -1,13 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/controllers/register_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/validation.dart';
+import 'package:verademo_dart/widgets/credentials_field.dart';
 import 'login.dart';
 
 class RegisterFinishPage extends StatelessWidget {
-  const RegisterFinishPage({super.key, required this.username});
+  const RegisterFinishPage({super.key, required this.controller});
 
-  final String username;
+  final RegisterController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class RegisterFinishPage extends StatelessWidget {
           child: Padding(
             padding: VConstants.loginSpacing,
             child: Column (
-              children: [
+              children:  [
                 const SizedBox(height: 44),
                 _registerTitle(context),
                 const SizedBox(height: 50),
@@ -42,20 +45,30 @@ class RegisterFinishPage extends StatelessWidget {
   }
 
   Form _registerForm(BuildContext context) {
+
     return Form(
+      key: controller.registerFormKey,
       child: Column(
         children: [
-          _credField('Username', false, context),
+          VCredField('Username', controller: controller.username, edit: false),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField('Password', true, context),
+          VCredField('Password', controller: controller.password, hide: true),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField('Confirm Password', true, context),
+          TextFormField (
+            controller: controller.cpassword,
+            obscureText: true,
+            validator: (value) => _validatePasswordMatch(controller),
+            textAlignVertical: TextAlignVertical.center,
+            decoration: const InputDecoration(
+              hintText: "Confirm Password",
+            ),
+          ),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField('Real Name', true, context),
+          VCredField('Real Name', controller: controller.realName),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField('Blab Name', true, context),
+          VCredField('Blab Name', controller: controller.blabName),
           const SizedBox(height: 42),
-          _registerButton(context),
+          _registerButton(context, controller),
         ],
       ),
     );
@@ -95,22 +108,25 @@ class RegisterFinishPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _registerButton(BuildContext context) {
+  ElevatedButton _registerButton(BuildContext context, RegisterController controller) {
     return ElevatedButton(
-      child: const Text('Login'),
+      child: const Text('Register'),
       onPressed: () {
-        print('pressed login');
+        controller.processRegisterFinish();
       },
     );
   }
 
-  TextFormField _credField(String placeholder, bool edit, BuildContext context) {
-    return TextFormField (
-      enabled: edit,
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        hintText: placeholder,
-      ),
-    );
+  static String? _validatePasswordMatch(RegisterController controller) {
+    print("Controller cpassword is: ${controller.cpassword.text}");
+    if (controller.cpassword.text.isEmpty) {
+      return "Confirm password is required.";
+    }
+
+    if (controller.password.text != controller.cpassword.text) {
+      return "Passwords must match.";
+    }
+
+    return null;
   }
 }

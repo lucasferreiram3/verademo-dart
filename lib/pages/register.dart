@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/controllers/register_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/validation.dart';
+import 'package:verademo_dart/widgets/credentials_field.dart';
 import 'login.dart';
 import 'register-finish.dart';
 
@@ -41,12 +44,15 @@ class RegisterPage extends StatelessWidget {
   }
 
   Form _registerForm(BuildContext context) {
+    final controller = RegisterController();
+
     return Form(
+      key: controller.registerFormKey,
       child: Column(
         children: [
-          _credField('Username', context),
+          VCredField('Username', controller: controller.username),
           const SizedBox(height: 42),
-          _registerButton(context),
+          _registerButton(context, controller),
         ],
       ),
     );
@@ -86,22 +92,14 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _registerButton(BuildContext context) {
+  ElevatedButton _registerButton(BuildContext context, RegisterController controller) {
     return ElevatedButton(
+      onPressed: () => controller.processRegister(context),
       child: const Text('Register'),
-      onPressed: () {
-        Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const RegisterFinishPage(username: 'test')),);
-      },
-    );
-  }
-
-  TextFormField _credField(String placeholder, BuildContext context) {
-    return TextFormField (
-      textAlignVertical: TextAlignVertical.center,
-      decoration: InputDecoration(
-        hintText: placeholder,
-      ),
+      // onPressed: () {
+      //   Navigator.push(context,
+      //   MaterialPageRoute(builder: (context) => const RegisterFinishPage(username: 'test')),);
+      // },
     );
   }
 }
