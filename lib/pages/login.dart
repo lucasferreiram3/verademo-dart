@@ -5,6 +5,7 @@ import 'package:verademo_dart/controllers/login_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/validation.dart';
+import 'package:verademo_dart/widgets/credentials_field.dart';
 import 'package:verademo_dart/widgets/stateful_checkbox.dart';
 
 import 'register.dart';
@@ -53,9 +54,9 @@ class LoginPage extends StatelessWidget {
       key: controller.loginFormKey,
       child: Column(
         children: [
-          _credField("Username", controller.username),
+          VCredField("Username", controller: controller.username),
           const SizedBox(height: VConstants.textFieldSpacing),
-          _credField("Password", controller.password),
+          VCredField("Password", controller: controller.password, hide: true),
           _rememberMe(controller),
           const SizedBox(height: 30),
           _loginButton(context),
@@ -64,16 +65,16 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  TextFormField _credField(String fieldName, TextEditingController? controller) {
-    return TextFormField (
-          controller: controller,
-          validator: (value) => VValidator.validateTextField(fieldName, value),
-          textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            hintText: fieldName,
-          ),
-        );
-  }
+  // TextFormField _credField(String fieldName, TextEditingController? controller) {
+  //   return TextFormField (
+  //     controller: controller,
+  //     validator: (value) => VValidator.validateTextField(fieldName, value),
+  //     textAlignVertical: TextAlignVertical.center,
+  //     decoration: InputDecoration(
+  //       hintText: fieldName,
+  //     ),
+  //   );
+  // }
 
   Padding _rememberMe(LoginController controller) {
     return Padding(
@@ -85,6 +86,8 @@ class LoginPage extends StatelessWidget {
             print("Controller remember me was ${controller.rememberMe}");
             controller.rememberMe = newValue ?? true;
             print("Controller remember me set to ${controller.rememberMe}");
+
+            // TODO: rememberMe functionality
             if (controller.rememberMe) {
 
             } else {
