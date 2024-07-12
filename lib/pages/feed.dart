@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/widgets/feed_blab.dart';
+import 'package:verademo_dart/widgets/feed_radio.dart';
 
 class FeedPage extends StatefulWidget {
 
@@ -62,35 +64,6 @@ class _FeedPageState extends State<FeedPage> {
               // Spacer between Sections
               const SizedBox(height: 16),
               const FeedRadio(),
-              // Feed and MyBlabs buttons
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     SizedBox(
-              //       height: 40,
-              //       width: 240,
-              //       child: Row(
-              //         children: [
-              //           Expanded(
-              //             child: ElevatedButton(
-              //               onPressed: () {},
-              //               child: const Text('Feed'),
-              //             ),
-              //           ),
-              //           const SizedBox(width: 16),
-              //           Expanded(
-              //             child: ElevatedButton(
-              //               onPressed: () {},
-              //               child: const Text('My Blabs'),
-                            
-              //             ),
-              //           ),
-                        
-              //         ],
-              //       ),
-              //     ),
-              //   ],
-              // ),
               // More spacing
               const SizedBox(height: 16),
               
@@ -98,61 +71,19 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: Container(
                   color:  VConstants.darkNeutral2,
-                  child: Center(
+                  child: const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde'])
+                  
+                  /*const Center(
                     child: Text(
                       'No Blabs yet...',
-                      style: TextStyle(color: Colors.grey[500]),
+                      style: TextStyle(color: VConstants.codeWhite),
                     ),
-                  ),
+                  ),*/
                 ),
               ),
             ],
           ),
         ),
     );
-  }
-}
-
-enum SingingCharacter { feed, blabs }
-
-class FeedRadio extends StatefulWidget {
-  const FeedRadio({super.key});
-
-  @override
-  State<FeedRadio> createState() => _RadioExampleState();
-}
-
-class _RadioExampleState extends State<FeedRadio> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 40,
-                    width: 240,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Feed'),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('My Blabs'),
-                            
-                          ),
-                        ),
-                        
-                      ],
-                    ),
-                  ),
-                ],
-              );
   }
 }
