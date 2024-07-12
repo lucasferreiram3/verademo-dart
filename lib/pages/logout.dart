@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/pages/login.dart';
 import 'package:verademo_dart/utils/constants.dart';
 
 class LogoutPage extends StatefulWidget {
@@ -51,7 +52,9 @@ class _LogoutPageState extends State<LogoutPage> {
                     ),
                     onPressed: () 
                     {
-                      Navigator.of(context).pop(context);
+                      Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => LoginPage(username: widget.username)));
+                      // Navigator.of(context).pop(context);
                     }, // TODO: Implement LogoutController trigger event
                     child: const Text(
                       'Yes, Log me out!',

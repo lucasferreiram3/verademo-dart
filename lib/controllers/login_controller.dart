@@ -20,13 +20,6 @@ class LoginController {
         return;
       }
 
-      // TODO: Save login information with remember me
-      if (rememberMe) {
-        final SharedPreferences prefs = await _prefs;
-        await prefs.setString('remembered_username', username.text);
-        await prefs.setString('remembered_password', password.text);
-      }
-
       // Build API call for login
       print("Building API call to /users/login/");
       const url = "${VConstants.apiUrl}/users/login/";
@@ -46,20 +39,25 @@ class LoginController {
       if (response.statusCode == 200) {
         // Login successful
         print(response.body);
-        Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => const HomePage(username: 'Hello, World')),);
-      
+
+        // Make sure context exists
+        if (!context.mounted) return;
+
+        // TODO: Save login information with remember me
+        if (rememberMe) {
+          final SharedPreferences prefs = await _prefs;
+          await prefs.setString('remembered_username', username.text);
+          await prefs.setString('remembered_password', password.text);
+        }
+
+        // Use pushReplacement to prevent back button from going back to login page once logged in
+        // TODO: Find a way to make back button trigger logout instead?
+        Navigator.pushReplacement(context,
+                       MaterialPageRoute(builder: (context) => HomePage(username: username.text)),);
       } else {
         // Login failed
         print(response.body);
       }
-        
-      
-
-
-
-      
-
     } catch (err) {
       print(err);
     }
