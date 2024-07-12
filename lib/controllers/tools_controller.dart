@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'dart:io';
@@ -8,16 +10,35 @@ class ToolsController {
     String host = Platform.localHostname;
     String fortuneFile = basename(file.path); 
   }
-  Future<void> ping(host) async {
+  Future<String> ping(host) async {
     String output = "";
 
     try {
-      var proc = await Process.run('grep', ['bash', '-c', 'ping -c1 '] + host);
-    } on Exception{}
+      try {
+      var proc = await Process.run('grep', ['bash', '-c', 'ping -c1 '] + host).timeout(const Duration(seconds: 5));
+      output = proc.stdout;
+
+      } on TimeoutException {
+        output = "Ping has timed out!"; // Placeholder will replace with actual handling later
+      }
+
+    } on Exception{
+      output = "Error occured intiating ping"; // Placeholder will replace with actual handling later
+    }
+    return output;
   }
-  Future<void> fortune(file) async {
+  Future<String> fortune(file) async {
+    String cmd = "/bin/fortune" + file;
     String output = "";
+    try {
+      try{
+        var proc = await Process.run('grep', ['bash', '-c', cmd]).timeout(const Duration(seconds:5));
+        output = proc.stdout;
+
+      } on TimeoutException {}
+    } on Exception {}
+
+    return output;
   }
-
-
+ 
 }
