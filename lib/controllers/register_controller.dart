@@ -10,6 +10,7 @@ class RegisterController {
   final blabName = TextEditingController();
 
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> registerFinishFormKey = GlobalKey<FormState>();
 
   void processRegister(BuildContext context) async {
     try {
@@ -31,7 +32,7 @@ class RegisterController {
   void processRegisterFinish() async {
     try {
       // Validate form
-      if (!registerFormKey.currentState!.validate()) {
+      if (!registerFinishFormKey.currentState!.validate()) {
         return;
       }
 
