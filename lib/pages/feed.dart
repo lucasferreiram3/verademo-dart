@@ -71,7 +71,7 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: Container(
                   color:  VConstants.darkNeutral2,
-                  child: const FeedBlabs(['Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde'])
+                  child: const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde'])
                   
                   /*const Center(
                     child: Text(

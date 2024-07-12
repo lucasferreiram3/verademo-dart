@@ -30,9 +30,12 @@ class FeedBlabs extends StatelessWidget
   }
 
   Widget buildListItem(String title) {
+    String name = title.toLowerCase();
     return ListTile(
       leading: CircleAvatar(
-        foregroundImage: AssetImage(title),
+        foregroundImage: AssetImage('assets/images/$name.png'),
+        backgroundImage: const AssetImage('assets/images/default_profile.png'),
+
         ),
       title: Text(title),
       trailing: Checkbox(
