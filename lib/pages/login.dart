@@ -7,7 +7,6 @@ import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/validation.dart';
 import 'package:verademo_dart/widgets/credentials_field.dart';
 import 'package:verademo_dart/widgets/stateful_checkbox.dart';
-
 import 'register.dart';
 
 class LoginPage extends StatelessWidget {
@@ -59,7 +58,7 @@ class LoginPage extends StatelessWidget {
           VCredField("Password", controller: controller.password, hide: true),
           _rememberMe(controller),
           const SizedBox(height: 30),
-          _loginButton(context),
+          _loginButton(context, controller),
         ],
       ),
     );
@@ -134,13 +133,14 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _loginButton(BuildContext context) {
+  ElevatedButton _loginButton(BuildContext context, LoginController controller) {
     return ElevatedButton(
-      child: const Text('Login'),
+      // onPressed: () => controller.processLogin(context),
       onPressed: () {
         Navigator.push(context,
         MaterialPageRoute(builder: (context) => const HomePage(username: 'Hello, World')),);
       },
+      child: const Text('Login'),
     );
   }
 }
