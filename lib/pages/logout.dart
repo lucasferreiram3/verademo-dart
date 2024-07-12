@@ -49,7 +49,10 @@ class _LogoutPageState extends State<LogoutPage> {
                         horizontal: 10,
                       ),
                     ),
-                    onPressed: () {}, // TODO: Implement LogoutController trigger event
+                    onPressed: () 
+                    {
+                      Navigator.of(context).pop(context);
+                    }, // TODO: Implement LogoutController trigger event
                     child: const Text(
                       'Yes, Log me out!',
                       style: TextStyle(
