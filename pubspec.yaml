@@ -105,6 +105,7 @@ flutter:
         - asset: assets/fonts/Lato-BlackItalic.ttf
           weight: 900
           style: italic
+        - asset: assets/images/
 
   #
   # For details regarding fonts from package dependencies,

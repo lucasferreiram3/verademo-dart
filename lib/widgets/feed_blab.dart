@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/utils/constants.dart';
 
 class FeedBlabs extends StatelessWidget
 {
@@ -8,9 +9,13 @@ class FeedBlabs extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      
-      children: buildItemList()
+    return ListTileTheme(
+      textColor: VConstants.veracodeWhite,
+
+      child: ListView(
+        
+        children: buildItemList()
+      ),
     );
   }
 
@@ -27,8 +32,8 @@ class FeedBlabs extends StatelessWidget
   Widget buildListItem(String title) {
     return ListTile(
       leading: CircleAvatar(
-        child: Text(title[0]),
-      ),
+        foregroundImage: AssetImage(title),
+        ),
       title: Text(title),
       trailing: Checkbox(
         value: true,
