@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:verademo_dart/utils/shared_prefs.dart';
 
 class LoginController {
   final username = TextEditingController();
@@ -9,19 +8,23 @@ class LoginController {
   bool rememberMe = false;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-  Future<void> processLogin() async {
+  void processLogin() async {
     try {
+      // Validate Form
       if (!loginFormKey.currentState!.validate()) {
         return;
       }
 
+      // TODO: Save login information with remember me
       if (rememberMe) {
         final SharedPreferences prefs = await _prefs;
         await prefs.setString('remembered_username', username.text.trim());
         await prefs.setString('remembered_password', password.text.trim());
       }
 
-      // TODO: login stuff
+      // TODO: 
+
+      
 
     } catch (err) {
       print(err);
