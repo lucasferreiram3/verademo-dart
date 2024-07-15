@@ -55,6 +55,12 @@ class LoginPage extends StatelessWidget {
     controller.username.text = username ?? "";
     controller.password.text = password ?? "";
 
+    WidgetsBinding.instance.addPostFrameCallback( (_) {
+      if (controller.username.text != "" && controller.password.text != "") {
+        controller.processLogin(context);
+      }
+    });
+
     return Form(
       key: controller.loginFormKey,
       child: Column(
