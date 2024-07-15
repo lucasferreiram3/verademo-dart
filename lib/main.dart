@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/pages/login.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'theme/theme.dart';
 
 // Define colors to be used
@@ -13,12 +13,8 @@ const Color veracodeWhite = Color.fromARGB(255,244, 244, 244);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? username = prefs.getString('remembered_username');
-  String? password = prefs.getString('remembered_password');
-
-  print("Username: $username, Password: $password");
-  runApp( MyApp(username: username, password: password) );
+  await VSharedPrefs().init();
+  runApp( MyApp(username: VSharedPrefs().rememberedUsername, password: VSharedPrefs().rememberedPassword) );
 }
 
 

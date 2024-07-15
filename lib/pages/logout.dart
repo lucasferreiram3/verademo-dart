@@ -52,8 +52,9 @@ class _LogoutPageState extends State<LogoutPage> {
                     ),
                     onPressed: () 
                     {
+                      
                       Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => LoginPage(username: widget.username)));
+                        MaterialPageRoute(builder: (context) => LoginPage(username: widget.username)));
                       // Navigator.of(context).pop(context);
                     }, // TODO: Implement LogoutController trigger event
                     child: const Text(

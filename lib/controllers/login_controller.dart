@@ -3,13 +3,12 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/controllers/internal_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:http/http.dart' as http;
 
 class LoginController {
   final username = TextEditingController();
   final password = TextEditingController();
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool rememberMe = false;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
@@ -45,9 +44,9 @@ class LoginController {
 
         // TODO: Save login information with remember me
         if (rememberMe) {
-          final SharedPreferences prefs = await _prefs;
-          await prefs.setString('remembered_username', username.text);
-          await prefs.setString('remembered_password', password.text);
+          VSharedPrefs().rememberedUsername = username.text;
+          VSharedPrefs().rememberedPassword = password.text;
+          VSharedPrefs().username = username.text;
         }
 
         // Use pushReplacement to prevent back button from going back to login page once logged in
