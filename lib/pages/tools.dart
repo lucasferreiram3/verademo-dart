@@ -34,25 +34,25 @@ class ToolsPageState extends State<ToolsPage> {
             Expanded(
               child: TextField(
               decoration: InputDecoration(
-              hintStyle: Theme.of(context).textTheme.bodyMedium,
-              hintText: 'Enter Hostname/IP',
-              filled: true,
-              fillColor: VConstants.darkNeutral2,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide.none,
-              ),
+                hintStyle: Theme.of(context).textTheme.bodyMedium,
+                hintText: 'Enter Hostname/IP',
+                filled: true,
+                fillColor: VConstants.darkNeutral2,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
+                ),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+                ),
               ),
             ),
-          ),
-             const SizedBox(width: 18,),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Ping'),
-                ),
+            const SizedBox(width: 18,),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Ping'),
+            ),
                 
-            ],
+          ],
         ),
         const SizedBox(
           height: 40,

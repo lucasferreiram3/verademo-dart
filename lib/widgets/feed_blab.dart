@@ -35,8 +35,7 @@ class FeedBlabs extends StatelessWidget
       leading: CircleAvatar(
         foregroundImage: AssetImage('assets/images/$name.png'),
         backgroundImage: const AssetImage('assets/images/default_profile.png'),
-
-        ),
+      ),
       title: Text(title),
       trailing: Checkbox(
         value: true,

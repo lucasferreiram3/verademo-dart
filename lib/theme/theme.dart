@@ -17,6 +17,7 @@ class VTheme {
     checkboxTheme: VCheckboxTheme.loginCheckboxTheme,
     textTheme: VTextTheme.defaultTextTheme,
     elevatedButtonTheme: VElevatedButtonTheme.defaultElevatedButtonTheme,
+    inputDecorationTheme: VTextFormFieldTheme.defaultTextFormTheme,
   );
 
   static ThemeData loginTheme = ThemeData (

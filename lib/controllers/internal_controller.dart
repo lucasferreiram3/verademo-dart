@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   late final List<Widget> screens = [
     FeedPage(username: widget.username,),
-    ProfilePage(username: widget.username),
+    ProfilePage(),
     BlabbersPage(username: widget.username),
     ToolsPage(username: widget.username),
     LogoutPage(username: widget.username),

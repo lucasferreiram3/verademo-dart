@@ -34,19 +34,21 @@ class _FeedPageState extends State<FeedPage> {
     return Scaffold(
       backgroundColor: VConstants.darkNeutral1,
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: VConstants.pagePadding,
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Row(
                   children: [
-                    Expanded(child: Text(
-                      'Welcome, ${widget.username}', 
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headlineLarge,
-                      ),),
+                    Expanded(
+                      child: Text(
+                        'Welcome, ${widget.username}', 
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                    ),
                   ],
                 ),
               ),
