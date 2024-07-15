@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/fortune.dart';
 
 class ToolsPage extends StatefulWidget {
   const ToolsPage({super.key, required String username});
@@ -67,14 +68,20 @@ class ToolsPageState extends State<ToolsPage> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                                var fortune = FortuneFromData();
+                                print(fortune.next()); // Just for testing that fortune is being printed, currently puzzling out how to get navigator.push to populate container
+                                //(context = fortune.next() as BuildContext),
+                            },
                             child: const Text('Fortune'),
                           ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Mapping out how to get navigator.push to populate container with a non-widget function (same as fortune)
+                            },
                             child: const Text('Riddles'),
                             
                           ),
@@ -88,16 +95,25 @@ class ToolsPageState extends State<ToolsPage> {
         const SizedBox(
           height: 20,
         ),
-        Expanded( // TODO: Implement Populating of fortune/riddles within this container
-          child: Container( 
-            color : VConstants.darkNeutral2,
-        ),
-
-        ),
+        
       ],
       ),
       ),
     );
 
+  }
+}
+
+class FortuneRiddles extends StatelessWidget {
+
+  const FortuneRiddles({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        color:  VConstants.darkNeutral2,
+      ),
+    );
   }
 }
