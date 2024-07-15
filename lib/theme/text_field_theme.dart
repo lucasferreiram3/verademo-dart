@@ -11,7 +11,7 @@ class VTextFormFieldTheme {
     fillColor: VConstants.darkNeutral2,
     contentPadding: VConstants.textFieldPadding,
     labelStyle: VTextTheme.defaultTextTheme.bodyMedium!.copyWith(color: veracodeWhite),
-    floatingLabelStyle: VTextTheme.defaultTextTheme.labelMedium!.copyWith(color: veracodeWhite),
+    floatingLabelStyle: VTextTheme.defaultTextTheme.bodyMedium!.copyWith(color: veracodeWhite),
     hintStyle: WidgetStateTextStyle.resolveWith((states) {
       if (states.contains(WidgetState.disabled)) {
         return VTextTheme.defaultTextTheme.bodyMedium!.copyWith(color: VConstants.darkNeutral3);

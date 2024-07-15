@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/controllers/profile_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:verademo_dart/widgets/credentials_field.dart';
@@ -50,16 +51,20 @@ class ProfilePage extends StatelessWidget {
   }
 
   Form _updateProfileForm() {
+    final controller = ProfileController();
+
+    controller.username.text = VSharedPrefs().username ?? "";
+
     return Form(
       child: Column(
         children: [
           _profileImage(),
           const SizedBox(height: VConstants.textFieldSpacing * 2),
-          const VUserField("Real Name"),
+          VUserField("Real Name", controller: controller.realName),
           const SizedBox(height: VConstants.textFieldSpacingMed),
-          const VUserField("Blab Name"),
+          VUserField("Blab Name", controller: controller.blabName),
           const SizedBox(height: VConstants.textFieldSpacingMed),
-          const VUserField("Username"),
+          VUserField("Username", controller: controller.username),
           const SizedBox(height: VConstants.textFieldSpacingMed),
           SizedBox(
             width: double.infinity,
@@ -111,21 +116,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
-
-// class ProfilePage extends StatefulWidget {
-//   final String username;
-
-//   const ProfilePage({super.key, required this.username});
-//   @override
-//   State<ProfilePage> createState() => _ProfilePageState();
-// }
-
-// class _ProfilePageState extends State<ProfilePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text(widget.username),
-//     );
-//   }
-// }
