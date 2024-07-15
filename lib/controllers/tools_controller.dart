@@ -27,22 +27,4 @@ class ToolsController {
     }
     return output;
   }
-  Future<String> fortune(file) async {
-    String cmd = "/bin/fortune" + file;
-    String output = "";
-    try {
-      try{
-        var proc = await Process.run('grep', ['bash', '-c', cmd]).timeout(const Duration(seconds:5));
-        output = proc.stdout;
-
-      } on TimeoutException {
-        output = "Fortune has timed out!"; // Placeholder will replace with actual handling later
-      }
-    } on Exception {
-      output = "Error occured intiating fortune"; // Placeholder will replace with actual handling later
-    }
-
-    return output;
-  }
- 
 }
