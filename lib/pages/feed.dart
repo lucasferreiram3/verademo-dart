@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -102,19 +103,19 @@ class _FeedPageState extends State<FeedPage> {
 
   Future<User> getUserList()
   async {
-    // final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-    final response = await http.get(
-      Uri.parse('http://10.0.2.2:8000/posts/getAllBlabs'),
-      // Send authorization headers to the backend.
-      headers: {
+    print("Building API call to /users/login/");
+    const url = "${VConstants.apiUrl}/users/login/";
+    final uri = Uri.parse(url);
+    final Map<String, String> headers = {
         HttpHeaders.authorizationHeader: 'Token: 21232F297A57A5A743894A0E4A801FC3'
-      }
-      );
+      };
+    final response = await http.get(uri, headers: headers);
 
     print('Response Received with status code: ${response.statusCode}');
     if (response.statusCode == 200)
     {
       print('Success!');
+      Map<String, dynamic> jsonData = jsonDecode(response.body);
       return User.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
     }
     else{
