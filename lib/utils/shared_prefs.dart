@@ -13,6 +13,14 @@ class VSharedPrefs {
     prefs = await SharedPreferences.getInstance();
   }
 
+  void clear() {
+    prefs.clear();
+  }
+
+  void remove(String param) {
+    prefs.remove(param);
+  }
+
   String? get username {
     return prefs.getString("username");
   }
@@ -22,19 +30,19 @@ class VSharedPrefs {
   }
 
   String? get rememberedUsername {
-    return prefs.getString("remembered_username");
+    return prefs.getString("rememberedUsername");
   }
 
   set rememberedUsername(String? value) {
-    value != null ? prefs.setString("remembered_username", value) : "";
+    value != null ? prefs.setString("rememberedUsername", value) : "";
   }
 
   String? get rememberedPassword {
-    return prefs.getString("remembered_password");
+    return prefs.getString("rememberedPassword");
   }
 
   set rememberedPassword(String? value) {
-    value != null ? prefs.setString("remembered_password", value) : "";
+    value != null ? prefs.setString("rememberedPassword", value) : "";
   }
 
 }
