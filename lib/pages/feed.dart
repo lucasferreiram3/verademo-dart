@@ -1,4 +1,9 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:verademo_dart/model/User.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/feed_blab.dart';
 import 'package:verademo_dart/widgets/feed_radio.dart';
@@ -14,6 +19,14 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+
+  late Future<User> futureUser;
+
+  @override
+  void initState() {
+    super.initState();
+    futureUser = getUserList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,4 +99,29 @@ class _FeedPageState extends State<FeedPage> {
         ),
     );
   }
+
+  Future<User> getUserList()
+  async {
+    // final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+    final response = await http.get(
+      Uri.parse('http://10.0.2.2:8000/posts/getAllBlabs'),
+      // Send authorization headers to the backend.
+      headers: {
+        HttpHeaders.authorizationHeader: 'Token: 21232F297A57A5A743894A0E4A801FC3'
+      }
+      );
+
+    print('Response Received with status code: ${response.statusCode}');
+    if (response.statusCode == 200)
+    {
+      print('Success!');
+      return User.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+    }
+    else{
+      print('Throwing exception');
+      throw Exception('Failed to load album');
+    }
+  }
+
+   
 }
