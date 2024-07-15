@@ -80,6 +80,8 @@ class ToolsPageState extends State<ToolsPage> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
+                              var riddles = RiddlesFromData();
+                              print(riddles.next()); // Just for testing that riddles is being
                               // Mapping out how to get navigator.push to populate container with a non-widget function (same as fortune)
                             },
                             child: const Text('Riddles'),

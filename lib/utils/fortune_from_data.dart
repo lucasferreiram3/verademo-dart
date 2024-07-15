@@ -1,17 +1,18 @@
 // Copyright (c) 2017, 'rinukkusu'. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
+// ignore: use_string_in_part_of_directives
 part of fortune;
 
 class FortuneFromData extends Fortune {
-  Random _random = new Random();
+  final Random _random = Random();
 
   @override
   FutureOr<String> _nextImpl() {
     return _fortunes.elementAt(_random.nextInt(_fortunes.length - 1));
   }
 
-  Iterable<String> _fortunes = [
+  final Iterable<String> _fortunes = [
     "A friend's frown is better than a fool's smile.",
     "A friend in need is a friend indeed.",
     "A friend is easier lost than found.",
@@ -558,3 +559,49 @@ class FortuneFromData extends Fortune {
     "You learn by looking and listening as opposed to talking. That's why you have two ears, two eyes, and only one mouth."
   ];
 }
+
+class RiddlesFromData extends Fortune {
+  final Random _random = Random();
+
+  @override
+  FutureOr<String> _nextImpl() {
+    return _riddles.elementAt(_random.nextInt(_riddles.length - 1));
+  }
+
+  final Iterable<String> _riddles = [
+    "Q : Why haven't you graduated yet?\n A : Well, Dad, I could have finished years ago, but I wanted my dissertation to rhyme.",
+    "Q : Why did the cow cross the road?\n  A : To get to the other side.",
+    "Q : What do you get when you cross a mobster with an international standard?\n A: You get someone who makes you an offer that you can't understand!"
+    "Q : What's a word that starts with 'un' and ends with 'ful'?\n A : Understandable.",
+    "Q : Why did the scarecrow win an award?\n A : Because he was outstanding in his field.",
+    "Q : What's the sound that never ends?\n A : A snore.",
+    "Q:	What do you have when you have a lawyer buried up to his neck in sand?\n A:	Not enough sand.",
+    "Q : What's a word that starts with 'pre' and ends with 'able'?\n A : Preoccupied.",
+    "Q : Why did the pig go to the dentist?\n A : To get a tooth extraction.",
+    "Q : Why did the girl get lost?\n A : Because she was playing hide and seek.",
+    "Q : What's the sound that always makes a noise?\n A : A car engine.",
+    "Q : What's the name of the place where you can't buy a candy?\n A : A box.",
+    "Q : What's the name of the animal that can't talk?\n A : A dog.",
+    "Q : Why did the cat fall in love?\n A : Because it wanted to be the best pet.",
+    "Q:	What do you say to a New Yorker with a job?\n A : Big Mac, fries and a Coke, please!",
+    "Q : Why do you never see a ghost?\n A : Because they always come back.",
+    "Q : Why did the man get a divorce?\n A : Because he was too much of a troublemaker.",
+    "Q : Why did the puppy go to the doctor?\n A : Because it needed a checkup.",
+    "Q:	What is printed on the bottom of beer bottles in Minnesota\n A: Open other end.",
+    "Q : What's the name of the candy that never gets sour?\n A : A lollipop.",
+    "Q : What's a word that starts with 'ex' and ends with 'ent'?\n A : Excellent.",
+    "Q : Why did the fish get lost?\n A : Because it was swimming in the sea.",
+    "Q : What is purple and commutes?\n A : An Abelian grape.",
+    "Q : What looks like a cat, flies like a bat, brays like a donkey, and plays like a monkey?\n A : Nothing.",
+    "Q : Why did the bird get lost?\n A : Because it was flying through the sky.",
+    "Q : Why did the dog get lost?\n A : Because it was barking at the moon.",
+    "Q : Why did the man get lost?\n A : Because he was running around in circles.",
+    "Q : An English mathematician (I forgot who) was asked by his very religious colleague: Do you believe in one God?\n A: Yes, up to isomorphism!",
+    "Q : Why did the hippopotamus go to school?\n A : Because he wanted to learn to swim.",
+    "Q : Why did the cow get lost?\n A : Because it was grazing near a river.", 
+    "Q : Why is Poland just like the United States?\n A : In the United States you can't buy anything for zlotys and inPoland you can't either, while in the U.S. you can get whatever you want for dollars, just as you can in Poland. -- being told in Poland, 1987",
+    "Q:	Why should you always serve a Southern Carolina football man soup in a plate?\n A: Cause if you give him a bowl, he'll throw it away.",
+  ];
+}
+
+
