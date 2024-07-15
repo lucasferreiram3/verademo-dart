@@ -95,11 +95,31 @@ class RegisterPage extends StatelessWidget {
   ElevatedButton _registerButton(BuildContext context, RegisterController controller) {
     return ElevatedButton(
       onPressed: () => controller.processRegister(context),
+      // onPressed: () => processRegister(context, controller),
       child: const Text('Register'),
       // onPressed: () {
       //   Navigator.push(context,
-      //   MaterialPageRoute(builder: (context) => const RegisterFinishPage(username: 'test')),);
+      //   MaterialPageRoute(builder: (context) => RegisterFinishPage(controller: controller)),);
       // },
     );
   }
+
+  // void processRegister(BuildContext context, RegisterController controller) async {
+  //   try {
+  //     // Validate form
+  //     if (!controller.registerFormKey.currentState!.validate()) {
+  //       return;
+  //     }
+
+  //     // TODO: Check if username already exists
+
+  //     Navigator.push(context,
+  //                    MaterialPageRoute(builder: (context) => RegisterFinishPage(controller: controller)),);
+
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
 }
+
+

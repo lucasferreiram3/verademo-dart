@@ -47,7 +47,7 @@ class RegisterFinishPage extends StatelessWidget {
   Form _registerForm(BuildContext context) {
 
     return Form(
-      key: controller.registerFormKey,
+      key: controller.registerFinishFormKey,
       child: Column(
         children: [
           VCredField('Username', controller: controller.username, edit: false),
