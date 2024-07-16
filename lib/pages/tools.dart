@@ -58,6 +58,7 @@ class ToolsPageState extends State<ToolsPage> {
         const SizedBox(
           height: 40,
         ),
+  
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -68,21 +69,20 @@ class ToolsPageState extends State<ToolsPage> {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
-                                var fortune = FortuneFromData();
-                                print(fortune.next()); // Just for testing that fortune is being printed, currently puzzling out how to get navigator.push to populate container
-                                //(context = fortune.next() as BuildContext),
+                            onPressed: () async {
+                              var fortune = FortuneFromData();
+                              FortuneRiddles.newValue.value = await fortune.next();
                             },
-                            child: const Text('Fortune'),
-                          ),
+                            child: const Text('Fortune'),  
+                          ),  
                         ),
+
                         const SizedBox(width: 16),
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               var riddles = RiddlesFromData();
-                              print(riddles.next()); // Just for testing that riddles is being
-                              // Mapping out how to get navigator.push to populate container with a non-widget function (same as fortune)
+                              FortuneRiddles.newValue.value = await riddles.next();
                             },
                             child: const Text('Riddles'),
                             
@@ -97,7 +97,12 @@ class ToolsPageState extends State<ToolsPage> {
         const SizedBox(
           height: 20,
         ),
-        
+        const FortuneRiddles()
+      /*Expanded(
+        child: Container(
+          color:  VConstants.darkNeutral2,
+      ),
+      ),*/
       ],
       ),
       ),
@@ -106,16 +111,33 @@ class ToolsPageState extends State<ToolsPage> {
   }
 }
 
-class FortuneRiddles extends StatelessWidget {
+class FortuneRiddles extends StatelessWidget{
+  static ValueNotifier<String> newValue = ValueNotifier('');
 
   const FortuneRiddles({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        color:  VConstants.darkNeutral2,
-      ),
+  return Container(
+    color: VConstants.darkNeutral1,
+    child: Column(  
+      children: [
+        const SizedBox(height:12),
+        ValueListenableBuilder(
+          valueListenable: newValue, 
+          builder: (BuildContext context, String string, Widget? child) {
+            return Text(
+              string,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            );
+           }, 
+        ),
+      ]
+    ),
     );
   }
+  
 }
+
+
+
