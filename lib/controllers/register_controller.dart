@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
+import 'package:verademo_dart/controllers/internal_controller.dart';
 import 'package:verademo_dart/pages/register-finish.dart';
+import 'package:verademo_dart/utils/snackbar.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterController {
@@ -107,29 +109,71 @@ class RegisterController {
         Navigator.push(context,
                       MaterialPageRoute(builder: (context) => RegisterFinishPage(controller: this)),);
       } else {
-        // Login failed
-        print(response.body);
+        final data = json.decode(response.body)["data"];
+        print(data);
+        if (!context.mounted) return;
+        
+        ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar(data));
       }
 
     } catch (err) {
       print(err);
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar(err));
     }
   }
 
-  void processRegisterFinish() async {
+  void processRegisterFinish(BuildContext context) async {
     try {
       // Validate form
       if (!registerFinishFormKey.currentState!.validate()) {
         return;
       }
 
-      // TODO: Save user data in database
+      // Build API call for register
+      print("Building API call to /users/register/");
+      const url = "${VConstants.apiUrl}/users/register/";
+      final uri = Uri.parse(url);
+      final body = jsonEncode(<String, String> {
+        "username": username.text,
+        "password": password.text,
+        "cpassword": cpassword.text,
+        "realName": realName.text,
+        "blabName": blabName.text,
+      });
+      final Map<String, String> headers = {
+        "content-type": "application/json",
+      };
+      print(body);
 
-      // TODO: Save user session
+      // Execute API call for register
+      final response = await http.post(uri, body: body, headers: headers);
 
+      if (response.statusCode == 200) {
+        // Register successful
+        print(response.body);
 
+        // Make sure context exists
+        if (!context.mounted) return;
+
+        // Set session username
+        VSharedPrefs().username = username.text;
+
+        // Use pushReplacement to prevent back button from going back to register page after registering
+        // TODO: Find a way to make back button trigger logout instead?
+        Navigator.pushReplacement(context,
+                       MaterialPageRoute(builder: (context) => HomePage(username: username.text)),);
+      } else {
+        // Register failed
+        final data = json.decode(response.body)["data"];
+        print(data);
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar(data));
+      }
     } catch (err) {
       print(err);
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar(err));
     }
   }
 }

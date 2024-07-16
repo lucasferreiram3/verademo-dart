@@ -112,7 +112,7 @@ class RegisterFinishPage extends StatelessWidget {
     return ElevatedButton(
       child: const Text('Register'),
       onPressed: () {
-        controller.processRegisterFinish();
+        controller.processRegisterFinish(context);
       },
     );
   }
