@@ -50,7 +50,26 @@ class RegisterPage extends StatelessWidget {
       key: controller.registerFormKey,
       child: Column(
         children: [
-          VCredField('Username', controller: controller.username),
+          TextFormField (
+            controller: controller.username,
+            validator: (value) {
+              if (controller.errorMessage != null) {
+                String? errorMessage = controller.errorMessage;
+                controller.errorMessage = null;
+                return errorMessage;
+              }
+              if (value == null || value.isEmpty) {
+                return "Username is required.";
+              }
+              return null;
+            },
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              hintText: "Username",
+              errorText: controller.errorMessage,
+            ),
+          ),
+          // VCredField('Username', controller: controller.username),
           const SizedBox(height: 42),
           _registerButton(context, controller),
         ],
@@ -96,11 +115,11 @@ class RegisterPage extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => controller.processRegister(context),
       // onPressed: () => processRegister(context, controller),
-      child: const Text('Register'),
       // onPressed: () {
       //   Navigator.push(context,
-      //   MaterialPageRoute(builder: (context) => RegisterFinishPage(controller: controller)),);
+      //     MaterialPageRoute(builder: (context) => RegisterFinishPage(controller: controller)));
       // },
+      child: const Text('Register'),
     );
   }
 
