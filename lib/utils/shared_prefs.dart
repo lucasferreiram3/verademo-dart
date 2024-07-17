@@ -45,4 +45,12 @@ class VSharedPrefs {
     value != null ? prefs.setString("rememberedPassword", value) : "";
   }
 
+  String? get token {
+    return prefs.getString("token");
+  }
+
+  set token(String? value) {
+    value != null ? prefs.setString("token", value) : "";
+  }
+
 }

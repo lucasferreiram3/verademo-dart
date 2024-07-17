@@ -30,7 +30,8 @@ class User
       'createdDate' : DateTime createdDate,
       'blabName' : String blabName,
       'realName' : String realName
-      } => User(username: username, password: password, hint: hint, lastLogin: lastLogin, createdDate: createdDate, blabName: blabName, realName: realName),
+      } => User(username: username, password: password, hint: hint, lastLogin: lastLogin,
+       createdDate: createdDate, blabName: blabName, realName: realName),
       _=> throw const FormatException('Failed to create User.'),
     };
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/controllers/reset_controller.dart';
 
 
 // ignore: camel_case_types, for testing purposes, may be removed in future
@@ -39,6 +40,7 @@ class resetWidget extends State<resetPopup> {
                       backgroundColor: const Color.fromARGB(255, 36, 38, 38),
                     ),
                     onPressed: () {
+                      _CheckBoxState.isReset["Confirm"] = false;
                       Navigator.of(context).pop();
                     },
                     child: Image.asset(
@@ -96,7 +98,14 @@ class resetWidget extends State<resetPopup> {
                         horizontal: 130,
                       ),
                     ),
-                    onPressed: () {}, // TODO: Implement resetController when pressed, API needs work first.
+                    onPressed: () => 
+                    {
+                      if (_CheckBoxState.isReset["Confirm"] == true)
+                      {
+                        _CheckBoxState.isReset["Confirm"] = false,
+                        ResetController().processReset(context)
+                      }
+                    },
                     child: const Text(
                       'Reset',
                       style: TextStyle(

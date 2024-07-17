@@ -1,11 +1,13 @@
 import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/utils/shared_prefs.dart';
+import 'package:http/http.dart' as http;
 import 'package:verademo_dart/controllers/internal_controller.dart';
 import 'package:verademo_dart/pages/register-finish.dart';
+import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:verademo_dart/utils/snackbar.dart';
-import 'package:http/http.dart' as http;
 
 class RegisterController {
   final username = TextEditingController();
@@ -158,6 +160,7 @@ class RegisterController {
 
         // Set session username
         VSharedPrefs().username = username.text;
+        VSharedPrefs().token = "Token: ${md5.convert(utf8.encode(password.text)).toString()}";
 
         // Use pushReplacement to prevent back button from going back to register page after registering
         // TODO: Find a way to make back button trigger logout instead?
