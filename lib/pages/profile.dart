@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart' as painting;
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
@@ -99,23 +102,38 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
 
-  Future<dynamic>? _profileImage;
+  // Future<dynamic>? _profileImage;
 
   @override
   void initState() {
     super.initState();
-    _profileImage = getProfileImage(widget.username);
+    // _profileImage = getProfileImage(widget.username);
   }
 
   void _updateImage() {
     setState(() {
-      _profileImage = getProfileImage(widget.username);
+      imageCache.clear();
+      // imageCache.clearLiveImages();
+      
+      // _profileImage = getProfileImage(widget.username);
     });
   }
+  
+
+  // getProfileImage(String? username) async {
+  //   final dir = await getApplicationDocumentsDirectory();
+  //   final image = File("${dir.path}/$username.png");
+  //   if (image.existsSync()) {
+  //     return FileImage(image);
+  //   } else {
+  //     return AssetImage('assets/images/$username.png');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      key: UniqueKey(),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // CircleAvatar(
@@ -123,17 +141,18 @@ class _ProfileImageState extends State<ProfileImage> {
         //   backgroundImage: const AssetImage('assets/images/default_profile.png'),
         //   radius: 48,
         // ),
-        // VAvatar(VSharedPrefs().username),
-        FutureBuilder<dynamic> ( 
-          future: _profileImage,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          return CircleAvatar(
-            foregroundImage: snapshot.data,
-            backgroundImage: const AssetImage(VConstants.defaultProfile),
-            radius: 48,
-            );
-          }
-        ),
+        VAvatar(widget.username),
+        // FutureBuilder<dynamic> ( 
+        //   future: _profileImage,
+        //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        //   return CircleAvatar(
+        //     key: UniqueKey(),
+        //     foregroundImage: snapshot.data,
+        //     backgroundImage: const AssetImage(VConstants.defaultProfile),
+        //     radius: 48,
+        //     );
+        //   }
+        // ),
         const SizedBox(width: 30),
         _profileImageActions(context)
       ]
@@ -161,7 +180,7 @@ class _ProfileImageState extends State<ProfileImage> {
                 final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
                 final directory = await getDownloadsDirectory();
                 if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
-                  File('${directory?.path}/${widget.username}.png').create(recursive: true);
+                  File('${directory?.path}/${widget.username}.png').createSync(recursive: true);
                 }
                 // final File image = await rootBundle.load('assets/images/${widget.username}.png');
 
@@ -176,15 +195,15 @@ class _ProfileImageState extends State<ProfileImage> {
   }
 
   Future<void> _uploadImage() async {
-              final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-              if (image != null) {
-                final dir = await getApplicationDocumentsDirectory();
-                final File newFile = File("${dir.path}/${widget.username}.png");
-                if (!newFile.existsSync()) {
-                  newFile.create(recursive: true);
-                }
-                await File(image.path).copy("${dir.path}/${widget.username}.png", );
-              }
-  
-            }
+    final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      final dir = await getApplicationDocumentsDirectory();
+      final File newFile = File("${dir.path}/${widget.username}.png");
+      if (!newFile.existsSync()) {
+        newFile.create(recursive: true);
+      }
+      await File(image.path).copy("${dir.path}/${widget.username}.png", );
+    }
+
+  }
 }
