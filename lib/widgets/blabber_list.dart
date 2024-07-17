@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
 
-class FeedBlabs extends StatelessWidget
+class BlabberList extends StatelessWidget
 {
-  final List <String> blabname;
+  final String username;
 
-  const FeedBlabs(this.blabname,{super.key});
+  const BlabberList(this.username,{super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +14,31 @@ class FeedBlabs extends StatelessWidget
       textColor: VConstants.veracodeWhite,
 
       child: ListView(
+
         
-        children: buildItemList()
+        children: ListTile.divideTiles(
+          context: context,
+          color: VConstants.lightNeutral3,
+          tiles: buildItemList()).toList()
       ),
     );
   }
 
   List<Widget> buildItemList()
   {
+    print("Building API call to /users/getBlabbers/");
+    const url = "${VConstants.apiUrl}/users/getBlabbers/";
+    final uri = Uri.parse(url);
+    final Map<String, String> headers = {
+      "content-type": "application/json",
+      "Authorization": "${VSharedPrefs().token}"
+    };
+
+    
     List<Widget> items = [];
-    for (int i=0; i<blabname.length; i++)
+    for (int i=0; i<username.length; i++)
     {
-      items.add(buildListItem(blabname[i]));
+      items.add(buildListItem(username[i]));
     }
     return items;
   }

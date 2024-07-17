@@ -78,7 +78,7 @@ class HeaderBar extends AppBar{
     toolbarHeight: 83,
     leadingWidth: 55,
     leading: veraIcon,
-    title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium  /*page name variable here*/,),
+    title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium,),
     centerTitle: true,
     backgroundColor: VConstants.codeBlack,
     actions: <Widget>[

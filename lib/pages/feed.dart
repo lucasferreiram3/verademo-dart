@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:verademo_dart/model/User.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/widgets/feed_blab.dart';
+import 'package:verademo_dart/widgets/blabber_list.dart';
 import 'package:verademo_dart/widgets/feed_radio.dart';
 
 class FeedPage extends StatefulWidget {
@@ -87,7 +87,7 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: Container(
                   color:  VConstants.darkNeutral2,
-                  child: const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde'])
+                  child: const BlabberList("hello")
                   
                   /*const Center(
                     child: Text(
