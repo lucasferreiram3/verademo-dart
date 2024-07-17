@@ -84,7 +84,6 @@ class ToolsPageState extends State<ToolsPage> {
                             child: const Text('Fortune'),  
                           ),  
                         ),
-
                         const SizedBox(width: 16),
                         Expanded(
                           child: ElevatedButton(
@@ -127,7 +126,10 @@ class FortuneRiddles extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
   return Container(
-    color: VConstants.darkNeutral1,
+    decoration: const BoxDecoration(
+          color: VConstants.veracodeBlack,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
     child: Column(  
       children: [
         const SizedBox(height:12),
@@ -136,6 +138,7 @@ class FortuneRiddles extends StatelessWidget{
           builder: (BuildContext context, String string, Widget? child) {
             return Text(
               string,
+              textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             );
            }, 

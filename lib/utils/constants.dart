@@ -19,6 +19,7 @@ class VConstants {
 
   static const String vcIcon = "assets/VCicon.png";
   static const String vcLogo = "assets/VClogo.png";
+  static const String defaultProfile = "assets/images/default_profile.png";
 
   static const double textFieldSpacing = 17.0;
   static const double textFieldSpacingMed = 24.0;
