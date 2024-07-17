@@ -22,6 +22,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
 
   late Future<User> futureUser;
+  TextEditingController commentController = TextEditingController();
 
   @override
   void initState() {
@@ -87,21 +88,56 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: Container(
                   color:  VConstants.darkNeutral2,
-                  child: const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde'])
-                  
-                  /*const Center(
-                    child: Text(
-                      'No Blabs yet...',
-                      style: TextStyle(color: VConstants.codeWhite),
-                    ),
-                  ),*/
+                  child: //const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        '0',
+                        style: TextStyle(color: VConstants.darkNeutral3),
+                      ),
+                      
+                    ],
+                
+                
                 ),
+              ),
               ),
             ],
           ),
         ),
     );
   }
+  void showCommentDialog() {
+    showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+      title: Text('Add a Comment'),
+      content: TextField(
+        controller: commentController,
+        decoration: const InputDecoration(
+          hintText: 'Write a Comment......'
+        ),
+      ),
+      actions: [
+        ElevatedButton(
+          child: const Text('Post'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        ElevatedButton(
+          child: Text('Cancel'),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ],
+    ),
+    );
+}
 
   Future<User> getUserList()
   async {
@@ -125,6 +161,11 @@ class _FeedPageState extends State<FeedPage> {
       throw Exception('Failed to load album');
     }
   }
+  void addBlab(String text) {
+    // Add blab to the list of blabs
+  }
+
+
 
    
 }
