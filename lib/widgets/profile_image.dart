@@ -5,9 +5,10 @@ import 'dart:io';
 import 'package:verademo_dart/utils/constants.dart';
 
 class VAvatar extends StatefulWidget {
-  const VAvatar(this.username, {super.key});
+  const VAvatar(this.username, {super.key, this.radius = 48});
 
   final String? username;
+  final double radius;
 
   @override
   State<VAvatar> createState() => _VAvatarState();
@@ -27,10 +28,10 @@ class _VAvatarState extends State<VAvatar> {
     return FutureBuilder<dynamic> ( 
       future: _profileImage,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-      return CircleAvatar(
-        foregroundImage: snapshot.data,
-        backgroundImage: const AssetImage(VConstants.defaultProfile),
-        radius: 48,
+        return CircleAvatar(
+          foregroundImage: snapshot.data,
+          backgroundImage: const AssetImage(VConstants.defaultProfile),
+          radius: widget.radius,
         );
       }
     );

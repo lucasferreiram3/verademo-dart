@@ -9,6 +9,7 @@ import 'package:verademo_dart/widgets/profile_image.dart';
 import 'package:verademo_dart/widgets/user_field.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:flutter/painting.dart' as painting;
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -110,8 +111,22 @@ class _ProfileImageState extends State<ProfileImage> {
 
   void _updateImage() {
     setState(() {
+      imageCache.clear();
+      // imageCache.clearLiveImages();
+      
       _profileImage = getProfileImage(widget.username);
     });
+  }
+  
+
+  getProfileImage(String? username) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final image = File("${dir.path}/$username.png");
+    if (image.existsSync()) {
+      return FileImage(image);
+    } else {
+      return AssetImage('assets/images/$username.png');
+    }
   }
 
   @override
@@ -129,6 +144,7 @@ class _ProfileImageState extends State<ProfileImage> {
           future: _profileImage,
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return CircleAvatar(
+            key: UniqueKey(),
             foregroundImage: snapshot.data,
             backgroundImage: const AssetImage(VConstants.defaultProfile),
             radius: 48,
@@ -160,7 +176,7 @@ class _ProfileImageState extends State<ProfileImage> {
                 final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
                 final directory = await getDownloadsDirectory();
                 if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
-                  File('${directory?.path}/${widget.username}.png').create(recursive: true);
+                  File('${directory?.path}/${widget.username}.png').createSync(recursive: true);
                 }
                 // final File image = await rootBundle.load('assets/images/${widget.username}.png');
 
@@ -175,15 +191,15 @@ class _ProfileImageState extends State<ProfileImage> {
   }
 
   Future<void> _uploadImage() async {
-              final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-              if (image != null) {
-                final dir = await getApplicationDocumentsDirectory();
-                final File newFile = File("${dir.path}/${widget.username}.png");
-                if (!newFile.existsSync()) {
-                  newFile.create(recursive: true);
-                }
-                await File(image.path).copy("${dir.path}/${widget.username}.png", );
-              }
-  
-            }
+    final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      final dir = await getApplicationDocumentsDirectory();
+      final File newFile = File("${dir.path}/${widget.username}.png");
+      if (!newFile.existsSync()) {
+        newFile.create(recursive: true);
+      }
+      await File(image.path).copy("${dir.path}/${widget.username}.png", );
+    }
+
+  }
 }
