@@ -63,7 +63,7 @@ class ProfilePage extends StatelessWidget {
     return Form(
       child: Column(
         children: [
-          _profileImage(),
+          ProfileImage(VSharedPrefs().username),
           const SizedBox(height: VConstants.textFieldSpacing * 2),
           VUserField("Real Name", controller: controller.realName),
           const SizedBox(height: VConstants.textFieldSpacingMed),
@@ -82,8 +82,40 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
+  
 
-  Row _profileImage() {
+  
+}
+
+class ProfileImage extends StatefulWidget {
+  const ProfileImage(this.username, {
+    super.key,
+  });
+
+  final String? username;
+
+  @override
+  State<ProfileImage> createState() => _ProfileImageState();
+}
+
+class _ProfileImageState extends State<ProfileImage> {
+
+  Future<dynamic>? _profileImage;
+
+  @override
+  void initState() {
+    super.initState();
+    _profileImage = getProfileImage(widget.username);
+  }
+
+  void _updateImage() {
+    setState(() {
+      _profileImage = getProfileImage(widget.username);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -92,13 +124,22 @@ class ProfilePage extends StatelessWidget {
         //   backgroundImage: const AssetImage('assets/images/default_profile.png'),
         //   radius: 48,
         // ),
-        VAvatar(VSharedPrefs().username),
+        // VAvatar(VSharedPrefs().username),
+        FutureBuilder<dynamic> ( 
+          future: _profileImage,
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          return CircleAvatar(
+            foregroundImage: snapshot.data,
+            backgroundImage: const AssetImage(VConstants.defaultProfile),
+            radius: 48,
+            );
+          }
+        ),
         const SizedBox(width: 30),
         _profileImageActions()
       ]
     );
   }
-  
 
   Expanded _profileImageActions() {
     return Expanded(
@@ -107,18 +148,7 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () async {
-                final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-                if (image != null) {
-                  final dir = await getApplicationDocumentsDirectory();
-                  final File newFile = File("${dir.path}/$username.png");
-                  if (!newFile.existsSync()) {
-                    newFile.create(recursive: true);
-                  }
-                  await File(image.path).copy("${dir.path}/$username.png");
-                }
-
-              },
+              onPressed: () async { await _uploadImage(); _updateImage(); },
               child: const Text("Change Profile Picture")
             ),
           ),
@@ -127,14 +157,14 @@ class ProfilePage extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 print(await getApplicationDocumentsDirectory());
-                final File image = await File('assets/images/$username.png').exists() ? File('assets/images/$username.png') : File('assets/images/default_profile.png');
+                final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
                 final directory = await getDownloadsDirectory();
-                if (!File("${directory?.path}/$username.png").existsSync()) {
-                  File('${directory?.path}/$username.png').create(recursive: true);
+                if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
+                  File('${directory?.path}/${widget.username}.png').create(recursive: true);
                 }
-                // final File image = await rootBundle.load('assets/images/$username.png');
+                // final File image = await rootBundle.load('assets/images/${widget.username}.png');
 
-                await image.copy("${directory?.path}/$username.png");
+                await image.copy("${directory?.path}/${widget.username}.png");
               },
               child: const Text("Download Current Image")
             ),
@@ -143,4 +173,17 @@ class ProfilePage extends StatelessWidget {
       )
     );
   }
+
+  Future<void> _uploadImage() async {
+              final XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+              if (image != null) {
+                final dir = await getApplicationDocumentsDirectory();
+                final File newFile = File("${dir.path}/${widget.username}.png");
+                if (!newFile.existsSync()) {
+                  newFile.create(recursive: true);
+                }
+                await File(image.path).copy("${dir.path}/${widget.username}.png", );
+              }
+  
+            }
 }
