@@ -1,6 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/fortune.dart';
+import 'package:dart_ping/dart_ping.dart';
 
 class ToolsPage extends StatefulWidget {
   const ToolsPage({super.key, required String username});
@@ -11,6 +14,8 @@ class ToolsPage extends StatefulWidget {
 }
 
 class ToolsPageState extends State<ToolsPage> {
+  TextEditingController pingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +39,7 @@ class ToolsPageState extends State<ToolsPage> {
           children: [
             Expanded(
               child: TextField(
+              controller: pingController,
               decoration: InputDecoration(
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
                 hintText: 'Enter Hostname/IP',
@@ -49,16 +55,18 @@ class ToolsPageState extends State<ToolsPage> {
             ),
             const SizedBox(width: 18,),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+               var input = pingController.text;
+               var ping = await Ping('$input', count : 1).stream.first;
+               FortuneRiddles.newValue.value = ping.toString();
+              },
               child: const Text('Ping'),
-            ),
-                
+            ),    
           ],
         ),
         const SizedBox(
           height: 40,
         ),
-  
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -76,7 +84,6 @@ class ToolsPageState extends State<ToolsPage> {
                             child: const Text('Fortune'),  
                           ),  
                         ),
-
                         const SizedBox(width: 16),
                         Expanded(
                           child: ElevatedButton(
@@ -119,7 +126,10 @@ class FortuneRiddles extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
   return Container(
-    color: VConstants.darkNeutral1,
+    decoration: const BoxDecoration(
+          color: VConstants.veracodeBlack,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
     child: Column(  
       children: [
         const SizedBox(height:12),
@@ -128,10 +138,12 @@ class FortuneRiddles extends StatelessWidget{
           builder: (BuildContext context, String string, Widget? child) {
             return Text(
               string,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             );
            }, 
         ),
+        
       ]
     ),
     );
