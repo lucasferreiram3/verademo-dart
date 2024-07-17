@@ -139,7 +139,6 @@ class FortuneRiddles extends StatelessWidget{
             return Text(
               string,
               textAlign: TextAlign.center,
-              semanticsLabel: '\n',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             );
            }, 
