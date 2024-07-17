@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/widgets/profile_image.dart';
 
 class FeedBlabs extends StatelessWidget
 {
@@ -32,10 +33,11 @@ class FeedBlabs extends StatelessWidget
   Widget buildListItem(String title) {
     String name = title.toLowerCase();
     return ListTile(
-      leading: CircleAvatar(
-        foregroundImage: AssetImage('assets/images/$name.png'),
-        backgroundImage: const AssetImage('assets/images/default_profile.png'),
-      ),
+      // leading: CircleAvatar(
+      //   foregroundImage: AssetImage('assets/images/$name.png'),
+      //   backgroundImage: const AssetImage('assets/images/default_profile.png'),
+      // ),
+      leading: VAvatar(name, radius: 20),
       title: Text(title),
       trailing: Checkbox(
         value: true,
