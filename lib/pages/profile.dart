@@ -101,12 +101,12 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
 
-  Future<dynamic>? _profileImage;
+  // Future<dynamic>? _profileImage;
 
   @override
   void initState() {
     super.initState();
-    _profileImage = getProfileImage(widget.username);
+    // _profileImage = getProfileImage(widget.username);
   }
 
   void _updateImage() {
@@ -114,24 +114,25 @@ class _ProfileImageState extends State<ProfileImage> {
       imageCache.clear();
       // imageCache.clearLiveImages();
       
-      _profileImage = getProfileImage(widget.username);
+      // _profileImage = getProfileImage(widget.username);
     });
   }
   
 
-  getProfileImage(String? username) async {
-    final dir = await getApplicationDocumentsDirectory();
-    final image = File("${dir.path}/$username.png");
-    if (image.existsSync()) {
-      return FileImage(image);
-    } else {
-      return AssetImage('assets/images/$username.png');
-    }
-  }
+  // getProfileImage(String? username) async {
+  //   final dir = await getApplicationDocumentsDirectory();
+  //   final image = File("${dir.path}/$username.png");
+  //   if (image.existsSync()) {
+  //     return FileImage(image);
+  //   } else {
+  //     return AssetImage('assets/images/$username.png');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      key: UniqueKey(),
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // CircleAvatar(
@@ -139,18 +140,18 @@ class _ProfileImageState extends State<ProfileImage> {
         //   backgroundImage: const AssetImage('assets/images/default_profile.png'),
         //   radius: 48,
         // ),
-        // VAvatar(VSharedPrefs().username),
-        FutureBuilder<dynamic> ( 
-          future: _profileImage,
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          return CircleAvatar(
-            key: UniqueKey(),
-            foregroundImage: snapshot.data,
-            backgroundImage: const AssetImage(VConstants.defaultProfile),
-            radius: 48,
-            );
-          }
-        ),
+        VAvatar(widget.username),
+        // FutureBuilder<dynamic> ( 
+        //   future: _profileImage,
+        //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        //   return CircleAvatar(
+        //     key: UniqueKey(),
+        //     foregroundImage: snapshot.data,
+        //     backgroundImage: const AssetImage(VConstants.defaultProfile),
+        //     radius: 48,
+        //     );
+        //   }
+        // ),
         const SizedBox(width: 30),
         _profileImageActions()
       ]
