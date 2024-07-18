@@ -193,7 +193,6 @@ class _ProfileImageState extends State<ProfileImage> {
                 final documentsDir = await getApplicationDocumentsDirectory();
                 final File oldFile = File("${documentsDir.path}/${widget.username}.png");
                 if (oldFile.existsSync()) {
-                  
                   Gal.putImage("${documentsDir.path}/${widget.username}.png");
                 } else {
                   try {
@@ -203,6 +202,10 @@ class _ProfileImageState extends State<ProfileImage> {
                     final ByteData image = await rootBundle.load('assets/images/${VConstants.defaultProfile}.png');
                     Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
                   }
+                }
+
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(VSnackBar.successSnackBar("Image Downloaded Successfully!"));
                 }
 
                 // print(await getApplicationDocumentsDirectory());
