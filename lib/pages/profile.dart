@@ -1,15 +1,16 @@
+import 'dart:io';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/painting.dart' as painting;
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
-import 'package:verademo_dart/widgets/credentials_field.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:verademo_dart/widgets/profile_image.dart';
 import 'package:verademo_dart/widgets/user_field.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'package:flutter/painting.dart' as painting;
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -153,19 +154,21 @@ class _ProfileImageState extends State<ProfileImage> {
         //   }
         // ),
         const SizedBox(width: 30),
-        _profileImageActions()
+        _profileImageActions(context)
       ]
     );
   }
 
-  Expanded _profileImageActions() {
+  Expanded _profileImageActions(context) {
     return Expanded(
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () async { await _uploadImage(); _updateImage(); },
+              onPressed: () async { await _uploadImage(); setState(() {
+                _profileImage = getProfileImage(widget.username);
+              }); },
               child: const Text("Change Profile Picture")
             ),
           ),
