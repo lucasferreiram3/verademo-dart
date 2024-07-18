@@ -98,38 +98,7 @@ class _FeedPageState extends State<FeedPage> {
     );
   }
 
-  void showCommentDialog()  {
-    showDialog(
-      context: context, builder: (context) => AlertDialog(
-        title: Text('Add Comment'),
-        content: TextField(
-          controller: commentController,
-          decoration: InputDecoration(
-            hintText: 'Write a comment...',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide.none,
-            ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-          ),
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-                
-            },
-            child: Text('Submit'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('Cancel'),
-          ),
-        ],
-      ),
-    );
-  }
+  
   
 
   Future<User> getUserList()
