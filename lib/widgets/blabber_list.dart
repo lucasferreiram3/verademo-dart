@@ -50,6 +50,7 @@ class _BlabberListState extends State<BlabberList> {
       "content-type": "application/json",
       "Authorization": "${VSharedPrefs().token}"
     };
+    await Future.delayed(const Duration(seconds: 4));
     
     final response = await http.get(uri, headers: headers);
      // Convert output to JSON
@@ -86,7 +87,9 @@ class _BlabberListState extends State<BlabberList> {
     );
           }
           else {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator(
+                color: VConstants.veracodeBlue,));
           }
         },
       );
