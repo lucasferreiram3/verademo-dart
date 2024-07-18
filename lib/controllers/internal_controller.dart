@@ -23,26 +23,39 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentPageIndex = 0;
 
-  late final List<Widget> screens = [
-    FeedPage(username: widget.username,),
-    ProfilePage(),
-    BlabbersPage(username: widget.username),
-    ToolsPage(username: widget.username),
-    LogoutPage(username: widget.username),
-  ];
+  late final List<Widget> screens;
+  late final List<String> headers;
 
-  final List<String> headers = [
-    'Feed',
-    'Profile',
-    'Blabbers',
-    'Tools',
-    'Logout',
-  ];
+  @override
+  initState()
+  {
+    super.initState();
+    screens = [
+      FeedPage(username: widget.username,),
+      ProfilePage(),
+      BlabbersPage(username: widget.username),
+      ToolsPage(username: widget.username),
+      LogoutPage(username: widget.username),
+    ];
+
+    headers = [
+      'Feed',
+      'Profile',
+      'Blabbers',
+      'Tools',
+      'Logout',
+    ];
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HeaderBar(headers[currentPageIndex], context),
-      body: screens[currentPageIndex],
+      body: IndexedStack(
+        index: currentPageIndex,
+        children: screens,
+      ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
         NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),

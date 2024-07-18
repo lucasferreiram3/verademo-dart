@@ -88,7 +88,7 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return const FeedList(message: 'Message', user: 'Username', time: 'Time');
+                    return FeedList(message: 'Message', user: 'Username', time: 'Time');
                   } 
                 ),                    //FeedList(message: 'Message', user: 'Username', time: 'Time')
               ),
@@ -97,32 +97,40 @@ class _FeedPageState extends State<FeedPage> {
       ),
     );
   }
-  void showCommentDialog() {
+
+  void showCommentDialog()  {
     showDialog(
-      context: context, 
-      builder: (context) => AlertDialog(
-      title: Text('Add a Comment'),
-      content: TextField(
-        controller: commentController,
-        decoration: const InputDecoration(
-          hintText: 'Write a Comment......'
+      context: context, builder: (context) => AlertDialog(
+        title: Text('Add Comment'),
+        content: TextField(
+          controller: commentController,
+          decoration: InputDecoration(
+            hintText: 'Write a comment...',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide.none,
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+          ),
         ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+                
+            },
+            child: Text('Submit'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Cancel'),
+          ),
+        ],
       ),
-      actions: [
-        ElevatedButton(
-          child: const Text('Post'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        ElevatedButton(
-          child: const Text('Cancel'),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ],
-    ),
     );
-}
+  }
+  
 
   Future<User> getUserList()
   async {

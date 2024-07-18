@@ -13,23 +13,35 @@ class BlabberList extends StatefulWidget
   const BlabberList(this.username,{super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ListTileTheme(
-      textColor: VConstants.veracodeWhite,
+  State<BlabberList> createState() => _BlabberListState();
+}
 
-      child: ListView(
+class _BlabberListState extends State<BlabberList> {
+  late Future<List<Widget>> _data;
 
-        
-        children: ListTile.divideTiles(
-          context: context,
-          color: VConstants.lightNeutral3,
-          tiles: buildItemList()).toList()
-      ),
-    );
-  }
-
-  List<Widget> buildItemList()
+  @override
+  initState()
   {
+    super.initState();
+    _data = getData();
+  }
+/*
+  FutureBuilder(
+    future = _data,
+    builder = (context, snapshot) {
+      if (snapshot.connectionState == done) {
+        if (snapshot.hasError) {
+          return [];
+        }
+        return snapshot.data;
+      } 
+      else {
+        return const CircularProgressIndicator();
+      }
+    },
+  )
+*/
+  Future<List<Widget>> getData() async {
     print("Building API call to /users/getBlabbers/");
     const url = "${VConstants.apiUrl}/users/getBlabbers/";
     final uri = Uri.parse(url);
