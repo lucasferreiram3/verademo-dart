@@ -1,16 +1,17 @@
-import 'dart:io';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart' as painting;
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
+import 'package:gal/gal.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
+import 'package:verademo_dart/utils/snackbar.dart';
+import 'package:verademo_dart/widgets/credentials_field.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:verademo_dart/widgets/profile_image.dart';
 import 'package:verademo_dart/widgets/user_field.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:flutter/painting.dart' as painting;
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -104,11 +105,11 @@ class _ProfileImageState extends State<ProfileImage> {
 
   Future<dynamic>? _profileImage;
 
-  @override
-  void initState() {
-    super.initState();
-     _profileImage = getProfileImage(widget.username);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+    // _profileImage = getProfileImage(widget.username);
+  // }
 
   void _updateImage() {
     setState(() {
@@ -154,21 +155,19 @@ class _ProfileImageState extends State<ProfileImage> {
         //   }
         // ),
         const SizedBox(width: 30),
-        _profileImageActions(context)
+        _profileImageActions()
       ]
     );
   }
 
-  Expanded _profileImageActions(context) {
+  Expanded _profileImageActions() {
     return Expanded(
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () async { await _uploadImage(); setState(() {
-                _profileImage = getProfileImage(widget.username);
-              }); },
+              onPressed: () async { await _uploadImage(); _updateImage(); },
               child: const Text("Change Profile Picture")
             ),
           ),
@@ -176,15 +175,45 @@ class _ProfileImageState extends State<ProfileImage> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () async {
-                print(await getApplicationDocumentsDirectory());
-                final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
-                final directory = await getDownloadsDirectory();
-                if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
-                  File('${directory?.path}/${widget.username}.png').createSync(recursive: true);
+                if (!await Gal.hasAccess()) {
+                  await Gal.requestAccess();
+                  if (!await Gal.hasAccess()) {
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Permission Denied."));
+                    }
+                    return;
+                  }
                 }
+
+                final downloadsDir = await getDownloadsDirectory();
+                if (!File("${downloadsDir?.path}/${widget.username}.png").existsSync()) {
+                  File('${downloadsDir?.path}/${widget.username}.png').createSync(recursive: true);
+                }
+                
+                final documentsDir = await getApplicationDocumentsDirectory();
+                final File oldFile = File("${documentsDir.path}/${widget.username}.png");
+                if (oldFile.existsSync()) {
+                  
+                  Gal.putImage("${documentsDir.path}/${widget.username}.png");
+                } else {
+                  try {
+                    final ByteData image = await rootBundle.load('assets/images/${widget.username}.png');
+                    Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
+                  } catch (err) {
+                    final ByteData image = await rootBundle.load('assets/images/${VConstants.defaultProfile}.png');
+                    Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
+                  }
+                }
+
+                // print(await getApplicationDocumentsDirectory());
+                // final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
+                // final directory = await getDownloadsDirectory();
+                // if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
+                //   File('${directory?.path}/${widget.username}.png').createSync(recursive: true);
+                // }
                 // final File image = await rootBundle.load('assets/images/${widget.username}.png');
 
-                await image.copy("${directory?.path}/${widget.username}.png");
+                // await image.copy("${directory?.path}/${widget.username}.png");
               },
               child: const Text("Download Current Image")
             ),
