@@ -18,6 +18,12 @@ class BlabbersPage extends StatefulWidget {
 }
 
 class _BlabbersPageState extends State<BlabbersPage> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
