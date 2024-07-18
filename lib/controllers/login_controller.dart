@@ -31,7 +31,7 @@ class LoginController {
       });
       final Map<String, String> headers = {
         "content-type": "application/json",
-        "Authorization": "Token: ${md5.convert(utf8.encode(password.text)).toString()}"
+        "Authorization": "Token: ${username.text}_${md5.convert(utf8.encode(password.text)).toString()}"
       };
 
       // Execute API call for login
@@ -52,7 +52,7 @@ class LoginController {
 
         // Set session username
         VSharedPrefs().username = username.text;
-        VSharedPrefs().token = "Token: ${md5.convert(utf8.encode(password.text)).toString()}";
+        VSharedPrefs().token = "Token: ${username.text}_${md5.convert(utf8.encode(password.text)).toString()}";
 
         // Use pushReplacement to prevent back button from going back to login page once logged in
         // TODO: Find a way to make back button trigger logout instead?

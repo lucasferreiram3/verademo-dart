@@ -79,7 +79,7 @@ class RegisterController {
       final uri = Uri.parse(url);
       final Map<String, String> headers = {
         "content-type": "application/json",
-        "Authorization": "Token: 21232F297A57A5A743894A0E4A801FC3"
+        "Authorization": "Token: admin_21232F297A57A5A743894A0E4A801FC3"
       };
 
       // Execute API call for getUsers
@@ -160,7 +160,7 @@ class RegisterController {
 
         // Set session username
         VSharedPrefs().username = username.text;
-        VSharedPrefs().token = "Token: ${md5.convert(utf8.encode(password.text)).toString()}";
+        VSharedPrefs().token = "Token: ${username.text}_${md5.convert(utf8.encode(password.text)).toString()}";
 
         // Use pushReplacement to prevent back button from going back to register page after registering
         // TODO: Find a way to make back button trigger logout instead?
