@@ -1,10 +1,7 @@
 import 'dart:io';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart' as painting;
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
@@ -102,7 +99,7 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
 
-  // Future<dynamic>? _profileImage;
+  Future<dynamic>? _profileImage;
 
   @override
   void initState() {
