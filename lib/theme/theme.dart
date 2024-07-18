@@ -19,6 +19,7 @@ class VTheme {
     textTheme: VTextTheme.defaultTextTheme,
     elevatedButtonTheme: VElevatedButtonTheme.defaultElevatedButtonTheme,
     inputDecorationTheme: VTextFormFieldTheme.defaultTextFormTheme,
+    snackBarTheme: VSnackbarTheme.defaultSnackBarTheme,
   );
 
   static ThemeData loginTheme = ThemeData (
