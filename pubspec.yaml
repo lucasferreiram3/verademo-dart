@@ -42,6 +42,7 @@ dependencies:
   dart_ping: ^9.0.1
   path_provider: ^2.1.3
   image_picker: ^1.1.2
+  gal: ^2.3.0
 
 dev_dependencies:
   flutter_test:
