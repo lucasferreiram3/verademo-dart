@@ -8,6 +8,7 @@ import 'package:verademo_dart/model/User.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/blabber_list.dart';
 import 'package:verademo_dart/widgets/feed_radio.dart';
+import 'package:verademo_dart/widgets/feed_list.dart';
 
 class FeedPage extends StatefulWidget {
 
@@ -83,25 +84,17 @@ class _FeedPageState extends State<FeedPage> {
               const FeedRadio(),
               // More spacing
               const SizedBox(height: 16),
-              
               // Main Blabs Container
               Expanded(
-                child: Container(
-                  color:  VConstants.darkNeutral2,
-                  child: const BlabberList("hello")
-                  
-                  /*const Center(
-                    child: Text(
-                      'No Blabs yet...',
-                      style: TextStyle(color: VConstants.codeWhite),
-                    ),
-                  ),*/
-                ),
-              ),
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return const FeedList(message: 'Message', user: 'Username', time: 'Time');
+                  } 
+                ),                    //FeedList(message: 'Message', user: 'Username', time: 'Time')
               ),
             ],
-          ),
-        ),
+              ),
+      ),
     );
   }
   void showCommentDialog() {

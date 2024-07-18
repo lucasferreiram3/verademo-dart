@@ -102,12 +102,12 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
 
-  // Future<dynamic>? _profileImage;
+  Future<dynamic>? _profileImage;
 
   @override
   void initState() {
     super.initState();
-    // _profileImage = getProfileImage(widget.username);
+     _profileImage = getProfileImage(widget.username);
   }
 
   void _updateImage() {
@@ -207,3 +207,4 @@ class _ProfileImageState extends State<ProfileImage> {
 
   }
 }
+

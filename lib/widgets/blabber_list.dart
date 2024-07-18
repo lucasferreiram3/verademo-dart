@@ -14,10 +14,7 @@ class BlabberList extends StatelessWidget
   Widget build(BuildContext context) {
     return ListTileTheme(
       textColor: VConstants.veracodeWhite,
-
       child: ListView(
-
-        
         children: ListTile.divideTiles(
           context: context,
           color: VConstants.lightNeutral3,
