@@ -55,7 +55,6 @@ class LoginController {
         VSharedPrefs().token = "Token: ${username.text}_${md5.convert(utf8.encode(password.text)).toString()}";
 
         // Use pushReplacement to prevent back button from going back to login page once logged in
-        // TODO: Find a way to make back button trigger logout instead?
         Navigator.pushReplacement(context,
                        MaterialPageRoute(builder: (context) => HomePage(username: username.text)),);
       } else if (response.statusCode == 403) {
