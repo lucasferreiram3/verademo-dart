@@ -4,7 +4,7 @@ class VCheckbox extends StatefulWidget {
   const VCheckbox({super.key, required this.value, required this.onChanged});
 
   final bool value;
-  final void Function(bool?) onChanged;
+  final void Function(bool) onChanged;
 
   @override
   State<VCheckbox> createState() => _VCheckboxState();
@@ -24,7 +24,7 @@ class _VCheckboxState extends State<VCheckbox> {
           print("New value: $newValue");
           checked = newValue ?? true;
           print("Value changed to: $checked");
-          widget.onChanged(newValue);
+          widget.onChanged(checked);
         });
       })
     );
