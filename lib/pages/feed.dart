@@ -88,22 +88,28 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: Container(
                   color:  VConstants.darkNeutral2,
-                  child: //const FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
-                  const Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // child: const FeedBlabs(['Kevin, "Help','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: FeedBlabs(['Kevin','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
+                      
+                      //FeedBlabs(['Kevin, "Help','Brian','Johnny','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde','Kevin','Stuart','Clyde']),
+                      CommentButton(onTap: showCommentDialog),
+                      const SizedBox(height: 5),
+                      const Text(
                         '0',
-                        style: TextStyle(color: VConstants.darkNeutral3),
+                        style: TextStyle(color: VConstants.codeWhite),
                       ),
                       
                     ],
                 
-                
+                  
+                  /*const Center(
+                    child: Text(
+                      'No Blabs yet...',
+                      style: TextStyle(color: VConstants.codeWhite),
+                    ),
+                  ),*/
                 ),
               ),
               ),
@@ -131,7 +137,7 @@ class _FeedPageState extends State<FeedPage> {
           },
         ),
         ElevatedButton(
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
           onPressed: () => Navigator.pop(context),
         ),
       ],

@@ -10,8 +10,8 @@ class FeedBlabs extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-    child: ListTileTheme(
+    return ListTileTheme(
+    
       textColor: VConstants.veracodeWhite,
 
       child: ListView(
@@ -19,7 +19,7 @@ class FeedBlabs extends StatelessWidget
         children: buildItemList(),
         
       ),
-    )
+    
     );
     
   }
@@ -30,6 +30,9 @@ class FeedBlabs extends StatelessWidget
     for (int i=0; i<blabname.length; i++)
     {
       items.add(buildListItem(blabname[i]));
+      CommentButton(onTap:() {
+        
+      },);
     }
     return items;
   }
@@ -37,11 +40,11 @@ class FeedBlabs extends StatelessWidget
   Widget buildListItem(String title) {
     String name = title.toLowerCase();
     return ListTile(
-      // leading: CircleAvatar(
-      //   foregroundImage: AssetImage('assets/images/$name.png'),
-      //   backgroundImage: const AssetImage('assets/images/default_profile.png'),
-      // ),
-      leading: VAvatar(name, radius: 20),
+      leading: CircleAvatar(
+         foregroundImage: AssetImage('assets/images/$name.png'),
+         backgroundImage: const AssetImage('assets/images/default_profile.png'),
+       ),
+      //leading: VAvatar(name, radius: 20),
       title: Text(title),
     );
   }
