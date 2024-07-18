@@ -18,18 +18,25 @@ class ProfileController {
       print("Building API call to /users/getProfileInfo/");
       const url = "${VConstants.apiUrl}/users/getProfileInfo/";
       final uri = Uri.parse(url);
-      final body = jsonEncode(<String, String> {
-        "username": this.username.text,
-      });
       final Map<String, String> headers = {
-        "content-type": "application/json",
         "Authorization": VSharedPrefs().token ?? "",
       };
 
       // Execute API call for getProfileInfo
-      final response = await http.post(uri, body: body, headers: headers);
+      final response = await http.get(uri, headers: headers);
+
+      if (response.statusCode == 200) {
+        // Query successful
+        print(response.body);
+
+        // Set variables
+        final data = jsonDecode(response.body)["data"];
+        realName.text = data["realName"];
+        blabName.text = data["blabName"];
+
+      }
     } catch (err) {
-      print(err);
+      print("---ERROR---\n$err\n-----------");
     }
 
 

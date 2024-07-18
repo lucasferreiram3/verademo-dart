@@ -62,6 +62,8 @@ class ProfilePage extends StatelessWidget {
     final controller = ProfileController();
 
     controller.username.text = VSharedPrefs().username ?? "";
+    print("Setting variables using username ${VSharedPrefs().username}");
+    controller.setVariablesFromUsername(VSharedPrefs().username ?? "");
 
     return Form(
       child: Column(
