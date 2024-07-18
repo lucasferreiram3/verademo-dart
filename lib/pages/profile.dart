@@ -61,7 +61,8 @@ class ProfilePage extends StatelessWidget {
   Form _updateProfileForm() {
     final controller = ProfileController();
 
-    controller.username.text = VSharedPrefs().username ?? "";
+    print("Setting variables using username ${VSharedPrefs().username}");
+    controller.setVariablesFromUsername(VSharedPrefs().username ?? "");
 
     return Form(
       child: Column(
@@ -103,7 +104,7 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
 
-  // Future<dynamic>? _profileImage;
+  Future<dynamic>? _profileImage;
 
   // @override
   // void initState() {
@@ -174,56 +175,48 @@ class _ProfileImageState extends State<ProfileImage> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () async {
-                if (!await Gal.hasAccess()) {
-                  await Gal.requestAccess();
-                  if (!await Gal.hasAccess()) {
-                    if (mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Permission Denied."));
-                    }
-                    return;
-                  }
-                }
-
-                final downloadsDir = await getDownloadsDirectory();
-                if (!File("${downloadsDir?.path}/${widget.username}.png").existsSync()) {
-                  File('${downloadsDir?.path}/${widget.username}.png').createSync(recursive: true);
-                }
-                
-                final documentsDir = await getApplicationDocumentsDirectory();
-                final File oldFile = File("${documentsDir.path}/${widget.username}.png");
-                if (oldFile.existsSync()) {
-                  Gal.putImage("${documentsDir.path}/${widget.username}.png");
-                } else {
-                  try {
-                    final ByteData image = await rootBundle.load('assets/images/${widget.username}.png');
-                    Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
-                  } catch (err) {
-                    final ByteData image = await rootBundle.load('assets/images/${VConstants.defaultProfile}.png');
-                    Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
-                  }
-                }
-
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(VSnackBar.successSnackBar("Image Downloaded Successfully!"));
-                }
-
-                // print(await getApplicationDocumentsDirectory());
-                // final File image = await File('assets/images/${widget.username}.png').exists() ? File('assets/images/${widget.username}.png') : File('assets/images/default_profile.png');
-                // final directory = await getDownloadsDirectory();
-                // if (!File("${directory?.path}/${widget.username}.png").existsSync()) {
-                //   File('${directory?.path}/${widget.username}.png').createSync(recursive: true);
-                // }
-                // final File image = await rootBundle.load('assets/images/${widget.username}.png');
-
-                // await image.copy("${directory?.path}/${widget.username}.png");
-              },
+              onPressed: _downloadImage,
               child: const Text("Download Current Image")
             ),
           ),
         ]
       )
     );
+  }
+
+  void _downloadImage() async {
+    if (!await Gal.hasAccess()) {
+      await Gal.requestAccess();
+      if (!await Gal.hasAccess()) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Permission Denied."));
+        }
+        return;
+      }
+    }
+
+    final downloadsDir = await getDownloadsDirectory();
+    if (!File("${downloadsDir?.path}/${widget.username}.png").existsSync()) {
+      File('${downloadsDir?.path}/${widget.username}.png').createSync(recursive: true);
+    }
+    
+    final documentsDir = await getApplicationDocumentsDirectory();
+    final File oldFile = File("${documentsDir.path}/${widget.username}.png");
+    if (oldFile.existsSync()) {
+      Gal.putImage("${documentsDir.path}/${widget.username}.png");
+    } else {
+      try {
+        final ByteData image = await rootBundle.load('assets/images/${widget.username}.png');
+        Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
+      } catch (err) {
+        final ByteData image = await rootBundle.load('assets/images/${VConstants.defaultProfile}.png');
+        Gal.putImageBytes(image.buffer.asUint8List(image.offsetInBytes, image.lengthInBytes));
+      }
+    }
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.successSnackBar("Image Downloaded Successfully!"));
+    }
   }
 
   Future<void> _uploadImage() async {
@@ -239,3 +232,4 @@ class _ProfileImageState extends State<ProfileImage> {
 
   }
 }
+

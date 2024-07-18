@@ -50,36 +50,43 @@ class _HomePageState extends State<HomePage> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HeaderBar(headers[currentPageIndex], context),
-      body: IndexedStack(
-        index: currentPageIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-        NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
-        NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-        NavigationDestination(icon: Icon(Icons.people), label: 'Blabbers'),
-        NavigationDestination(icon: Icon(Icons.design_services), label: 'Tools'), /* there is a wrench one, don't know what its called though */
-        NavigationDestination(icon: Icon(Icons.logout), label: 'Logout'),
-          /*
-          onPressed: (){
-            
-            print('Navigator popping');
-            Navigator.pop(context);},)
-            }
-            */
-        ],
-        selectedIndex: currentPageIndex,
-        indicatorColor: VConstants.veracodeBlue,
-        backgroundColor: VConstants.codeBlack,
-        
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) {
+        if (didPop) return;
+        setState(() => currentPageIndex = 4);
+      },
+      child: Scaffold(
+        appBar: HeaderBar(headers[currentPageIndex], context),
+        body: IndexedStack(
+          index: currentPageIndex,
+          children: screens,
+        ),
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Feed'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+            NavigationDestination(icon: Icon(Icons.people), label: 'Blabbers'),
+            NavigationDestination(icon: Icon(Icons.design_services), label: 'Tools'), /* there is a wrench one, don't know what its called though */
+            NavigationDestination(icon: Icon(Icons.logout), label: 'Logout'),
+            /*
+            onPressed: (){
+              
+              print('Navigator popping');
+              Navigator.pop(context);},)
+              }
+              */
+          ],
+          selectedIndex: currentPageIndex,
+          indicatorColor: VConstants.veracodeBlue,
+          backgroundColor: VConstants.codeBlack,
+          
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+        ),
       ),
     );
   }
