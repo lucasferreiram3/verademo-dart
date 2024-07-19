@@ -75,8 +75,8 @@ class LoginController {
       }
     } catch (err) {
       print(err);
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar(err));
+      //if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Couldn't make API connection"));
     }
   }
 }

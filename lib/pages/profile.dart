@@ -1,23 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gal/gal.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
+import 'package:verademo_dart/pages/hecklers.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:verademo_dart/utils/snackbar.dart';
-import 'package:verademo_dart/widgets/credentials_field.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:verademo_dart/widgets/profile_image.dart';
 import 'package:verademo_dart/widgets/user_field.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-import 'package:flutter/painting.dart' as painting;
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
 
-  final username = VSharedPrefs().username;
-
+  final username = VSharedPrefs().username ?? "";
+  final controller = ProfileController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +29,7 @@ class ProfilePage extends StatelessWidget {
             children: [
               _updateProfileForm(),
               const SizedBox(height: VConstants.textFieldSpacingMed * 2),
-              _hecklersButton(),
+              _hecklersButton(context),
               const SizedBox(height: VConstants.textFieldSpacing / 2),
               _historyButton(),
             ],
@@ -48,18 +49,20 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  SizedBox _hecklersButton() {
+  SizedBox _hecklersButton(context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HecklersPage(hecklers: controller.hecklers)),);
+        },
         child: const Text("Hecklers"),
       ),
     );
   }
 
   Form _updateProfileForm() {
-    final controller = ProfileController();
 
     print("Setting variables using username ${VSharedPrefs().username}");
     controller.setVariablesFromUsername(VSharedPrefs().username ?? "");
@@ -103,8 +106,6 @@ class ProfileImage extends StatefulWidget {
 }
 
 class _ProfileImageState extends State<ProfileImage> {
-
-  Future<dynamic>? _profileImage;
 
   // @override
   // void initState() {

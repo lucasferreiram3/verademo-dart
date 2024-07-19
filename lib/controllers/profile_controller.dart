@@ -1,13 +1,15 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
-import 'package:http/http.dart' as http;
 
 class ProfileController {
   final realName = TextEditingController();
   final blabName = TextEditingController();
   final username = TextEditingController();
+  List hecklers = [];
   GlobalKey<FormState> profileFormKey = GlobalKey<FormState>();
 
   void setVariablesFromUsername(String username) async {
@@ -32,6 +34,7 @@ class ProfileController {
         realName.text = data["realName"];
         blabName.text = data["blabName"];
         this.username.text = data["username"];
+        hecklers = data['hecklers'];
 
       }
     } catch (err) {
@@ -40,5 +43,8 @@ class ProfileController {
 
 
   }
+
+  
+  // TODO: Create funciton that returns list of hecklers
 
 }

@@ -5,79 +5,31 @@ import 'package:http/http.dart' as http;
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:verademo_dart/widgets/profile_image.dart';
-import 'package:verademo_dart/widgets/stateful_checkbox.dart';
 
-class BlabberList extends StatefulWidget
+class HecklerList extends StatefulWidget
 {
-  final String username;
+  final List hecklers;
 
-  const BlabberList(this.username,{super.key});
+  const HecklerList(this.hecklers,{super.key});
 
   @override
-  State<BlabberList> createState() => _BlabberListState();
+  State<HecklerList> createState() => _HecklerListState();
 }
 
-class _BlabberListState extends State<BlabberList> {
-  late Future<List<Widget>> _data;
-
-  @override
-  initState()
-  {
-    super.initState();
-    _data = getData();
-  }
+class _HecklerListState extends State<HecklerList> {
   
-  Future<List<Widget>> getData() async {
-    print("Building API call to /users/getBlabbers/");
-    const url = "${VConstants.apiUrl}/users/getBlabbers/";
-    final uri = Uri.parse(url);
-    final Map<String, String> headers = {
-      "content-type": "application/json",
-      "Authorization": "${VSharedPrefs().token}"
-    };
-    await Future.delayed(const Duration(seconds: 2));
-    
-    final response = await http.get(uri, headers: headers);
-     // Convert output to JSON
-    final data = jsonDecode(response.body)["data"] as List;
-
-    List<Widget> items = [];
-    for (int i=0; i<data.length; i++)
-    {
-      items.add(buildListItem(data[i]));
-    }
-    return items;
-  }
   @override
   Widget build(BuildContext context) {
 
-    return FutureBuilder<List<Widget>>(
-        future: _data,
-        builder: (context, snapshot) {
-          if (snapshot.hasError)
-          {
-            final error = snapshot.error;
-
-            return Text('Error: $error');
-          } else if (snapshot.hasData) {
-            List<Widget> data = snapshot.data as List<Widget>;
-            return  ListTileTheme(
+    return  ListTileTheme(
               textColor: VConstants.veracodeWhite,
               child: ListView(
                 children: ListTile.divideTiles(
                   context: context,
                   color: VConstants.lightNeutral3,
-                  tiles: data).toList()
+                  tiles: listBuilder(widget.hecklers)).toList()
       ),
     );
-          }
-          else {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: VConstants.veracodeBlue,));
-          }
-        },
-      );
 
     /*
     return  ListTileTheme(
@@ -95,23 +47,21 @@ class _BlabberListState extends State<BlabberList> {
     */
   }
 
+  List<Widget> listBuilder(List hecklers)
+  {
+    List<Widget> items = [];
+    for (int i=0; i<hecklers.length; i++)
+    {
+      items.add(buildListItem(hecklers[i]));
+    }
+    return items;
+  }
+
   Widget buildListItem(Map user) {
     String name = user['username'].toLowerCase();
-    bool listener = user['listeners']==1 ? true : false;
     return ListTile(
       leading: VAvatar(name, radius: 20),
       title: Text(name),
-      trailing: VCheckbox(
-        value: listener,
-        onChanged: (value) => { 
-          if (value)
-          {
-            listen(name)
-          } else {
-            ignore(name)
-          }
-        },
-      ),
     );
   }
 
