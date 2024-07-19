@@ -28,7 +28,7 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
-    futureUser = getUserList();
+    // futureUser = getUserList();
   }
 
   @override
@@ -88,7 +88,7 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return FeedList(message: 'Message', user: 'Username', time: 'Time');
+                    return const FeedList(message: 'Message', user: 'Username', time: 'Time');
                   } 
                 ),                    //FeedList(message: 'Message', user: 'Username', time: 'Time')
               ),
