@@ -37,8 +37,18 @@ class ProfileController {
     } catch (err) {
       print(err);
     }
+  }
 
-
+  // TODO (parts of processProfile that can't be handled by API)
+  // - update profile image name / path
+  // - change session token and username
+  // - change remembered username
+  void processProfile() async {
+    try {
+      
+    } catch (err) {
+      print(err);
+    }
   }
 
 }
