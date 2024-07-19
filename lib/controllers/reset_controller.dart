@@ -40,7 +40,7 @@ class ResetController{
       print(e);
       Navigator.pushReplacement(context,
                        MaterialPageRoute(builder: (context) => const LoginPage()),);
-      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Couldnt' make API connection"));
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Couldn't make API connection"));
     }
     
   }
