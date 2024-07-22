@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/widgets/app_bar.dart';
 
@@ -10,6 +8,7 @@ class BlabPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: VAppBar('Blab'),
+
     );
   }
 }
