@@ -89,7 +89,7 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () async { controller.processProfile(); },
               child: const Text("Update Profile"),
             ),
           )
