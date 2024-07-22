@@ -14,15 +14,16 @@ class VAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: showBackArrow ? 8 : 20, vertical: 5),
       color: VConstants.codeBlack,
       child: AppBar(
         automaticallyImplyLeading: false,
         leading: showBackArrow ? _backButton(context) : _logoIcon(),
+        titleSpacing: showBackArrow ? 20 : 0,
         title: Text(pageTitle, style: Theme.of(context).textTheme.titleMedium),
         actions: actions,
         backgroundColor: VConstants.codeBlack,
-        centerTitle: true,
+        centerTitle: !showBackArrow,
       )
     );
   }
