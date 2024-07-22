@@ -54,7 +54,8 @@ class _HecklerListState extends State<HecklerList> {
   }
 
   Widget buildListItem(Map user) {
-    String name = user['username'].toLowerCase();
+    // String name = user['username'].toLowerCase();
+    String name = user['username'];
     return ListTile(
       leading: VAvatar(name, radius: 20),
       title: Text(name),

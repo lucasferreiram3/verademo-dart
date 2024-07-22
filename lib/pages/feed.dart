@@ -28,7 +28,7 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
-    futureUser = getUserList();
+    // futureUser = getUserList();
   }
 
   @override
