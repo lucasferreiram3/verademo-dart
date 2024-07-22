@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/widgets/profile_image.dart';
 
-class HecklerList extends StatefulWidget
+class EventList extends StatefulWidget
 {
-  final List hecklers;
+  final List events;
 
-  const HecklerList(this.hecklers,{super.key});
+  const EventList(this.events,{super.key});
 
   @override
-  State<HecklerList> createState() => _HecklerListState();
+  State<EventList> createState() => _EventListState();
 }
 
-class _HecklerListState extends State<HecklerList> {
+class _EventListState extends State<EventList> {
   
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class _HecklerListState extends State<HecklerList> {
                 children: ListTile.divideTiles(
                   context: context,
                   color: VConstants.lightNeutral3,
-                  tiles: listBuilder(widget.hecklers)).toList()
+                  tiles: listBuilder(widget.events)).toList()
       ),
     );
 
@@ -43,22 +42,19 @@ class _HecklerListState extends State<HecklerList> {
     */
   }
 
-  List<Widget> listBuilder(List hecklers)
+  List<Widget> listBuilder(List events)
   {
     List<Widget> items = [];
-    for (int i=0; i<hecklers.length; i++)
+    for (int i=0; i<events.length; i++)
     {
-      items.add(buildListItem(hecklers[i]));
+      items.add(buildListItem(events[i]));
     }
     return items;
   }
 
-  Widget buildListItem(Map user) {
-    // String name = user['username'].toLowerCase();
-    String name = user['username'];
+  Widget buildListItem(String message) {
     return ListTile(
-      leading: VAvatar(name, radius: 20),
-      title: Text(name),
+      title: Text(message),
     );
   }
 }

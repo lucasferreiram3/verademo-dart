@@ -14,6 +14,7 @@ class ProfileController {
   final blabName = TextEditingController();
   final username = TextEditingController();
   List hecklers = [];
+  List events = [];
   GlobalKey<FormState> profileFormKey = GlobalKey<FormState>();
 
   void setVariablesFromUsername(String username) async {
@@ -38,6 +39,7 @@ class ProfileController {
         realName.text = data["realName"];
         blabName.text = data["blabName"];
         this.username.text = data["username"];
+        events = data['events'];
         hecklers = data['hecklers'];
 
       }
@@ -127,7 +129,36 @@ class ProfileController {
     }
   }
 
-  
-  // TODO: Create funciton that returns list of hecklers
+  updateEvents(String username, callback) async {
+    try {
+      // Build API call for getProfileInfo
+      print("Building API call to /users/getEvents/");
+      const url = "${VConstants.apiUrl}/users/getEvents/";
+      final uri = Uri.parse(url);
+      final Map<String, String> headers = {
+        "Authorization": VSharedPrefs().token ?? "",
+      };
+
+      // Execute API call for getProfileInfo
+      final response = await http.get(uri, headers: headers);
+
+      if (response.statusCode == 200) {
+        // Query successful
+        print(response.body);
+
+        // Set variables
+        final data = jsonDecode(response.body)["data"];
+        events = data;
+        return callback(events);
+      }
+      else{
+        return callback(["Bad Response"]);
+      }
+    } catch (err) {
+      return callback(["error occurred"]);
+    }
+
+
+  }
 
 }
