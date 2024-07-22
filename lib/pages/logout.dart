@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/controllers/internal_controller.dart';
 import 'package:verademo_dart/pages/login.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
@@ -77,7 +78,10 @@ class _LogoutPageState extends State<LogoutPage> {
                         horizontal: 10,
                       ),
                     ),
-                    onPressed: () {}, // TODO: Implement redirect to home trigger event
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomePage(username: widget.username)));
+                    }, // TODO: Implement redirect to home trigger event
                     child: const Text(
                       'No, More Blab!',
                       style: TextStyle(
