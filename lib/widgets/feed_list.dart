@@ -67,7 +67,8 @@ class FeedListState extends State<FeedList>  {
       ),
       margin: const EdgeInsets.only(top: 25, left:25, right: 25),
       padding: const EdgeInsets.all(15),
-      child: Row(
+      child: 
+      Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children:[
           Container(

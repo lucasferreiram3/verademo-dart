@@ -84,14 +84,7 @@ class _FeedPageState extends State<FeedPage> {
               const FeedRadio(),
               // More spacing
               const SizedBox(height: 16),
-              // Main Blabs Container
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    //return FeedList(message: 'Message', user: 'Username', time: 'Time');
-                  } 
-                ),                    //FeedList(message: 'Message', user: 'Username', time: 'Time')
-              ),
+             
             ],
               ),
       ),

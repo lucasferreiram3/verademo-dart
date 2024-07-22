@@ -60,7 +60,9 @@ class _FeedRadioState extends State<FeedRadio> {
                       ],
                     ),
                   ),
-                  Container(child: getContainer())
+                  Container(
+                    child: getContainer()
+                  )
                   ],
                    
               );
@@ -68,10 +70,35 @@ class _FeedRadioState extends State<FeedRadio> {
   Widget getContainer() {
     switch (currentWidget) {
       case WidgetState.Feed:
-      ListView.builder();
-        return FeedList(message: 'Message', user: 'Username', time: 'Time');
+        return SizedBox(
+          height: 450,
+          child: ListView(
+              children: const [
+                // Multiple function calls just to test list view/display, will implement API with single call
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+                FeedList(message: 'Message', user: 'Username', time: 'Time'),
+            ],//const FeedList(message: 'Message', user: 'Username', time: 'Time')
+          )
+        );
       case WidgetState.MyBlabs:
-        return MyBlabs();
-    }
+        return SizedBox(
+          height: 450,
+          child: ListView(
+            children: const [
+              MyBlabs()
+            ],
+          )
+        );
+
+    }  
   }
+  
+  
 }
