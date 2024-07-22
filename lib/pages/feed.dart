@@ -88,7 +88,7 @@ class _FeedPageState extends State<FeedPage> {
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return FeedList(message: 'Message', user: 'Username', time: 'Time');
+                    //return FeedList(message: 'Message', user: 'Username', time: 'Time');
                   } 
                 ),                    //FeedList(message: 'Message', user: 'Username', time: 'Time')
               ),

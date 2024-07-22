@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/widgets/feed_list.dart';
+import 'package:verademo_dart/widgets/myblabs_list.dart';
+
+// enum type for switching between containers on same page
+enum WidgetState {
+  Feed, MyBlabs
+}
 
 class FeedRadio extends StatefulWidget {
   const FeedRadio({super.key});
@@ -9,14 +16,13 @@ class FeedRadio extends StatefulWidget {
 }
 
 class _FeedRadioState extends State<FeedRadio> {
+  WidgetState currentWidget = WidgetState.Feed;
   int currentSelect = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
+    return Column( 
+                  children: [ SizedBox(
                     height: 40,
                     width: 240,
                     child: Row(
@@ -25,6 +31,7 @@ class _FeedRadioState extends State<FeedRadio> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
+                                currentWidget = WidgetState.Feed;
                                 currentSelect = 0;
                               });
                             },
@@ -37,6 +44,7 @@ class _FeedRadioState extends State<FeedRadio> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
+                                currentWidget = WidgetState.MyBlabs;
                                 currentSelect = 1;
                               }
                               );
@@ -45,12 +53,25 @@ class _FeedRadioState extends State<FeedRadio> {
                             child: const Text('My Blabs'),
                             
                           ),
-                        ),
+                          
+                        ), 
+                        const SizedBox(width: 16),
                         
                       ],
                     ),
                   ),
-                ],
+                  Container(child: getContainer())
+                  ],
+                   
               );
+  }
+  Widget getContainer() {
+    switch (currentWidget) {
+      case WidgetState.Feed:
+      ListView.builder();
+        return FeedList(message: 'Message', user: 'Username', time: 'Time');
+      case WidgetState.MyBlabs:
+        return MyBlabs();
+    }
   }
 }
