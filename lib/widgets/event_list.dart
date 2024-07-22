@@ -25,21 +25,6 @@ class _EventListState extends State<EventList> {
                   tiles: listBuilder(widget.events)).toList()
       ),
     );
-
-    /*
-    return  ListTileTheme(
-      textColor: VConstants.veracodeWhite,
-
-      child: ListView(
-
-        
-        children: ListTile.divideTiles(
-          context: context,
-          color: VConstants.lightNeutral3,
-          tiles: []/**/).toList()
-      ),
-    );
-    */
   }
 
   List<Widget> listBuilder(List events)

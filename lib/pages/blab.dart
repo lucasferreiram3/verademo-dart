@@ -17,8 +17,10 @@ class BlabPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           // TODO: Original post
-          // TODO: Comments list
+
           
+          // TODO: Comments list
+
 
           // TODO: Add comment field
         )
