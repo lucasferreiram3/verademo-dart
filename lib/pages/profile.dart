@@ -6,6 +6,7 @@ import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:verademo_dart/controllers/profile_controller.dart';
+import 'package:verademo_dart/pages/events.dart';
 import 'package:verademo_dart/pages/hecklers.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
@@ -31,7 +32,7 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: VConstants.textFieldSpacingMed * 2),
               _hecklersButton(context),
               const SizedBox(height: VConstants.textFieldSpacing / 2),
-              _historyButton(),
+              _historyButton(context),
             ],
           )
         )
@@ -39,11 +40,18 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  SizedBox _historyButton() {
+  SizedBox _historyButton(context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.updateEvents(username, (results) => {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => EventsPage(events: results)),)
+            }
+           );
+          
+        },
         child: const Text("History"),
       ),
     );

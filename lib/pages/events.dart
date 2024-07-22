@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/theme/text_theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/widgets/heckler_list.dart';
+import 'package:verademo_dart/widgets/event_list.dart';
 
-class HecklersPage extends StatelessWidget
+class EventsPage extends StatelessWidget
 {
 
-  final List hecklers;
+  final List events;
 
-  const HecklersPage({super.key, required this.hecklers});
+  const EventsPage({super.key, required this.events});
 
   @override
   Widget build (BuildContext context)
   {
     return Scaffold(
-      appBar: HecklerBar('Hecklers',context),
+      appBar: EventBar('Events',context),
       backgroundColor: VConstants.darkNeutral1,
-      body: HecklerList(hecklers)
+      body: EventList(events)
               
               /*const Center(
                 child: Text(
@@ -29,8 +29,8 @@ class HecklersPage extends StatelessWidget
 }
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
 
-class HecklerBar extends AppBar{
-  HecklerBar(String pageName, BuildContext context, {super.key}):super(
+class EventBar extends AppBar{
+  EventBar(String pageName, BuildContext context, {super.key}):super(
     toolbarHeight: 83,
     leadingWidth: 55,
     leading: backButton(context),
