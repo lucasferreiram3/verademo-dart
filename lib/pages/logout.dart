@@ -81,7 +81,7 @@ class _LogoutPageState extends State<LogoutPage> {
                     onPressed: () {
                       Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => HomePage(username: widget.username)));
-                    }, // TODO: Implement redirect to home trigger event
+                    },
                     child: const Text(
                       'No, More Blab!',
                       style: TextStyle(

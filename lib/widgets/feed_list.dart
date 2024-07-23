@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/comment_widget.dart';
 
-
 class FeedList extends StatefulWidget {
  
 

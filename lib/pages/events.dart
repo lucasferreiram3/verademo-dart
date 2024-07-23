@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/theme/text_theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
+import 'package:verademo_dart/widgets/app_bar.dart';
 import 'package:verademo_dart/widgets/event_list.dart';
 
 class EventsPage extends StatelessWidget
@@ -14,7 +14,7 @@ class EventsPage extends StatelessWidget
   Widget build (BuildContext context)
   {
     return Scaffold(
-      appBar: EventBar('Events',context),
+      appBar: const VAppBar('Events'),
       backgroundColor: VConstants.darkNeutral1,
       body: EventList(events)
               
@@ -27,6 +27,7 @@ class EventsPage extends StatelessWidget
         );
   }
 }
+/*
 ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
 
 class EventBar extends AppBar{
@@ -51,4 +52,6 @@ class EventBar extends AppBar{
       } /*run reset controller,*/
       );
   }
+  
 }
+*/

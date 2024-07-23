@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/utils/constants.dart';
 
 class VTextTheme {
   VTextTheme._();
@@ -11,7 +12,7 @@ class VTextTheme {
     bodyLarge: const TextStyle().copyWith(fontSize: 20, fontWeight: FontWeight.w400),
     bodyMedium: const TextStyle().copyWith(fontSize: 16, fontWeight: FontWeight.w400),
     labelMedium: const TextStyle().copyWith(fontSize: 20, fontWeight: FontWeight.w400),
-    labelSmall: const TextStyle().copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+    labelSmall: const TextStyle().copyWith(color: VConstants.lightNeutral3,fontSize: 12, fontWeight: FontWeight.w400),
     
   );
 }
