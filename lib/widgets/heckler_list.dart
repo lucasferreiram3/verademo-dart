@@ -26,21 +26,6 @@ class _HecklerListState extends State<HecklerList> {
                   tiles: listBuilder(widget.hecklers)).toList()
       ),
     );
-
-    /*
-    return  ListTileTheme(
-      textColor: VConstants.veracodeWhite,
-
-      child: ListView(
-
-        
-        children: ListTile.divideTiles(
-          context: context,
-          color: VConstants.lightNeutral3,
-          tiles: []/**/).toList()
-      ),
-    );
-    */
   }
 
   List<Widget> listBuilder(List hecklers)

@@ -24,8 +24,7 @@ class _BlabPageState extends State<BlabPage> {
           const CommentBar(),
         ],),
       ),
-
-    );
+      );
   }
 }
 

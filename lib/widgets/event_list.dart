@@ -25,7 +25,6 @@ class _EventListState extends State<EventList> {
                   tiles: listBuilder(widget.events)).toList()
       ),
     );
-
   }
 
   List<Widget> listBuilder(List events)
