@@ -1,9 +1,6 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/comment_widget.dart';
-import 'package:verademo_dart/widgets/profile_image.dart';
 
 class FeedList extends StatefulWidget {
   final String message;

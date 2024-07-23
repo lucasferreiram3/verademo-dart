@@ -5,10 +5,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:verademo_dart/model/User.dart';
+import 'package:verademo_dart/pages/blab.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/widgets/blabber_list.dart';
 import 'package:verademo_dart/widgets/feed_radio.dart';
-import 'package:verademo_dart/widgets/feed_list.dart';
 
 class FeedPage extends StatefulWidget {
 
@@ -74,7 +73,10 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                   const SizedBox(width: 8,),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const BlabPage()),);
+                    },
                     child: const Text('Add'),
                   ),
                 ],
@@ -108,7 +110,6 @@ class _FeedPageState extends State<FeedPage> {
     if (response.statusCode == 200)
     {
       print('Success!');
-      Map<String, dynamic> jsonData = jsonDecode(response.body);
       return User.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
     }
     else{

@@ -79,20 +79,6 @@ class _BlabberListState extends State<BlabberList> {
         },
       );
 
-    /*
-    return  ListTileTheme(
-      textColor: VConstants.veracodeWhite,
-
-      child: ListView(
-
-        
-        children: ListTile.divideTiles(
-          context: context,
-          color: VConstants.lightNeutral3,
-          tiles: []/**/).toList()
-      ),
-    );
-    */
   }
 
   Widget buildListItem(Map user) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/pages/login.dart';
-import 'package:verademo_dart/pages/tools.dart';
+import 'package:verademo_dart/pages/blab.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
+
 import 'theme/theme.dart';
 
 // Define colors to be used
@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      home: LoginPage(username: username, password: password)
+      home: const BlabPage()
+
+      // home: LoginPage(username: username, password: password)
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,

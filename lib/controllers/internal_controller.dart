@@ -6,7 +6,6 @@ import '../pages/feed.dart';
 import '../pages/logout.dart';
 import '../pages/profile.dart';
 import '../pages/tools.dart';
-import '../theme/text_theme.dart';
 import '../utils/constants.dart';
 import '../widgets/app_bar.dart';
 
@@ -111,35 +110,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-// ImageIcon veraIcon = const ImageIcon(AssetImage("assets/VCicon.png"), color: VConstants.veracodeBlue, size:24);
-
-// class HeaderBar extends AppBar{
-//   HeaderBar(String pageName, BuildContext context, {super.key}):super(
-//     toolbarHeight: 83,
-//     leadingWidth: 55,
-//     leading: veraIcon,
-//     title: Text(pageName, style: VTextTheme.defaultTextTheme.titleMedium,),
-//     centerTitle: true,
-//     backgroundColor: VConstants.codeBlack,
-//     actions: <Widget>[
-//       resetButton(context)
-//       ],
-//     );
-
-//   static IconButton resetButton(BuildContext context) {
-//     return IconButton(
-//       icon: const Icon(
-//         Icons.repeat,
-//         color: VConstants.veracodeWhite,
-//       ),
-//       iconSize: 48,
-//       onPressed: () {
-//         showDialog(
-//           context: context, 
-//           builder: (BuildContext context) {
-//             return const resetPopup();
-//           });} /*run reset controller,*/
-//       );
-//   }
-// }
