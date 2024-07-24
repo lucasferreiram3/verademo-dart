@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:verademo_dart/controllers/blab_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
@@ -40,7 +41,7 @@ class _BlabPageState extends State<BlabPage> {
         child: ListView(
           scrollDirection: Axis.vertical,
           children: [
-            BlabBox(widget.blabInfo['username'], widget.blabInfo['blab_name'], widget.blabInfo['content'], widget.blabInfo['timestamp']),
+            BlabBox(widget.blabInfo['username'], widget.blabInfo['blab_name'], widget.blabInfo['content'], getTimestampString(widget.blabInfo['timestamp'])),
             const SizedBox(height: 10,),
             CommentBar(),
             const SizedBox(height: 10,),
@@ -159,12 +160,16 @@ class _BlabPageState extends State<BlabPage> {
 Widget buildCommentItem(data, userData) {
   final username = data['blabber'];
   final content = data['content'];
-  final timestamp = data['timestamp'];
+  final timestamp = getTimestampString(data['timestamp']);
   final blabName = userData.where((user) => user['username'] == username).single;
   return Padding(
     padding: const EdgeInsets.only(bottom: 5.0),
     child: BlabBox(username, blabName['blab_name'], content, timestamp),
   );
+}
+
+getTimestampString(timestamp) {
+  return VConstants.dateFormat.format(DateTime.parse(timestamp));
 }
 
 

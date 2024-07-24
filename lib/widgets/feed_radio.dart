@@ -196,7 +196,7 @@ class _FeedRadioState extends State<FeedRadio> {
                     children: [
                       Text(data['blab_name'],
                         style: Theme.of(context).textTheme.headlineMedium, ),
-                      Text(data['timestamp'], 
+                      Text(getTimestampString(data['timestamp']), 
                         style: Theme.of(context).textTheme.labelSmall),
                     ],
                   ),
@@ -218,6 +218,10 @@ class _FeedRadioState extends State<FeedRadio> {
           ]),
         ),);
     }
+}
+
+getTimestampString(timestamp) {
+  return VConstants.dateFormat.format(DateTime.parse(timestamp));
 }
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class VConstants {
   VConstants._();
@@ -24,6 +25,8 @@ class VConstants {
   static const double textFieldSpacing = 17.0;
   static const double textFieldSpacingMed = 24.0;
   static const double loginMargin = 33.0;
+
+  static DateFormat dateFormat = DateFormat("MMM d, y");
 
   static const EdgeInsetsGeometry loginSpacing = EdgeInsets.only(
     top: 0,
