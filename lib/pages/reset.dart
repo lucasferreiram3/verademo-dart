@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/controllers/reset_controller.dart';
+import 'package:verademo_dart/utils/constants.dart';
 
 
 // ignore: camel_case_types, for testing purposes, may be removed in future
@@ -22,45 +23,40 @@ class resetWidget extends State<resetPopup> {
       child: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 5,
-          vertical: 10,
+          vertical: 15,
         ),
         decoration: const BoxDecoration(
-          color : Color.fromARGB(255, 36, 38, 38),
+          color : VConstants.veracodeBlack,
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
         child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Stack(
-               children: [
-                Container(),
-                //Positioned(
-                  /*child :*/ ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 36, 38, 38),
+            IntrinsicHeight(
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                      color: VConstants.veracodeWhite
                     ),
+                    iconSize: 35,
                     onPressed: () {
                       _CheckBoxState.isReset["Confirm"] = false;
                       Navigator.of(context).pop();
                     },
-                    child: Image.asset(
-                      'assets/X.png',
-                    ),
                   ),
-                //), 
-              ],
+                  const SizedBox(width: 10),
+                  
+                  
+                    Text('Confirm Reset\n', style: Theme.of(context).textTheme.titleSmall,)
+
+
+                ],
+              ),
             ),
-                
-              // ignore: prefer_const_constructors
-              Text('Confirm Reset\n',
-              //textAlign: TextAlign.start,
-              // ignore: prefer_const_constructors
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold, 
-              ),
-              ),
               // spacing purposes
               // ignore: prefer_const_constructors
               CheckboxListTile(
