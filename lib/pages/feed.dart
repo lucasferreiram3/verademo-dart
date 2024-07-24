@@ -11,7 +11,7 @@ class FeedPage extends StatefulWidget {
   final String username;
 
   FeedPage({super.key, required this.username});
-  final controller = BlabController();
+  final controller = TextEditingController();
 
   @override
   State<FeedPage> createState() => _FeedPageState();
@@ -55,7 +55,7 @@ class _FeedPageState extends State<FeedPage> {
               children: [
                 Expanded(
                   child: TextField(
-                    controller: widget.controller.blabPost,
+                    controller: widget.controller,
                     decoration: InputDecoration(
                       hintStyle: Theme.of(context).textTheme.bodyMedium,
                       hintText: 'Blab something now...',
@@ -71,7 +71,10 @@ class _FeedPageState extends State<FeedPage> {
                 ),
                 const SizedBox(width: 8,),
                 ElevatedButton(
-                  onPressed: () { BlabController().addBlab(context); },
+                  onPressed: () { 
+                    setState(() {
+                      BlabController.addBlab(widget.controller.text,context);
+                }); },
                   child: const Text('Add'),
                 ),
               ],

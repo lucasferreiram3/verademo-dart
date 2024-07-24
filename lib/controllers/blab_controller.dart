@@ -10,13 +10,13 @@ class BlabController {
   final blabPost = TextEditingController();
   final commentPost = TextEditingController();
 
-  void addBlab(context) async {
+  static void addBlab(String text, BuildContext context) async {
     try {
       print("Building API call to /posts/addBlab/");
       const url = "${VConstants.apiUrl}/posts/addBlab/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, String> {
-        "blab": blabPost.text
+        "blab": text
       });
       final Map<String, String> headers = {
         "content-type": "application/json",
@@ -29,7 +29,6 @@ class BlabController {
 
       if (response.statusCode == 200) {
         print(response.body);
-        blabPost.text = "";
 
         // TODO: Update My Blabs
       } else {
