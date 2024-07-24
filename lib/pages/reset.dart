@@ -32,86 +32,77 @@ class resetWidget extends State<resetPopup> {
         child : Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IntrinsicHeight(
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      color: VConstants.veracodeWhite
-                    ),
-                    iconSize: 35,
-                    onPressed: () {
-                      _CheckBoxState.isReset["Confirm"] = false;
-                      Navigator.of(context).pop();
-                    },
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.close,
+                    color: VConstants.veracodeWhite
                   ),
-                  const SizedBox(width: 10),
-                  
-                  
-                    Text('Confirm Reset\n', style: Theme.of(context).textTheme.titleSmall,)
-
-
-                ],
-              ),
+                  iconSize: 35,
+                  onPressed: () {
+                    _CheckBoxState.isReset["Confirm"] = false;
+                    Navigator.of(context).pop();
+                  },
+                ),
+                const SizedBox(width: 10),
+                Text('Confirm Reset', style: Theme.of(context).textTheme.titleSmall,)
+              ],
             ),
-              // spacing purposes
-              // ignore: prefer_const_constructors
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: _CheckBoxState.isReset['Confirm'],
-                title : const Text(
-                  'I realize that I will lose all data in my current VeraDemo instance, including users.',
-                  textAlign: TextAlign.center,
-                  // ignore: prefer_const_constructors
-                  style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  ),
-                ),
-                onChanged: (bool? value) {
-                  setState(() {
-                    _CheckBoxState.isReset['Confirm'] = value!;
-                  });
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
+            const SizedBox(height:25),
+            // spacing purposes
+            // ignore: prefer_const_constructors
+            CheckboxListTile(
+              controlAffinity: ListTileControlAffinity.leading,
+              value: _CheckBoxState.isReset['Confirm'],
+              title : const Text(
+                'I realize that I will lose all data in my current VeraDemo instance, including users.',
+                textAlign: TextAlign.center,
+                // ignore: prefer_const_constructors
+                style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffEC5B5B),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 0, 
-                        horizontal: 130,
-                      ),
+              onChanged: (bool? value) {
+                setState(() {
+                  _CheckBoxState.isReset['Confirm'] = value!;
+                });
+              },
+            ),
+            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffEC5B5B),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 0, 
+                      horizontal: 130,
                     ),
-                    onPressed: () => 
+                  ),
+                  onPressed: () => 
+                  {
+                    if (_CheckBoxState.isReset["Confirm"] == true)
                     {
-                      if (_CheckBoxState.isReset["Confirm"] == true)
-                      {
-                        _CheckBoxState.isReset["Confirm"] = false,
-                        ResetController().processReset(context)
-                      }
-                    },
-                    child: const Text(
-                      'Reset',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
+                      _CheckBoxState.isReset["Confirm"] = false,
+                      ResetController().processReset(context)
+                    }
+                  },
+                  child: const Text(
+                    'Reset',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
                     ),
                   ),
-                ],
-              ), 
+                ),
+              ],
+            ), 
           ],
         ),
       ),

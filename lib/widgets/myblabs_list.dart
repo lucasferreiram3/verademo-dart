@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/pages/feed.dart';
 import 'package:verademo_dart/utils/constants.dart';
 
 
