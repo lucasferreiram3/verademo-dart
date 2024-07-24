@@ -1,13 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
-import 'package:gal/gal.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:verademo_dart/utils/snackbar.dart';
 
 class BlabController {
@@ -45,14 +41,14 @@ class BlabController {
     }
   }
 
-  void addBlabComment(int blabId, BuildContext context) async {
+  static void addBlabComment(int blabId, String comment, BuildContext context) async {
     try {
       print("Building API call to /posts/addBlabComment/");
       const url = "${VConstants.apiUrl}/posts/addBlabComment/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, dynamic> {
         "blabId": blabId,
-        "comment": commentPost.text,
+        "comment": comment
       });
       final Map<String, String> headers = {
         "content-type": "application/json",

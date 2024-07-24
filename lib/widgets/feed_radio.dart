@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:verademo_dart/utils/shared_prefs.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/feed_list.dart';
 import 'package:verademo_dart/widgets/myblabs_list.dart';
+import 'package:http/http.dart' as http;
 
 // enum type for switching between containers on same page
 enum WidgetState {
@@ -18,11 +22,49 @@ class FeedRadio extends StatefulWidget {
 class _FeedRadioState extends State<FeedRadio> {
   WidgetState currentWidget = WidgetState.Feed;
   int currentSelect = 0;
+  late Future<List<Widget>> _data;
+
+
+  
 
   @override
+  initState()
+  {
+    super.initState();
+    _data = getData();
+  }
+  Future<List<Widget>> getData() async {
+    print("Building API call to /posts/getBlabsForMe/");
+    const url = "${VConstants.apiUrl}/posts/getBlabsForMe";
+    final uri = Uri.parse(url);
+    final Map<String, String> headers = {
+      "content-type": "application/json",
+      "Authorization": "${VSharedPrefs().token}"
+    };
+    await Future.delayed(const Duration(seconds: 2));
+    
+    final response = await http.get(uri, headers: headers);
+     // Convert output to JSON
+    final data = jsonDecode(response.body)["data"] as List;
+
+    List<Widget> items = [];
+    for (int i=0; i<data.length; i++)
+    {
+      items.add(FeedList(data[i]));
+    }
+    return items;
+  }
   Widget build(BuildContext context) {
-    return Column( 
-                  children: [ SizedBox(
+    return FutureBuilder<List<Widget>>(
+      future: _data,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          final error = snapshot.error;
+          return Text('Error: $error');
+        } else if (snapshot.hasData) {
+          return Column( 
+                  children: [ 
+                  SizedBox(
                     height: 40,
                     width: 240,
                     child: Row(
@@ -66,39 +108,54 @@ class _FeedRadioState extends State<FeedRadio> {
                   ],
                    
               );
+        } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: VConstants.veracodeBlue,));
+          }
+      },
+      
+    );
+    
   }
   Widget getContainer() {
-    switch (currentWidget) {
-      case WidgetState.Feed:
-        return SizedBox(
-          height: 450,
-          child: ListView(
+    return FutureBuilder<List<Widget>>(
+      future: _data,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          final error = snapshot.error;
+          return Text('Error: $error');
+        } else if (snapshot.hasData) {
+          List<Widget> data = snapshot.data as List<Widget>;
+          switch (currentWidget) {
+            case WidgetState.Feed:
+            return SizedBox(
+              height: 450,
+              child: ListView.builder(
+                itemBuilder:(context, index) => FeedList(data),
+              )
+            );
+            case WidgetState.MyBlabs:
+            return SizedBox(
+              height: 450,
+              child: ListView(
               children: const [
-                // Multiple function calls just to test list view/display, will implement API with single call
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-                FeedList(message: 'Message', user: 'Username', time: 'Time'),
-            ],//const FeedList(message: 'Message', user: 'Username', time: 'Time')
-          )
-        );
-      case WidgetState.MyBlabs:
-        return SizedBox(
-          height: 450,
-          child: ListView(
-            children: const [
-              MyBlabs()
-            ],
-          )
-        );
-
-    }  
+                MyBlabs()
+              ],
+            )
+          );
+      }  
+        } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: VConstants.veracodeBlue,));
+          }
+      },
+      
+    );
   }
   
   
 }
+
+

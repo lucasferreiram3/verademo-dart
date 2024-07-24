@@ -1,19 +1,16 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/comment_widget.dart';
-import 'package:verademo_dart/widgets/profile_image.dart';
 
 class FeedList extends StatefulWidget {
-  final String message;
-  final String user;
-  final String time;
+ 
 
-  const FeedList({super.key, required this.message, required this.user, required this.time});
+  const FeedList(var data, {super.key});
 
   @override
   State<FeedList> createState() => FeedListState();
+
+
 }
 
 class FeedListState extends State<FeedList>  {
