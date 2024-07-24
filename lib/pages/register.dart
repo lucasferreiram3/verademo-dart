@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:verademo_dart/controllers/register_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/utils/validation.dart';
-import 'package:verademo_dart/widgets/credentials_field.dart';
+
 import 'login.dart';
-import 'register-finish.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

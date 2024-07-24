@@ -1,12 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/controllers/internal_controller.dart';
 import 'package:verademo_dart/controllers/login_controller.dart';
 import 'package:verademo_dart/theme/theme.dart';
 import 'package:verademo_dart/utils/constants.dart';
-import 'package:verademo_dart/utils/validation.dart';
 import 'package:verademo_dart/widgets/credentials_field.dart';
 import 'package:verademo_dart/widgets/stateful_checkbox.dart';
+
 import 'register.dart';
 
 class LoginPage extends StatelessWidget {

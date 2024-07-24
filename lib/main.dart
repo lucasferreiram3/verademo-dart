@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/pages/blab.dart';
 import 'package:verademo_dart/pages/login.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
 
@@ -37,16 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorSche
       ),*/
       theme: VTheme.defaultTheme,
-      // home: BlabPage(blabInfo: const {
-      //       "username": "grant",
-      //       "blab_name": "Grant",
-      //       "content": "Just dropped my new phone in the jacuzzi, I think it's syncing.",
-      //       "timestamp": "2021-01-21T17:06:02.000Z",
-      //       "count": 3,
-      //       "blabid": 42
-      //   })
-
-      home: LoginPage(username: username, password: password),
+      home: LoginPage(username: username, password: password)
       // Scaffold(
       //   appBar: AppBar(
       //     backgroundColor: veracodeBlack,
