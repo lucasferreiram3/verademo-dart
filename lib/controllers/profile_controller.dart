@@ -31,7 +31,6 @@ class ProfileController {
 
       if (response.statusCode == 200) {
         // Query successful
-        print(response.body);
 
         // Set variables
         final data = jsonDecode(response.body)["data"];
@@ -75,7 +74,6 @@ class ProfileController {
 
       if (response.statusCode == 200) {
         // Query successful
-        print(response.body);
 
         // Set variables
         final data = jsonDecode(response.body)["data"];
