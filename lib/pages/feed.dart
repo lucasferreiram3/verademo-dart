@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:verademo_dart/controllers/blab_controller.dart';
 import 'package:verademo_dart/model/User.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/widgets/feed_radio.dart';
@@ -21,6 +20,7 @@ class _FeedPageState extends State<FeedPage> {
 
   late Future<User> futureUser;
   TextEditingController commentController = TextEditingController();
+  var feed = FeedRadio();
 
   @override
   void initState() {
@@ -51,41 +51,13 @@ class _FeedPageState extends State<FeedPage> {
               ),
             ),
             //Begin TextField Line
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: widget.controller,
-                    decoration: InputDecoration(
-                      hintStyle: Theme.of(context).textTheme.bodyMedium,
-                      hintText: 'Blab something now...',
-                      filled: true,
-                      fillColor: VConstants.darkNeutral2,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8,),
-                ElevatedButton(
-                  onPressed: () { 
-                    setState(() {
-                      BlabController.addBlab(widget.controller.text,context);
-                }); },
-                  child: const Text('Add'),
-                ),
-              ],
-            ),
             // Spacer between Sections
-            const SizedBox(height: 16),
+            
         
             Expanded(
               child: Container(
                 alignment: Alignment.topCenter,
-                child: const FeedRadio(),)),
+                child: feed,)),
             // const FeedRadio(),
             // More spacing
             const SizedBox(height: 16),
@@ -95,6 +67,8 @@ class _FeedPageState extends State<FeedPage> {
       ),
     );
   }
+
+  
 
    
 }

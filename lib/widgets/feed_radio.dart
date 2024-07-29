@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:verademo_dart/controllers/blab_controller.dart';
 import 'package:verademo_dart/pages/blab.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
@@ -14,7 +15,8 @@ enum WidgetState {
 }
 
 class FeedRadio extends StatefulWidget {
-  const FeedRadio({super.key});
+  FeedRadio({super.key});
+  final controller = TextEditingController();
 
   @override
   State<FeedRadio> createState() => _FeedRadioState();
@@ -31,6 +33,17 @@ class _FeedRadioState extends State<FeedRadio> {
     super.initState();
     _data = getFeedData();
   }
+
+  void update() async {
+    setState(() {
+      if (currentWidget == WidgetState.Feed) {
+        _data = getFeedData();
+      } else {
+        _data = getBlabData();
+      }
+    });
+  }
+
   Future<List<Widget>> getFeedData() async {
     print("Building API call to /posts/getBlabsForMe/");
     final url = "${VConstants.apiUrl}/posts/getBlabsForMe";
@@ -78,14 +91,14 @@ class _FeedRadioState extends State<FeedRadio> {
   @override
   Widget build(BuildContext context) {
     return Column( 
-        children: [ 
+        children: [
+          BlabBar(context,),
+          const SizedBox(height: 16),
           RadioHead(),
           const SizedBox(height: 10.0,),
           // Feed view
           Expanded(child: Feed()),
-          ],
-                   
-              );
+          ],);
     
   }
 
@@ -116,6 +129,39 @@ class _FeedRadioState extends State<FeedRadio> {
           },
                 ),
       ],);
+  }
+
+  Row BlabBar(BuildContext context) {
+    return Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: widget.controller,
+                  decoration: InputDecoration(
+                    hintStyle: Theme.of(context).textTheme.bodyMedium,
+                    hintText: 'Blab something now...',
+                    filled: true,
+                    fillColor: VConstants.darkNeutral2,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8,),
+              ElevatedButton(
+                onPressed: () { 
+                  setState(() {
+                    BlabController.addBlab(widget.controller.text,context);
+                    _data = getBlabData();
+
+              }); },
+                child: const Text('Add'),
+              ),
+            ],
+          );
   }
 
   // ignore: non_constant_identifier_names

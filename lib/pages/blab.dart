@@ -49,20 +49,36 @@ class _BlabPageState extends State<BlabPage> {
             FutureBuilder<List<Widget>>(
               future: _commentdata,
               builder: (context, snapshot) {
-                if (snapshot.hasError)
-                {
-                  final error = snapshot.error;
-
-                  return Text('Error: $error');
-                } else if (snapshot.hasData) {
-                  List<Widget> commentdata = snapshot.data as List<Widget>;
-                  return Column(children: commentdata,);
-                }
-                else {
-                  return const Center(
+                switch (snapshot.connectionState){
+                  case ConnectionState.waiting:
+                    return const Center(
                     child: CircularProgressIndicator(
                       color: VConstants.veracodeBlue,));
+                  case ConnectionState.done:
+                  default:
+                    if (snapshot.hasError){
+                      return Text('Error: ${snapshot.error}');
+                    } else if (snapshot.hasData) {
+                      List<Widget> commentData = snapshot.data as List<Widget>;
+                      return Column(children: commentData,);
+                    } else {
+                      return const Text('No results received.');
+                    }
                 }
+                // if (snapshot.hasError)
+                // {
+                //   final error = snapshot.error;
+
+                //   return Text('Error: $error');
+                // } else if (snapshot.hasData) {
+                //   List<Widget> commentdata = snapshot.data as List<Widget>;
+                //   return Column(children: commentdata,);
+                // }
+                // else {
+                //   return const Center(
+                //     child: CircularProgressIndicator(
+                //       color: VConstants.veracodeBlue,));
+                // }
               },
             ),
           ],),
@@ -83,6 +99,7 @@ class _BlabPageState extends State<BlabPage> {
       "Authorization": "${VSharedPrefs().token}"
     };
     
+    await Future.delayed(const Duration(seconds: 2));
     
     final response = await http.post(uri1, headers: headers1, body: body);
     // Convert output to JSON
@@ -97,7 +114,7 @@ class _BlabPageState extends State<BlabPage> {
       "Authorization": "${VSharedPrefs().token}"
     };
 
-    await Future.delayed(const Duration(seconds: 2));
+    
     // Execute API call for getUsers
     final userResponse = await http.get(uri2, headers: headers2);
     if (userResponse.statusCode == 200) {
