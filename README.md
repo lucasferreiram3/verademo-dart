@@ -1,16 +1,15 @@
-# verademo_dart
 
-A new Flutter project.
+## Running the app
 
-## Getting Started
+You can run this app either using Android Studio or VSCode.
 
-This project is a starting point for a Flutter application.
+First, clone the repo
 
-A few resources to get you started if this is your first Flutter project:
+### VSCode
+ - enter project directory
+ - type `flutter run`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Android Studio
+ - open the project
+ - select a device to run in 'Device Manager' using run button
+ - Press run button at the top of the screen. Make sure the entrypoint is main.dart.
