@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:verademo_dart/controllers/blab_controller.dart';
 import 'package:verademo_dart/utils/constants.dart';
 import 'package:verademo_dart/utils/shared_prefs.dart';
@@ -74,7 +73,7 @@ class _BlabPageState extends State<BlabPage> {
   Future<List<Widget>> getData(blabid) async {
  
     print("Building API call to /posts/getBlabComments");
-    const url1 = "${VConstants.apiUrl}/posts/getBlabComments";
+    final url1 = "${VConstants.apiUrl}/posts/getBlabComments";
     final uri1 = Uri.parse(url1);
     final body = jsonEncode(<String, int> {
         "blabId": blabid
@@ -91,7 +90,7 @@ class _BlabPageState extends State<BlabPage> {
 
     // Build API call for getUsers
     print("Building API call to /users/getUsers/");
-    const url2 = "${VConstants.apiUrl}/users/getUsers/";
+    final url2 = "${VConstants.apiUrl}/users/getUsers/";
     final uri2 = Uri.parse(url2);
     final Map<String, String> headers2 = {
       "content-type": "application/json",

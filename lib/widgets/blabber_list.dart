@@ -29,7 +29,7 @@ class _BlabberListState extends State<BlabberList> {
   
   Future<List<Widget>> getData() async {
     print("Building API call to /users/getBlabbers/");
-    const url = "${VConstants.apiUrl}/users/getBlabbers/";
+    final url = "${VConstants.apiUrl}/users/getBlabbers/";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",
@@ -104,7 +104,7 @@ class _BlabberListState extends State<BlabberList> {
   void ignore(String blabberUser)
   async {
     print("Building API call to /users/ignore/");
-    const url = "${VConstants.apiUrl}/users/ignore/";
+    final url = "${VConstants.apiUrl}/users/ignore/";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",
@@ -128,7 +128,7 @@ class _BlabberListState extends State<BlabberList> {
   void listen(String blabberUser)
   async {
     print("Building API call to /users/listen/");
-    const url = "${VConstants.apiUrl}/users/listen/";
+    final url = "${VConstants.apiUrl}/users/listen/";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",

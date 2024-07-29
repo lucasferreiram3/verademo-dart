@@ -33,7 +33,7 @@ class _FeedRadioState extends State<FeedRadio> {
   }
   Future<List<Widget>> getFeedData() async {
     print("Building API call to /posts/getBlabsForMe/");
-    const url = "${VConstants.apiUrl}/posts/getBlabsForMe";
+    final url = "${VConstants.apiUrl}/posts/getBlabsForMe";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",
@@ -55,7 +55,7 @@ class _FeedRadioState extends State<FeedRadio> {
 
   Future<List<Widget>> getBlabData() async {
     print("Building API call to /posts/getBlabsByMe/");
-    const url = "${VConstants.apiUrl}/posts/getBlabsByMe";
+    final url = "${VConstants.apiUrl}/posts/getBlabsByMe";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",

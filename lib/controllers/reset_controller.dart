@@ -11,7 +11,7 @@ class ResetController{
   {
     // Build API call for login
     print("Building API call to /users/reset/");
-    const url = "${VConstants.apiUrl}/users/reset/";
+    final url = "${VConstants.apiUrl}/users/reset/";
     final uri = Uri.parse(url);
     final Map<String, String> headers = {
       "content-type": "application/json",

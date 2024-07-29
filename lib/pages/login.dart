@@ -24,15 +24,17 @@ class LoginPage extends StatelessWidget {
             padding: VConstants.loginSpacing,
             child: Column (
               children: [
-                const SizedBox(height: 150),
+                const SizedBox(height: 60),
                 _loginTitle(context),
                 const SizedBox(height: 10),
                 _loginSubtitle(context),
                 const SizedBox(height: 58),
                 // const _LoginForm(),
                 _loginForm(context),
-                const SizedBox(height: 85),
+                const SizedBox(height: 35),
                 _signUpText(context),
+                const SizedBox(height: 90),
+                _APIForm(context),
               ],
             ),
           ),
@@ -75,16 +77,24 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  // TextFormField _credField(String fieldName, TextEditingController? controller) {
-  //   return TextFormField (
-  //     controller: controller,
-  //     validator: (value) => VValidator.validateTextField(fieldName, value),
-  //     textAlignVertical: TextAlignVertical.center,
-  //     decoration: InputDecoration(
-  //       hintText: fieldName,
-  //     ),
-  //   );
-  // }
+  // ignore: non_constant_identifier_names
+  Column _APIForm(BuildContext context) {
+    final controller = LoginController();
+
+    controller.api.text = VConstants.apiUrl;
+
+    return Column(
+      children: [
+        VCredField("http://...", controller: controller.api),
+        const SizedBox(height: VConstants.textFieldSpacing),
+        //const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () => controller.processAPI(context),
+          child: const Text('Sync API'),
+        ),
+      ],
+    );
+  }
 
   Padding _rememberMe(LoginController controller) {
     return Padding(
@@ -155,82 +165,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-// class _CheckBoxState extends State<Checkbox> {
-//   bool rememberMe = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Checkbox(
-//       value: rememberMe,
-//       onChanged: ((bool? newValue) {
-//         setState(() {
-//           rememberMe = newValue ?? true;
-//           if (rememberMe) {
-
-//           } else {
-
-//           }
-//         });
-//       })
-//     );
-//   }
-// }
-
-// class _LoginForm extends StatelessWidget {
-//   const _LoginForm({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final controller = LoginController();
-
-//     return Form(
-//       child: Column(
-//         children: [
-//           TextFormField (
-//             textAlignVertical: TextAlignVertical.center,
-//             decoration: const InputDecoration(
-//               hintText: "Username",
-//             ),
-//           ),
-//           const SizedBox(height: VConstants.textFieldSpacing),
-//           TextFormField (
-//             textAlignVertical: TextAlignVertical.center,
-//             decoration: const InputDecoration(
-//               hintText: "Password",
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.only(top: 5),
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.start,
-//               children: [
-//                 VCheckbox(value: controller.rememberMe, onChanged: ((bool? newValue) {
-//                   print("Controller remember me was ${controller.rememberMe}");
-//                   controller.rememberMe = newValue ?? true;
-//                   print("Controller remember me set to ${controller.rememberMe}");
-//                   if (controller.rememberMe) {
-
-//                   } else {
-
-//                   }
-//                 })),
-//                 const Text("Remember me")
-//               ],
-//             ),
-//           ),
-//           const SizedBox(height: 30),
-//           ElevatedButton(
-//             child: const Text('Login'),
-//             onPressed: () {
-//               Navigator.push(context,
-//               MaterialPageRoute(builder: (context) => const HomePage(username: 'test')),);
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

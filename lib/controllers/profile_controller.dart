@@ -20,7 +20,7 @@ class ProfileController {
     try {
       // Build API call for getProfileInfo
       print("Building API call to /users/getProfileInfo/");
-      const url = "${VConstants.apiUrl}/users/getProfileInfo/";
+      final url = "${VConstants.apiUrl}/users/getProfileInfo/";
       final uri = Uri.parse(url);
       final Map<String, String> headers = {
         "Authorization": VSharedPrefs().token ?? "",
@@ -56,7 +56,7 @@ class ProfileController {
       print("Old username: $oldUsername");
 
       print("Building API call to /users/updateProfile/");
-      const url = "${VConstants.apiUrl}/users/updateProfile/";
+      final url = "${VConstants.apiUrl}/users/updateProfile/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, String> {
         "username": username.text,
@@ -130,7 +130,7 @@ class ProfileController {
     try {
       // Build API call for getProfileInfo
       print("Building API call to /users/getEvents/");
-      const url = "${VConstants.apiUrl}/users/getEvents/";
+      final url = "${VConstants.apiUrl}/users/getEvents/";
       final uri = Uri.parse(url);
       final Map<String, String> headers = {
         "Authorization": VSharedPrefs().token ?? "",

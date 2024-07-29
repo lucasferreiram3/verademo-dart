@@ -13,7 +13,7 @@ class BlabController {
   static void addBlab(String text, BuildContext context) async {
     try {
       print("Building API call to /posts/addBlab/");
-      const url = "${VConstants.apiUrl}/posts/addBlab/";
+      final url = "${VConstants.apiUrl}/posts/addBlab/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, String> {
         "blab": text
@@ -43,7 +43,7 @@ class BlabController {
   static void addBlabComment(int blabId, String comment, BuildContext context) async {
     try {
       print("Building API call to /posts/addBlabComment/");
-      const url = "${VConstants.apiUrl}/posts/addBlabComment/";
+      final url = "${VConstants.apiUrl}/posts/addBlabComment/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, dynamic> {
         "blabId": blabId,

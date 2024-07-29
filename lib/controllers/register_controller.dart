@@ -75,7 +75,7 @@ class RegisterController {
 
       // Build API call for getUsers
       print("Building API call to /users/getUsers/");
-      const url = "${VConstants.apiUrl}/users/getUsers/";
+      final url = "${VConstants.apiUrl}/users/getUsers/";
       final uri = Uri.parse(url);
       final Map<String, String> headers = {
         "content-type": "application/json",
@@ -134,7 +134,7 @@ class RegisterController {
 
       // Build API call for register
       print("Building API call to /users/register/");
-      const url = "${VConstants.apiUrl}/users/register/";
+      final url = "${VConstants.apiUrl}/users/register/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, String> {
         "username": username.text,

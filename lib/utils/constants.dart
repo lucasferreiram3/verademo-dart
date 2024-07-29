@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class VConstants {
   VConstants._();
   
-  static const String apiUrl = "http://10.0.2.2:8000";
+  static String apiUrl = "http://10.0.2.2:8000";
 
   static const Color veracodeBlue = Color(0xFF00B3E6);
   static const Color codeBlack = Color(0xFF000000);

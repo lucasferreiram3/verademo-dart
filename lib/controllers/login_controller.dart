@@ -11,6 +11,8 @@ import 'package:verademo_dart/utils/snackbar.dart';
 class LoginController {
   final username = TextEditingController();
   final password = TextEditingController();
+  final api = TextEditingController();
+
   bool rememberMe = false;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
@@ -23,7 +25,7 @@ class LoginController {
 
       // Build API call for login
       print("Building API call to /users/login/");
-      const url = "${VConstants.apiUrl}/users/login/";
+      final url = "${VConstants.apiUrl}/users/login/";
       final uri = Uri.parse(url);
       final body = jsonEncode(<String, String> {
         "username": username.text,
@@ -76,6 +78,31 @@ class LoginController {
     } catch (err) {
       print(err);
       //if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Couldn't make API connection"));
+    }
+  }
+
+  void processAPI(BuildContext context) async {
+    VConstants.apiUrl = api.text;
+
+    // Build API call for login
+    print("Building API call to ${VConstants.apiUrl}/");
+    final url = "${VConstants.apiUrl}";
+    final uri = Uri.parse(url);
+    try{
+      // Execute API call for login
+      final response = await http.get(uri);
+
+      if (!context.mounted) return;
+
+      if(response.statusCode==200)
+      {
+        // Make sure context exists
+        ScaffoldMessenger.of(context).showSnackBar(VSnackBar.successSnackBar("Database Found"));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Database found with unexpected error"));
+      }
+    } catch(e) {
       ScaffoldMessenger.of(context).showSnackBar(VSnackBar.errorSnackBar("Couldn't make API connection"));
     }
   }
