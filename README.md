@@ -36,6 +36,7 @@ This section boils down to:
  - Configure Android Studio
 
 Follow the instructions to download Flutter and Android Studio[here](https://docs.flutter.dev/get-started/install)
+
 **Tips**
  - Downloading via VSCode is optional, but easier!
  - Flutter has great documentation. If you get stuck, it is likely addressed somewhere on flutter's docs

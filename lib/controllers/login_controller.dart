@@ -83,11 +83,24 @@ class LoginController {
   }
 
   void processAPI(BuildContext context) async {
-    VConstants.apiUrl = api.text;
+
+    RegExp exp = RegExp(r'^((localhost)*|(127.0.0.1))*');
+    String str = api.text;
+    bool match = exp.hasMatch(str);
+    print(match);
+    if (match)
+    {
+      
+      VConstants.apiUrl = "http://10.0.2.2:${str.split(':').last}";
+    }
+    else{
+      VConstants.apiUrl = api.text;
+    }
+    print(VConstants.apiUrl);
 
     // Build API call for login
     print("Building API call to ${VConstants.apiUrl}/");
-    final url = "${VConstants.apiUrl}";
+    final url = VConstants.apiUrl;
     final uri = Uri.parse(url);
     try{
       // Execute API call for login
