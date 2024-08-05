@@ -84,7 +84,7 @@ class LoginController {
 
   void processAPI(BuildContext context) async {
 
-    RegExp exp = RegExp(r'^((localhost)*|(127.0.0.1))*');
+    RegExp exp = RegExp(r'^((localhost)+|(127.0.0.1))+');
     String str = api.text;
     bool match = exp.hasMatch(str);
     print(match);
