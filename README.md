@@ -65,7 +65,7 @@ For VSCode:
 In the bottom right corner, start an emulator, then run the project with `flutter run` in terminal while in the project folder.
 
 For Android Studio:
- - select a device to run in 'Device Manager' using run button
+ - Select a device to run in 'Device Manager' using run button
  - Press run button at the top of the screen. Make sure the entrypoint is main.dart.
 
 Now the login page for Blab-a-gag mobile should display! However with no API connected, login will fail.
