@@ -53,9 +53,9 @@ This section is more straightforward:
 
 
 **Clone the repository:**
-    `git clone "https://github.com/veracode-demo-labs/verademo-dart.git"`
+    git clone "https://github.com/veracode-demo-labs/verademo-dart.git"
     
-    `cd verademo-dart`
+    cd verademo-dart
 
 Open the project in either Android Studio or VSCode, depending on preference
  - NOTE: If you didn't configure flutter with VSCode in Step 1, don't use it for this.
