@@ -35,7 +35,7 @@ This section boils down to:
  - Download Flutter
  - Configure Android Studio
 
-Follow the instructions to download Flutter and Android Studio[here](https://docs.flutter.dev/get-started/install)
+Follow the instructions to download Flutter and Android Studio [here](https://docs.flutter.dev/get-started/install)
 
 **Tips**
  - Downloading via VSCode is optional, but easier!
@@ -52,9 +52,9 @@ This section is more straightforward:
  - Run project
 
 
-Clone the repository:
-    git clone https://github.com/veracode-demo-labs/verademo-python.git
-    cd verademo-python
+**Clone the repository:**
+    `git clone "https://github.com/veracode-demo-labs/verademo-dart.git"`
+    `cd verademo-dart`
 
 Open the project in either Android Studio or VSCode, depending on preference
  - NOTE: If you didn't configure flutter with VSCode in Step 1, don't use it for this.
