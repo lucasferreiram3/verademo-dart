@@ -35,7 +35,7 @@ This section boils down to:
  - Download Flutter
  - Configure Android Studio
 
-Follow the instructions to download Flutter and Android Studio[here](https://docs.flutter.dev/get-started/install)
+Follow the instructions to download Flutter and Android Studio [here](https://docs.flutter.dev/get-started/install)
 
 **Tips**
  - Downloading via VSCode is optional, but easier!
@@ -52,9 +52,11 @@ This section is more straightforward:
  - Run project
 
 
-Clone the repository:
-    git clone https://github.com/veracode-demo-labs/verademo-python.git
-    cd verademo-python
+**Clone the repository:**
+    
+    git clone "https://github.com/veracode-demo-labs/verademo-dart.git"
+    
+    cd verademo-dart
 
 Open the project in either Android Studio or VSCode, depending on preference
  - NOTE: If you didn't configure flutter with VSCode in Step 1, don't use it for this.
@@ -63,7 +65,7 @@ For VSCode:
 In the bottom right corner, start an emulator, then run the project with `flutter run` in terminal while in the project folder.
 
 For Android Studio:
- - select a device to run in 'Device Manager' using run button
+ - Select a device to run in 'Device Manager' using run button
  - Press run button at the top of the screen. Make sure the entrypoint is main.dart.
 
 Now the login page for Blab-a-gag mobile should display! However with no API connected, login will fail.
