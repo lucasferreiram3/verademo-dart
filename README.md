@@ -54,6 +54,7 @@ This section is more straightforward:
 
 **Clone the repository:**
     `git clone "https://github.com/veracode-demo-labs/verademo-dart.git"`
+    
     `cd verademo-dart`
 
 Open the project in either Android Studio or VSCode, depending on preference
