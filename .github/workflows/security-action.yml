@@ -1,0 +1,20 @@
+name: security-action
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  build:
+    name: veracode package maven
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v4
+    - name: veracode auto-packaging
+      working-directory: ./app/
+      env: 
+        VERACODE_API_KEY_ID: ${{ secrets.VID }}
+        VERACODE_API_KEY_SECRET: ${{ secrets.VKEY }}
+      run: |
+        curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+        ./veracode --source . --type directory --output verascan --trust --debug
+        ls -l
