@@ -5,17 +5,12 @@ on:
 
 jobs:
   build:
-    name: veracode package maven
+    name: build
     runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v4
     - uses: MobileDevOps/flutter-sdk-action@v1.0.0
-    - name: veracode auto-packaging
+    - name: build for veracode
       working-directory: ./android/
-      env: 
-        VERACODE_API_KEY_ID: ${{ secrets.VID }}
-        VERACODE_API_KEY_SECRET: ${{ secrets.VKEY }}
       run: |
-        curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-        ./veracode package --source . --type directory --output verascan --trust --debug
-        ls -l
+        flutter build apk --debug
