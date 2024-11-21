@@ -11,10 +11,11 @@ jobs:
     - uses: actions/checkout@v4
     - uses: MobileDevOps/flutter-sdk-action@v1.0.0
     - name: veracode auto-packaging
+      working-directory: ./android/
       env: 
         VERACODE_API_KEY_ID: ${{ secrets.VID }}
         VERACODE_API_KEY_SECRET: ${{ secrets.VKEY }}
       run: |
         curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-        ./veracode --source . --type directory --output verascan --trust --debug
+        ./veracode package --source . --type directory --output verascan --trust --debug
         ls -l
