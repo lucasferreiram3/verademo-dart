@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v4
+    - uses: MobileDevOps/flutter-sdk-action@v1.0.0
     - name: veracode auto-packaging
-      working-directory: app
+      working-directory: ./android/
       env: 
         VERACODE_API_KEY_ID: ${{ secrets.VID }}
         VERACODE_API_KEY_SECRET: ${{ secrets.VKEY }}
